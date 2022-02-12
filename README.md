@@ -1,4 +1,4 @@
-# live-project-whatsapp-clone-frontend-team-A
+# live-project-twitter-clone-frontend-team-A
 
 A twitter clone that include all functionalities of twiiter like create tweet, follow users etc.
 
