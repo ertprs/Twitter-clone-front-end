@@ -83,6 +83,15 @@ const Chat = () => {
             </div>
 
             <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <div className="row chat-left-footer">
               <div className="col-3">
                 <img
@@ -91,8 +100,8 @@ const Chat = () => {
                   alt=""
                 />
               </div>
-              <div className="col-9 ">
-                <p>Xanthe Neal</p>
+              <div className="col-9">
+                <p className="p-spacing">Xanthe Neal</p>
               </div>
             </div>
           </div>
