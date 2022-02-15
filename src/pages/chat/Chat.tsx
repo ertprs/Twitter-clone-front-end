@@ -1,8 +1,9 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { NavDropdown } from "react-bootstrap";
 import "../../styles/chat.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faUser, faSignOut,faMountain } from "@fortawesome/free-solid-svg-icons";
 
 const Chat = () => {
   return (
@@ -100,8 +101,37 @@ const Chat = () => {
                   alt=""
                 />
               </div>
-              <div className="col-9">
-                <p className="p-spacing">Xanthe Neal</p>
+              <div className="col-9 ">
+                <NavDropdown
+                  id="nav-dropdown-dark-example"
+                  title={<span className="text-light">Xanthe Neal</span>}
+                  menuVariant="light"
+                  color="white"
+                  className="p-spacing chat-nav"
+                >
+                  <NavDropdown.Item href="#action/3.1">
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className="text-dark nav-icon-space"
+                    />
+                    
+                    My Profile
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.2">
+                    <FontAwesomeIcon
+                      icon={faMountain }
+                      className="text-dark nav-icon-space"
+                    />
+                    Tweeter
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">
+                    <FontAwesomeIcon
+                      icon={faSignOut}
+                      className="text-dark nav-icon-space"
+                    />
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
               </div>
             </div>
           </div>
