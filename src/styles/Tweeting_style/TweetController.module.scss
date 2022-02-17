@@ -37,7 +37,7 @@ body{
     font-size:12px;
     color:#4F4F4F;
     padding-top:10.91px;
-    font-weight: normal;
+    font-weight: bolder;
 
 
 }
@@ -89,6 +89,7 @@ textarea:focus{
 .select-media-container button{
     @include buttonStyle($color:#fff, $backgroundColor:#2F80ED);
     margin-right: 18.79px;
+    font-weight: bolder;
 }
 
 .select-media-container:hover{
@@ -129,10 +130,8 @@ textarea:focus{
     
     color: #ff0000;
     font-weight: bolder;
+
 }
-
-
-
 
 .select-media div{
 display: flex;
@@ -150,8 +149,9 @@ cursor: pointer;
 .select-media div h3{
     display:inline-block;
     font-size: 12px;
-    margin-top: -10px;
+    margin-top: -9px;
     color: $primaryColor;
+    font-weight: bolder;
 }
 
 
@@ -169,11 +169,11 @@ cursor: pointer;
     }
 }
 
-// replier-container
+// replierContainer
 
-.replier-container{
+.replierContainer{
 width: 234.37px;
-height: 155.29px;
+height: 170.29px;
 background-color: $backgroundColor;
 margin: 8px 133px;
 padding-left: 12px;
@@ -203,19 +203,19 @@ p{
 
 @media  screen and(max-width:720px) {
     
-    .replier-container{
+    .replierContainer{
         left:0px;
     }
 }
 
-// .hide-replier-container on button click
-.hide-replier-container{
+// .hide-replierContainer on button click
+.hideReplierContainer{
     display: none;
 }
 
 // who to reply content styling
 
-.replier-container .image-n-text{
+.replierContainer .image-n-text{
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -232,11 +232,16 @@ p{
     background-color: #F2F2F2;
 }
 
-.replier-container .image-n-text img{
+.replierContainer .image-n-text img{
     margin-right: 9.6px;
     width: 16.67px;
     height: 16.67px;
 }
+.replierContainer .image-n-text h3{
+    margin-top: 9px;
+
+}
+
 
 .trending-n-follow{
     display: flex;
@@ -259,9 +264,7 @@ p{
 
 
     
-    .trending h3{
-        @include h3Header();
-    }
+ 
 
     &-content{
             width:100%;
@@ -289,8 +292,12 @@ p{
     }
     
 }
+
  .underline{
     @include underline();
+}
+.trending h3{
+    @include h3Header();
 }
 
 
@@ -308,7 +315,7 @@ p{
     .underline{
         @include underline();
     }
-    & h3{
+    h3{
         @include h3Header();
     }
     & .suggest-container{
@@ -364,6 +371,7 @@ p{
         display: flex;
         justify-content: space-between;
         align-items: center;
+        font-weight: bolder;
 
     }
     & .suggest-user button span{
@@ -373,7 +381,7 @@ p{
         background-size: cover;
         width:13.83px;
         height: 13px;
-        padding-right: 12px;        
+        padding-right: 12px;      
     }
 
     &  a{

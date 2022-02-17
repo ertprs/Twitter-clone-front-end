@@ -42,7 +42,7 @@ body {
   font-size: 12px;
   color: #4F4F4F;
   padding-top: 10.91px;
-  font-weight: normal;
+  font-weight: bolder;
 }
 
 .tweet-heading .underline {
@@ -111,6 +111,7 @@ textarea:focus {
   border: none;
   cursor: pointer;
   margin-right: 18.79px;
+  font-weight: bolder;
 }
 
 .select-media-container:hover {
@@ -174,8 +175,9 @@ textarea:focus {
 .select-media div h3 {
   display: inline-block;
   font-size: 12px;
-  margin-top: -10px;
+  margin-top: -9px;
   color: #2F80ED;
+  font-weight: bolder;
 }
 
 @media screen and (max-width: 720px) {
@@ -190,7 +192,7 @@ textarea:focus {
 
 .replierContainer {
   width: 234.37px;
-  height: 155.29px;
+  height: 170.29px;
   background-color: #fff;
   margin: 8px 133px;
   padding-left: 12px;
@@ -222,7 +224,7 @@ textarea:focus {
   }
 }
 
-.hideReplierContainer{
+.hideReplierContainer {
   display: none;
 }
 
@@ -255,6 +257,10 @@ textarea:focus {
   height: 16.67px;
 }
 
+.replierContainer .image-n-text h3 {
+  margin-top: 9px;
+}
+
 .trending-n-follow {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -281,13 +287,6 @@ textarea:focus {
   padding-top: 10.91px;
   font-size: 12px;
   font-family: Poppins, sans-serif;
-}
-
-.trending .trending h3 {
-  font-size: 12px;
-  color: #4F4F4F;
-  padding-top: 10.91px;
-  font-weight: normal;
 }
 
 .trending-content {
@@ -321,6 +320,13 @@ textarea:focus {
   width: 706.21px;
 }
 
+.trending h3 {
+  font-size: 12px;
+  color: #4F4F4F;
+  padding-top: 10.91px;
+  font-weight: bolder;
+}
+
 .who-to-follow {
   width: 306px;
   height: 100%;
@@ -341,7 +347,7 @@ textarea:focus {
   font-size: 12px;
   color: #4F4F4F;
   padding-top: 10.91px;
-  font-weight: normal;
+  font-weight: bolder;
 }
 
 .who-to-follow .suggest-container {
@@ -423,6 +429,7 @@ textarea:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  font-weight: bolder;
 }
 
 .who-to-follow .suggest-user button span {
@@ -467,4 +474,4 @@ textarea:focus {
     display: none;
   }
 }
-/*# sourceMappingURL=TweetController.css.map */
+/*# sourceMappingURL=TweetController.module.css.map */

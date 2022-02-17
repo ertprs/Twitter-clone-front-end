@@ -20,7 +20,7 @@
   font-size: 12px;
   color: #4F4F4F;
   padding-top: 10.91px;
-  font-weight: normal;
+  font-weight: bolder;
 }
 
 .trending-content {
@@ -53,4 +53,4 @@
   border: 1px solid #E0E0E0;
   width: 100%;
 }
-/*# sourceMappingURL=TrendingPage.css.map */
+/*# sourceMappingURL=TrendingPage.module.css.map */
