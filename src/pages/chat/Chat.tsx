@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { NavDropdown } from "react-bootstrap";
 import "../../styles/chat.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faUser, faSignOut,faMountain } from "@fortawesome/free-solid-svg-icons";
+// import { faPlus, faUser, faSignOut,faMountain } from "@fortawesome/free-solid-svg-icons";
 
 const Chat = () => {
   return (
@@ -18,7 +18,9 @@ const Chat = () => {
               </div>
               <div className="col-4">
                 <button type="button" className="chat-plus-bg ">
-                  <FontAwesomeIcon icon={faPlus} className="iconFa" />
+                  {/* <FontAwesomeIcon 
+                  // icon={faPlus} 
+                  className="iconFa" /> */}
                 </button>
               </div>
             </div>
@@ -110,25 +112,25 @@ const Chat = () => {
                   className="p-spacing chat-nav"
                 >
                   <NavDropdown.Item href="#action/3.1">
-                    <FontAwesomeIcon
-                      icon={faUser}
-                      className="text-dark nav-icon-space"
-                    />
+                    {/* <FontAwesomeIcon
+                      // icon={faUser}
+                      // className="text-dark nav-icon-space"
+                    /> */}
                     
                     My Profile
                   </NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
-                    <FontAwesomeIcon
-                      icon={faMountain }
+                    {/* <FontAwesomeIcon
+                      // icon={faMountain }
                       className="text-dark nav-icon-space"
-                    />
+                    /> */}
                     Tweeter
                   </NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.3">
-                    <FontAwesomeIcon
-                      icon={faSignOut}
+                    {/* <FontAwesomeIcon
+                      // icon={faSignOut}
                       className="text-dark nav-icon-space"
-                    />
+                    /> */}
                     Logout
                   </NavDropdown.Item>
                 </NavDropdown>
