@@ -1,8 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import './changePassword.css';
+import './changePassword.scss';
 import Button from '@mui/material/Button';
+import InputLabel from '@mui/material/InputLabel';
 
 
 
@@ -22,7 +23,10 @@ export default function ChangePassword() {
         <section className="container">
           <h1 className="header"> Change Password </h1>
         <div className="text-field">
-          <TextField
+           <InputLabel shrink htmlFor="outlined-textarea">
+          Old Password
+        </InputLabel>
+          <TextField className="textField"
             id="outlined-textarea"
             label="Old Password"
             placeholder="Old Password"
@@ -30,7 +34,10 @@ export default function ChangePassword() {
           />
        </div>
        <div className="text-field">
-          <TextField
+          <InputLabel shrink htmlFor="outlined-textarea">
+          New Password
+        </InputLabel>
+       <TextField className="textField"
             id="outlined-textarea"
             label="New Password"
             placeholder="New Password"
@@ -38,14 +45,17 @@ export default function ChangePassword() {
           />
        </div>
        <div className="text-field">
-          <TextField
+          <InputLabel shrink htmlFor="outlined-textarea">
+          Confirm New Password
+        </InputLabel>
+          <TextField className="textField"
             id="outlined-textarea"
             label="Confirm New Password"
             placeholder="Confirm New Password"
             multiline
           />
        </div>
-        <button type="submit"> Change Password</button>
+        <button className="button"> Change password</button>
         </section>
     </Box>
   );
