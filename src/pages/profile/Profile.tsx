@@ -1,11 +1,11 @@
 import React from "react";
 
-import ProfileHeader from "../../components/profile/ProfileHeader";
+import ProfileHeader from "../../Components/profile/ProfileHeader";
 import "./Profile.css";
 
-import Tweet from "../../components/profile/Tweet";
+import Tweet from "../../Components/profile/Tweet";
 
-import TweetNav from "../../components/profile/TweetNav";
+import TweetNav from "../../Components/profile/TweetNav";
 
 const Profile = () => {
   return (
