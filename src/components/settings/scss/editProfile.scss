@@ -1,0 +1,42 @@
+.edit-profile {
+    border: 1px solid #e0e0e0;
+    padding: 18.82px 29.65px 25.97px 29.65px;
+    border-radius: 10px;
+    width: 51.6%;
+    margin: 5em auto;
+
+    input, textarea {
+        width: 300px;
+        color: #bdbdbd;
+        margin-bottom: 12px;
+        border-radius: 5px;
+    }
+
+    label, .btn {
+        font-size: 13px;
+    }
+    .btn {
+        border-radius: 5px;
+    }
+
+    .form-container {
+        .change-profile-pics, .heading p {
+            font-size: 13px;
+            color: 828282px;
+            line-height: 18px;
+            letter-spacing: -3.5%;
+        } 
+        .change-profile-pics {
+            display: flex;
+            gap: 13.5px;
+            align-items: center;
+            margin: 12px 0;
+            .photo-input {
+                width: 42px;
+                height: 42px;
+                border-radius: 5px;
+                background-color: rgba(0,0,0,0.3);
+            }
+        }
+    }
+}
