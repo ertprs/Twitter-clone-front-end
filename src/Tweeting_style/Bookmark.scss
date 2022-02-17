@@ -1,0 +1,52 @@
+@import "../Tweeting_style/Variables/variables.scss";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    // display: none;
+    // border:2px solid red;
+}
+
+.bookmark-container{
+    display: flex;
+    justify-content: center;
+    margin-top:33px;
+    flex-wrap: wrap;
+    width: 100%;
+
+   
+}
+
+//links container
+.bookmark-links {
+    // margin-top:24.98px;
+    background-color: $backgroundColor;
+    ul{
+        width:304px;
+        height:219px;
+        list-style-type: none;
+        border-radius: 4px;
+        margin-top: 33px;
+    }
+    li{
+        padding-top: 10px;
+        margin-bottom: 26px;
+        padding-left: 20px;
+
+        a{
+            text-decoration: none;
+            font-size:14px;
+        } 
+    }
+    .active{
+        border-left:  solid 3px $primaryColor;
+    }
+}
+// explore body content
+.bookmark-body{
+    width:745px;
+    margin-left: 24.98px;
+    background-color: $backgroundColor;
+    padding:20px;
+}
