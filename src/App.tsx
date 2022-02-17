@@ -7,6 +7,9 @@ import TrendingMobilePage from './Components/TrendingMobilePage';
 import TweetingContainer from './Components/TweetingContainer';
 import Chat from './pages/chat/Chat';
 import Home from './pages/home/Home';
+import Navbar from './Components/NavBar/Nav';
+import Tweet from './Components/Tweet/Tweet';
+
 import Profile from './pages/profile/Profile';
 
 function App() {
