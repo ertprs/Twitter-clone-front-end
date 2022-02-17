@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "../Tweeting_style/TweetController.css";
+// import styles from "../Tweeting_style/TweetController.css";
+import styles from "../styles/Tweeting_style/TweetController.module.css"
 import {motion} from "framer-motion"
 
 function TweetingContainer() {
@@ -43,16 +44,16 @@ function TweetingContainer() {
 
   return (
     <>
-      <div className="tweet-wrapper">
+      <div className = {styles["tweet-wrapper"]}>
         {/* Tweeting something content */}
         <div>
-          <div className="tweet-heading">
+          <div className={styles["tweet-heading"]}>
             <h3>Tweet something</h3>
-            <div className="underline"></div>
-            <div className="write-message">
+            <div className= {styles.underline}></div>
+            <div className={styles["write-message"]}>
               <img
                 src="https://www.findjerry.tech/static/media/jerry2.a509e534aa3f11de93e1.png"
-                className="user-image"
+                className={styles["user-image"]}
                 alt="user-image"
               />
               <motion.textarea
@@ -65,13 +66,13 @@ function TweetingContainer() {
               ></motion.textarea>
             </div>
 
-            <div className ="set-media-image"><img  src ={imageUrl ?  imageUrl: ""}
+            <div className ={styles["set-media-image"]}><img  src ={imageUrl ?  imageUrl: ""}
             style ={{width:imageWidth, height:imageHeight, borderRadius:"4px"}}
             /><span onClick={removeImage}><img src= {exitImage}/></span></div>
 
-            <div className="select-media-container">
+            <div className={styles["select-media-container"]}>
                 
-              <div className="select-media">
+              <div className={styles["select-media"]}>
                 
                 {/* select media */}
                 
@@ -79,14 +80,14 @@ function TweetingContainer() {
                     <input type ="file" id="file" accept ="image/*" name="image" onChange= {(e)=>getImage(e)}/>
                 </p>
 
-                <p className="select-image">
+                <p className={styles["select-image"]}>
                     <label htmlFor = "file">
                 <img src="https://img.icons8.com/material-outlined/48/2F80ED/image.png" alt="img"/></label>
                 </p>
 
                 <div onClick={() => setModal(!modal)}>
                   <img
-                    className="media-image"
+                    className={styles["media-image"]}
                     src="https://img.icons8.com/material-rounded/48/2F80ED/globe--v1.png"
                     alt="img"
                   />
@@ -104,21 +105,21 @@ function TweetingContainer() {
 
           {/* select everyone or who i follow */}
           <div 
-            className={modal ? "replier-container" : "hide-replier-container"}
+            className={modal ? styles["replierContainer"]: styles["hideReplierContainer"]}
           >
             <h3>Who can reply?</h3>
             <p>Choose who can reply</p>
-            <a className="image-n-text">
+            <a className={styles["image-n-text"]}>
               <img
-                className="media-image"
+                className= {styles["media-image"]}
                 src="https://img.icons8.com/material-rounded/28/000000/globe--v1.png"
                 alt="img"
               />
               <h3 onClick={(e) => getText(e)}>Everyone</h3>
             </a>
-            <a className="image-n-text">
+            <a className= {styles["image-n-text"]}>
               <img
-                className="media-image"
+                className= {styles["media-image"]}
                 src="https://img.icons8.com/ios-glyphs/30/000000/group-foreground-selected.png"
                 alt="img"
               />
@@ -129,11 +130,11 @@ function TweetingContainer() {
           {/*  Fix your component here => 
           Tweet, retweet body */}
 
-          <div className="tweet-body">
+          <div className={styles["tweet-body" ]}>
             {/* Component here */}
             {/* <Component2 /> */}
           </div>
-          <div className="tweet-body">
+          <div className={styles["tweet-body" ]}>
             {/* Component here */}
             {/* <Component2 /> */}
           </div>
@@ -141,46 +142,46 @@ function TweetingContainer() {
         {/* Trending and who to follow content */}
 
 
-        <div className="trending-n-follow">
-          <div className="trending">
+        <div className= {styles["trending-n-follow"]}>
+          <div className= {styles.trending}>
               <h3>trends for you</h3>
-              <div className="underline"></div>
-              <div className ="trending-content">
+              <div className={styles.underline}></div>
+              <div className = {styles["trending-content"]}>
                   <a href ="">#Programming</a>
                   <p>213k Tweets</p>
               </div>
-              <div className ="trending-content">
+              <div className ={styles["trending-content" ]}>
                   <a href ="">#Devchallenges</a>
                   <p>123k Tweets</p>
               </div>
-              <div className ="trending-content">
+              <div className = {styles["trending-content" ]}>
                   <a href ="">#frontend</a>
                   <p>43k Tweets</p>
               </div>
-              <div className ="trending-content">
+              <div className = {styles["trending-content" ]}>
                   <a href ="">#helsinki</a>
                   <p>213k Tweets</p>
               </div>
-              <div className ="trending-content">
+              <div className ={styles["trending-content" ]} >
                   <a href ="">#100DaysOfCode</a>
                   <p>213k Tweets</p>
               </div>
-              <div className ="trending-content">
+              <div className = {styles["trending-content"]}>
                   <a href ="">#learntocode</a>
                   <p>213k Tweets</p>
               </div>
               
               </div>
-          <div className="who-to-follow">
+          <div className={styles["who-to-follow" ]}>
                 <h3>Who to follow</h3>
-                <div className="underline"></div>
+                <div className={styles.underline}></div>
 
                 {/* Who to follow sugestion container */}
 
-                <div className="suggest-container">
+                <div className={styles["suggest-container"]}>
 
-                    <div className="suggest-content">
-                    <div className ="suggest-user">
+                    <div className={styles["suggest-content"]}>
+                    <div className = {styles["suggest-user"]}>
                         <img src="https://www.findjerry.tech/static/media/jerry2.a509e534aa3f11de93e1.png"/>
                         <h3>Jerry Idoko Agada fdfdfdfdfdf dfdf<span>230k followers</span></h3>
                         <button><span></span>follow</button>
@@ -188,10 +189,10 @@ function TweetingContainer() {
                     <a href ="">Photographer and filmmake bsed in Nigeria Nollywoodfilmmake bsed in Nigeria Nollywood</a>
                     <img src="https://previews.123rf.com/images/dagadu/dagadu1008/dagadu100800015/7511808-.jpg?fj=1"/>
 
-                    <div className="underline"></div>
+                    <div className={styles.underline}></div>
                     </div>
-                    <div className="suggest-content">
-                    <div className ="suggest-user">
+                    <div className={styles["suggest-content"]}>
+                    <div className ={styles["suggest-user"]}>
                         <img src="https://www.findjerry.tech/static/media/jerry2.a509e534aa3f11de93e1.png"/>
                         <h3>Softtechy Developer  fdfdfdfdfdf dfdf<span>120k followers</span></h3>
                         <button><span></span>follow</button>

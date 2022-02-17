@@ -1,20 +1,19 @@
 import { useState } from "react";
-import "../Tweeting_style/Bookmark.css"
+import styles from "../styles/Tweeting_style/Bookmark.module.css"
 
 
 function BookMarksPage() {
 
   return (
-    <div className="bookmark-container">
-        <div className="bookmark-links">
-        <ul>
-            <li className="active"><a href ="">Tweets</a></li>
+    <div className={styles["bookmark-container"]}>
+       
+        <ul className={styles["bookmark-links"]}>
+            <li className={styles.active}><a href ="">Tweets</a></li>
             <li> <a href ="">Tweets & replay</a></li>
             <li> <a href ="">Media</a></li>
             <li> <a href ="">Likes</a></li>
         </ul>
-        </div>
-        <div className="bookmark-body">
+        <div className={styles["bookmark-body"]}>
         Body of Bookmarks
         </div>
     </div>

@@ -19,26 +19,24 @@
 }
 
 .bookmark-links {
-  background-color: #fff;
-}
-
-.bookmark-links ul {
   width: 304px;
   height: 219px;
-  list-style-type: none;
   border-radius: 4px;
-  margin-top: 33px;
+  background-color: #fff;
+  list-style-type: none;
 }
 
 .bookmark-links li {
   padding-top: 10px;
-  margin-bottom: 26px;
-  padding-left: 20px;
+  margin-bottom: 23px;
+  margin-left: -32px;
 }
 
 .bookmark-links li a {
   text-decoration: none;
   font-size: 14px;
+  padding-left: 20px;
+  color: #828282;
 }
 
 .bookmark-links .active {
@@ -51,4 +49,4 @@
   background-color: #fff;
   padding: 20px;
 }
-/*# sourceMappingURL=Bookmark.css.map */
+/*# sourceMappingURL=Bookmark.module.css.map */
