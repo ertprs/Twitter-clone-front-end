@@ -1,0 +1,58 @@
+
+// @import "../Tweeting_style/TweetController.scss";
+@import "../Tweeting_style/Variables/variables.scss";
+
+
+
+.trending-container-mobile{
+    width:90%;
+    margin: 60px auto;
+}
+
+.trending{
+    width:306px;
+    height: 495.7px;
+    margin: 0 auto;
+    background-color: $backgroundColor;
+    margin-bottom: 22px;
+    border-radius: $borderRadius;
+    padding-left: 20px;
+    padding-top: 10.91px;
+    font-size: $fontSize;
+    font-family: $fontFamily;
+
+
+    
+    .trending h3{
+        @include h3Header();
+    }
+
+    &-content{
+            width:100%;
+            min-height: 50px;
+            border-radius: 4px;
+            margin-top: 24px;
+            cursor: pointer;
+    }
+    &-content a{
+        text-decoration: none;
+        color:#000;
+        font-weight: bolder;
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    &-content p{
+        font-weight: 500;
+        font-size: 15px;
+        color: #828282;
+    }
+
+    &-content:hover{
+        opacity: 0.7;
+        
+    }
+    
+}
+ .underline{
+    @include underlineMobile();
+}
