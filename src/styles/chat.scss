@@ -1,8 +1,6 @@
-
-
 .themebg-left {
   background-color: #f2f2f2 !important;
-//   min-height: 700px !important;
+  //   min-height: 700px !important;
 }
 
 .chat-plus-bg {
@@ -37,7 +35,7 @@
 }
 
 .iconTw {
-  background-color: #828282;
+  background-color: #2d9cdb;
   border: none;
   border-radius: 5px;
   padding: 10px;
@@ -67,7 +65,7 @@
 .chat-avatar {
   width: 42px;
   height: 42px;
-  left: 394.62px;
+  // left: 394.62px;
   top: 155.14px;
   border-radius: 7px;
 }
@@ -137,25 +135,34 @@
   border-radius: 12px;
 }
 
-.chat-left-footer{
-    background-color: #3c393f;
-    color: white !important;
-    padding: 10px;
+.chat-left-footer {
+  background-color: #2d9cdb;
+  color: white !important;
+  padding: 10px;
 }
 
-.iconFa{
-    color: white !important;
+.iconFa {
+  color: white !important;
 }
-.p-spacing{
-    padding: 10px;
+.p-spacing {
+  padding: 10px;
 }
-.chat-nav{
-    color: white !important;
+.chat-nav {
+  color: white !important;
 }
-a{
-    text-decoration: none !important;
+a {
+  text-decoration: none !important;
 }
 
-.nav-icon-space{
-  padding-right:5px
+.nav-icon-space {
+  padding-right: 5px;
+}
+.button-color {
+  background-color: #2d9cdb !important;
+}
+
+@media only screen and (min-width: 800px) {
+  .trim-space {
+    width: 6% !important;
+  }
 }
