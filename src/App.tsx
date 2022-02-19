@@ -27,6 +27,8 @@ function App() {
       <Route path='/chat' element={ <Chat/> }/>
       <Route path='/tweet/desktoptrending' element={ <TrendingDesktopPage/> }/>
       <Route path='/settings' element={ <Settings /> } />
+      <Route path='/chat' element={ <Chat/> }/>
+      <Route path='/settings' element={ <Settings/> }/>
     </Routes>
   </BrowserRouter>
   );
