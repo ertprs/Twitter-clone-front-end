@@ -1,7 +1,7 @@
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Input, TextArea } from "../../components/common/Input";
+import { Input, TextArea } from "../common/Input";
 import { useSettings } from "../../hooks/useSettings";
 import Button from "../common/Button";
 import "./scss/editProfile.scss";
@@ -35,7 +35,7 @@ const EditProfile = () => {
             </div>
           </label>
           <input type="file" accept=".png, .jpg, .jpeg, .gif" id="upload-button" onChange={selectPhoto} />
-          <button className="text">CHANGE PHOTO</button>
+          <button className="btn btn-primary">Upload</button>
         </div>
         <div className="form-fields">
           <Input

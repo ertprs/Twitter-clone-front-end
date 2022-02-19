@@ -1,6 +1,6 @@
 import React from 'react'
-import EditProfile from '../../components/settings/EditProfile'
-import Navbar from '../../components/settings/Navbar'
+import EditProfile from '../../Components/settings/EditProfile'
+import Navbar from '../../Components/NavBar/Nav'
 
 const Settings = () => {
   return (
