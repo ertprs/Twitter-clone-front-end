@@ -12,6 +12,7 @@ import Navbar from './Components/NavBar/Nav';
 import Tweet from './Components/Tweet/Tweet';
 
 import Profile from './pages/profile/Profile';
+import Settings from './pages/settings';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Route path ="/bookmark" element = {<BookMarksPage/>}/>
       <Route path='/chat' element={ <Chat/> }/>
       <Route path='/tweet/desktoptrending' element={ <TrendingDesktopPage/> }/>
+      <Route path='/settings' element={ <Settings /> } />
     </Routes>
   </BrowserRouter>
   );
