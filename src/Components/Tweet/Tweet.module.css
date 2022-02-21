@@ -1,0 +1,235 @@
+.wrapper {
+  background-color: #ffffff;
+  width: 40vw;
+  padding: 10px 30px;
+  justify-content: space-between;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.top {
+  display: flex;
+  align-items: flex-end;
+}
+
+.person_name {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #000000;
+  letter-spacing: 0.21px;
+}
+
+.person_date {
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #bdbdbd;
+}
+
+.tweet p {
+  font-family: "Noto Sans", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #4f4f4f;
+}
+
+.profile {
+  margin-right: 20px;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 5px;
+}
+
+.profile__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.main {
+  width: 100%;
+  /* height: 37px; */
+  /* border: 2px solid black; */
+  margin-top: 20px;
+}
+
+.main_img {
+  width: 100%;
+  border-radius: 10px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.action {
+  border-top: 1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
+  padding: 7px;
+}
+.action .actions {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  justify-content: space-evenly;
+}
+
+.action .actions {
+  list-style: none;
+  /* margin: 0 10px; */
+}
+
+.actions button {
+  font-size: 14px;
+  color: #4f4f4f;
+  font-weight: 500;
+  border-radius: 8px;
+  width: 150%;
+  height: 41.17px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  transition: all 0.3s ease;
+  background-color: transparent;
+}
+
+.actions button:hover {
+  background: #f2f2f2;
+}
+
+.actions button {
+  transform: scale(0.98);
+}
+
+.actions button span {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  /* background-color: red; */
+}
+
+.actions button span .icons {
+  margin-right: 5px;
+  font-size: 17px;
+}
+
+.second {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 12px;
+  color: #bdbdbd;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.second li {
+  list-style: none;
+  margin: 0 10px;
+}
+
+.last {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  position: relative;
+}
+
+.profile2 {
+  width: 40px;
+  height: 45.86px;
+  margin-right: 15px;
+}
+
+.profile2_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.form {
+  background: #fafafa;
+  border-radius: 20px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.form textarea {
+  background: #fafafa;
+  width: 100%;
+  height: 30px;
+  /* border: 1px solid transparent; */
+  border-radius: 8px;
+  padding-left: 12px;
+  /* padding-top: 18px; */
+  font-size: 15px;
+  resize: none;
+  padding: 10px;
+  flex: 0.9;
+  border: none;
+  outline: none;
+}
+
+.iconBox {
+  position: absolute;
+  top: 40%;
+  right: 10px;
+  cursor: pointer;
+  /* flex: 0.05;
+  background-color: red;
+  height: 100%;
+  width: 100%; */
+}
+
+.iconBox:hover{
+    color: blue;
+}
+
+.form textarea::placeholder {
+  color: #bdbdbd;
+  font-family: "Noto Sans", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  /* padding-top:12px; */
+}
+
+.button {
+  /* display: inline; */
+  color: #bdbdbd;
+}
+
+@media screen and (max-width: 788px) {
+  .wrapper {
+    /* background-color: #ffffff; */
+    width: 65vw;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .wrapper {
+    /* background-color: #ffffff; */
+    width: 70vw;
+  }
+
+  .button {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 485px) {
+  .second li {
+    /* background-color: #ffffff; */
+    font-size: 11px;
+  }
+}
