@@ -37,10 +37,13 @@
     font-family:  'Poppins' ;
 }
 
-.my-modal {
+.modal-content {
     width: 60vw ;   
     max-width: 60vw;
-    height: 60% ;
+    height:80vh;
+    overflow: scroll;
+    margin-left: -10rem;
+   
 } 
 
 .modal-body{
