@@ -2,6 +2,7 @@ import styles from "../styles/Tweeting_style/TweetController.module.css"
 import {Link} from "react-router-dom";
 import {motion} from "framer-motion";
 import { useState } from "react";
+import Tweet from "./Tweet/Tweet";
 
 function TweetingContainer() {
   const [newheight, setNewHeight] = useState("22px");
@@ -131,12 +132,8 @@ function TweetingContainer() {
           Tweet, retweet body */}
 
           <div className={styles["tweet-body" ]}>
-            {/* Component here */}
-            {/* <Component2 /> */}
-          </div>
-          <div className={styles["tweet-body" ]}>
-            {/* Component here */}
-            {/* <Component2 /> */}
+         
+           <Tweet />
           </div>
         </div>
         {/* Trending and who to follow content */}

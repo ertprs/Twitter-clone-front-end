@@ -38,8 +38,6 @@ body{
     color:#4F4F4F;
     padding-top:10.91px;
     font-weight: bolder;
-
-
 }
 .tweet-heading .underline{
     border: 1px solid #E0E0E0;
@@ -160,12 +158,21 @@ cursor: pointer;
 @media screen and (max-width: 720px) {
 
     .tweet-heading{
-        width: 400px;
+        // width: 400px;
         margin: 0 auto;
+        width:70vw;
+        width: 65vw;
         
     }
     .tweet-heading .underline{
         width: auto;
+    }
+}
+@media screen and (max-width: 500px) {
+
+    .tweet-heading{
+       
+        width: 65vw;
     }
 }
 
@@ -405,7 +412,7 @@ p{
 .tweet-body {
     width: 745px;
     height: 606px;
-    background-color: $backgroundColor;
+    // background-color: $backgroundColor;
     margin-top: 53.66px;
     margin-bottom: 23px;
 }

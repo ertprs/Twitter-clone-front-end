@@ -182,11 +182,18 @@ textarea:focus {
 
 @media screen and (max-width: 720px) {
   .tweet-heading {
-    width: 400px;
     margin: 0 auto;
+    width: 70vw;
+    width: 65vw;
   }
   .tweet-heading .underline {
     width: auto;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .tweet-heading {
+    width: 65vw;
   }
 }
 
@@ -458,7 +465,6 @@ textarea:focus {
 .tweet-body {
   width: 745px;
   height: 606px;
-  background-color: #fff;
   margin-top: 53.66px;
   margin-bottom: 23px;
 }
