@@ -194,4 +194,5 @@ const Signup = ():JSX.Element => {
           </div>
         );
       };
+      
       export default Signup;
