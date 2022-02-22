@@ -25,11 +25,18 @@
 .header{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 h4{
     font-family:  'Poppins'
 }
+
+.my-modal {
+    width: 60vw ;   /* Occupy the 90% of the screen width */
+    max-width: 60vw;
+    padding:0
+} 
 
 .border{
     border-top: 0.5px solid #ccc;
@@ -76,7 +83,8 @@ article{
     margin: 0
 }
 
-
-.modal{
-    padding: 0
+.my-button{
+    padding: 0.2rem;
+    padding-left:1rem;
+    padding-right:1rem
 }
