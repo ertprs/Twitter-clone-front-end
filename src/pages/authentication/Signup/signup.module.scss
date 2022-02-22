@@ -3,11 +3,16 @@
   margin: 0;
   padding: 0;
 }
-:root {
+
+body {
   --primary-color: black;
   --secondary-color: white;
   --tertiary-color: black;
 }
+
+// :root {
+  
+// }
 .darkMode {
   --primary-color: white;
   --secondary-color: #252329;
