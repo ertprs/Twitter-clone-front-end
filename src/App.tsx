@@ -8,8 +8,15 @@ import TrendingMobilePage from './Components/TrendingMobilePage';
 import TweetingContainer from './Components/TweetingContainer';
 import Chat from './pages/chat/Chat';
 import Home from './pages/home/Home';
+
+import Login from './pages/authentication/Login/Login';
+import Signup from './pages/authentication/Signup/Signup';
+import Following from './pages/following/following';
+import ChangePassword from './pages/changePassword/changePassword';
+
 import Following from './Components/Following/following';
 import ChangePassword from './Components/changePassword/changePassword';
+
 import Navbar from './Components/NavBar/Nav';
 import Tweet from './Components/Tweet/Tweet';
 import Profile from './pages/profile/Profile';
@@ -19,6 +26,9 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
+      <Route path='/'  element={ <Home/> }/>
+      <Route path='/login'  element={ <Login />} />
+      <Route path='/signup'  element={ <Signup />} />
       <Route path='/' element={ <Home/> }/>
       <Route path='/profile' element={ <Profile/> }/>
       <Route path ="/tweet" element = {<TweetingContainer/>}/>
