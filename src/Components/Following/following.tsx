@@ -78,7 +78,7 @@ function Following() {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
+        <Modal.Header closeButton >
           <div className="fixed">
             <p>daniel jenson is following </p>
           </div>
