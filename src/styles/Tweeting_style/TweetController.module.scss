@@ -10,7 +10,7 @@
 }
 
 body{
-    background-color: #FAFAFA !important;
+    background-color: #FAFAFA;
 }
 .tweet-wrapper {
     display: flex;
@@ -256,11 +256,12 @@ p{
     justify-content: space-around;
     align-items: center;
     overflow: hidden;
+
 }
 
 .trending{
     width:306px;
-    height: 495.7px;
+    height: auto;
     background-color: $backgroundColor;
     margin-bottom: 22px;
     border-radius: $borderRadius;
@@ -268,6 +269,8 @@ p{
     padding-top: 10.91px;
     font-size: $fontSize;
     font-family: $fontFamily;
+    margin-bottom: 10px;
+
 
 
     
@@ -279,6 +282,9 @@ p{
             border-radius: 4px;
             margin-top: 24px;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            
     }
     &-content a{
         text-decoration: none;
@@ -286,19 +292,27 @@ p{
         font-weight: bolder;
         font-size: 16px;
         margin-bottom: 8px;
+        // display: inline-block;
+        align-items: flex-start;
+
     }
-    &-content p{
+    &-content span{
+        display: block;
         font-weight: 500;
         font-size: 15px;
         color: #828282;
+
     }
 
     &-content:hover{
         opacity: 0.7;
         
     }
+   
     
 }
+
+
 
  .underline{
     @include underline();

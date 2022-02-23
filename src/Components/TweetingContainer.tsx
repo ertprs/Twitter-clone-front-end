@@ -146,29 +146,35 @@ function TweetingContainer() {
               <h3>trends for you</h3>
               <div className={styles.underline}></div>
               <div className = {styles["trending-content"]}>
-                  <Link to = "/tweet/desktoptrending">#Programming</Link>
-                  <p>213k Tweets</p>
-              </div>
-              <div className ={styles["trending-content" ]}>
-                  <Link to = "">#Devchallenges</Link>
-                  <p>123k Tweets</p>
-              </div>
-              <div className = {styles["trending-content" ]}>
-                  <Link to = "">#frontend</Link>
-                  <p>43k Tweets</p>
-              </div>
-              <div className = {styles["trending-content" ]}>
-                  <Link to = "">#helsinki</Link>
-                  <p>213k Tweets</p>
-              </div>
-              <div className ={styles["trending-content" ]} >
-                  <Link to = "">#100DaysOfCode</Link>
-                  <p>213k Tweets</p>
-              </div>
-              <div className = {styles["trending-content"]}>
-                  <Link to = "">#learntocode</Link>
-                  <p>213k Tweets</p>
-              </div>
+                  <a href = "/tweet/desktoptrending">#Programming
+                  <span>213k Tweets</span>
+                  </a>
+             </div>
+             <div className = {styles["trending-content"]}>
+                  <a href = "/tweet/desktoptrending">#Programming
+                  <span>213k Tweets</span>
+                  </a>
+             </div>
+             <div className = {styles["trending-content"]}>
+                  <a href = "/tweet/desktoptrending">#Programming
+                  <span>213k Tweets</span>
+                  </a>
+             </div>
+             <div className = {styles["trending-content"]}>
+                  <a href = "/tweet/desktoptrending">#Programming
+                  <span>213k Tweets</span>
+                  </a>
+             </div>
+             <div className = {styles["trending-content"]}>
+                  <a href = "/tweet/desktoptrending">#Programming
+                  <span>213k Tweets</span>
+                  </a>
+             </div>
+             <div className = {styles["trending-content"]}>
+                  <a href = "/tweet/desktoptrending">#Programming
+                  <span>213k Tweets</span>
+                  </a>
+             </div>
               
               </div>
           <div className={styles["who-to-follow" ]}>
