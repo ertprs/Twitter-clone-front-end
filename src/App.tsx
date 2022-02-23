@@ -23,6 +23,8 @@ function App() {
       <Route path ="/explore" element = {<ExplorePage/>}/>
       <Route path ="/bookmark" element = {<BookMarksPage/>}/>
       <Route path='/chat' element={ <Chat/> }/>
+      <Route path='/tweetComp' element={ <Tweet/> }/>
+      <Route path='/navbar' element={ <Navbar/> }/>
     </Routes>
   </BrowserRouter>
   );

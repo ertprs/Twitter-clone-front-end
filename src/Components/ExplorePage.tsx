@@ -1,5 +1,6 @@
 import { useState } from "react";
-import styles from "../styles/Tweeting_style/ExplorePage.module.css"
+import styles from "../styles/Tweeting_style/ExplorePage.module.css";
+
 
 import { AiOutlineSearch } from 'react-icons/ai';
 
