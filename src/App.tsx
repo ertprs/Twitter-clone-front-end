@@ -11,8 +11,6 @@ import Home from './pages/home/Home';
 
 import Login from './pages/authentication/Login/Login';
 import Signup from './pages/authentication/Signup/Signup';
-import Following from './pages/following/following';
-import ChangePassword from './pages/changePassword/changePassword';
 
 import Following from './Components/Following/following';
 import ChangePassword from './Components/changePassword/changePassword';
@@ -36,6 +34,8 @@ function App() {
       <Route path ="/explore" element = {<ExplorePage/>}/>
       <Route path ="/bookmark" element = {<BookMarksPage/>}/>
       <Route path='/chat' element={ <Chat/> }/>
+      <Route path='/tweetComp' element={ <Tweet/> }/>
+      <Route path='/navbar' element={ <Navbar/> }/>
       <Route path='/tweet/desktoptrending' element={ <TrendingDesktopPage/> }/>
       <Route path='/settings' element={ <Settings /> } />
       <Route path='/following' element={ <Following/> }/>
