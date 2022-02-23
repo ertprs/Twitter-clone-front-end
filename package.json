@@ -24,6 +24,7 @@
     "font-awesome": "^4.7.0",
     "framer-motion": "^6.2.6",
     "init": "^0.1.2",
+    "moment": "^2.29.1",
     "postcss": "^8.4.6",
     "postcss-cli": "^9.1.0",
     "react": "^17.0.2",
