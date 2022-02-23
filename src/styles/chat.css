@@ -35,7 +35,7 @@
 }
 
 .iconTw {
-  background-color: #828282;
+  background-color: #2d9cdb;
   border: none;
   border-radius: 5px;
   padding: 10px;
@@ -67,7 +67,6 @@
 .chat-avatar {
   width: 42px;
   height: 42px;
-  left: 394.62px;
   top: 155.14px;
   border-radius: 7px;
 }
@@ -137,7 +136,7 @@
 }
 
 .chat-left-footer {
-  background-color: #3c393f;
+  background-color: #2d9cdb;
   color: white !important;
   padding: 10px;
 }
@@ -160,5 +159,15 @@ a {
 
 .nav-icon-space {
   padding-right: 5px;
+}
+
+.button-color {
+  background-color: #2d9cdb !important;
+}
+
+@media only screen and (min-width: 800px) {
+  .trim-space {
+    width: 6% !important;
+  }
 }
 /*# sourceMappingURL=chat.css.map */
