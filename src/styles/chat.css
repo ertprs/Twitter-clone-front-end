@@ -1,6 +1,5 @@
 .themebg-left {
   background-color: #f2f2f2 !important;
-  //   min-height: 700px !important;
 }
 
 .chat-plus-bg {
@@ -8,10 +7,11 @@
   border: none;
   border-radius: 8px;
 }
+
 .chat-plus-bg {
   margin: 10px;
-  //   margin-left: 58px;
 }
+
 .chat-top-word {
   margin: 10px;
   font-family: Noto Sans;
@@ -21,12 +21,12 @@
 }
 
 .chat-channel-search {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border: 1px solid #828282;
   border-radius: 4px;
   height: 48px;
   font-size: 16px;
-  //   background-color: #3c393f;
   background-position: 10px 10px;
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
@@ -35,7 +35,7 @@
 }
 
 .iconTw {
-  background-color: #2d9cdb;
+  background-color: #828282;
   border: none;
   border-radius: 5px;
   padding: 10px;
@@ -44,9 +44,11 @@
   font-weight: bold !important;
   width: 45px;
 }
+
 .spacing {
   padding: 10px;
 }
+
 .chat-li-side {
   margin: 10px;
 }
@@ -65,7 +67,7 @@
 .chat-avatar {
   width: 42px;
   height: 42px;
-  // left: 394.62px;
+  left: 394.62px;
   top: 155.14px;
   border-radius: 7px;
 }
@@ -83,15 +85,15 @@
   line-height: 25px;
   margin-right: 0px;
   /* identical to box height */
-
   letter-spacing: -0.035em;
 }
+
 .chat-date {
   font-weight: 500;
   font-size: 14px;
-
   color: #828282;
 }
+
 .chat-date {
   padding-left: 0px !important;
   margin-left: 0px !important;
@@ -102,7 +104,6 @@
   height: 32.02px;
   left: 464.62px;
   top: 188.14px;
-
   font-family: Noto Sans;
   font-style: normal;
   font-weight: 500;
@@ -115,6 +116,7 @@
 .chat-line {
   background-color: #3c393f;
 }
+
 .chat-line-text {
   height: 16px;
   top: 565.85px;
@@ -131,12 +133,11 @@
   height: 52px;
   left: 394.62px;
   top: 988.58px;
-  //   border: none;
   border-radius: 12px;
 }
 
 .chat-left-footer {
-  background-color: #2d9cdb;
+  background-color: #3c393f;
   color: white !important;
   padding: 10px;
 }
@@ -144,12 +145,15 @@
 .iconFa {
   color: white !important;
 }
+
 .p-spacing {
   padding: 10px;
 }
+
 .chat-nav {
   color: white !important;
 }
+
 a {
   text-decoration: none !important;
 }
@@ -157,12 +161,4 @@ a {
 .nav-icon-space {
   padding-right: 5px;
 }
-.button-color {
-  background-color: #2d9cdb !important;
-}
-
-@media only screen and (min-width: 800px) {
-  .trim-space {
-    width: 6% !important;
-  }
-}
+/*# sourceMappingURL=chat.css.map */

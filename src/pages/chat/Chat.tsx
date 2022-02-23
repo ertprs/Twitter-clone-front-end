@@ -2,9 +2,15 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { NavDropdown } from "react-bootstrap";
 import "../../styles/chat.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faPlus, faUser, faSignOut,faMountain } from "@fortawesome/free-solid-svg-icons";
 import Navbar from '../../Components/NavBar/Nav'
+import {
+  FaMountain,
+  FaSignOutAlt,
+  FaPlus,
+  FaUser,
+  FaPlay
+} from "react-icons/fa";
+
 
 const Chat = () => {
   return (
@@ -12,7 +18,7 @@ const Chat = () => {
       <Navbar />
       <div className="container-fluid">
         <div className="row">
-          <div className="col-sm-3 themebg-left text-dark">
+          <div className="col-sm-3 themebg-left text-dark d-none d-xl-block ">
             <br />
             <div className="row">
               <div className="col-8 ">
@@ -20,9 +26,7 @@ const Chat = () => {
               </div>
               <div className="col-4">
                 <button type="button" className="chat-plus-bg ">
-                  {/* <FontAwesomeIcon 
-                  // icon={faPlus} 
-                  className="iconFa" /> */}
+                  <FaPlus className="iconFa" />
                 </button>
               </div>
             </div>
@@ -114,23 +118,25 @@ const Chat = () => {
                   className="p-spacing chat-nav"
                 >
                   <NavDropdown.Item href="#action/3.1">
+                    <FaUser className="text-dark nav-icon-space" />
                     {/* <FontAwesomeIcon
-                      // icon={faUser}
-                      // className="text-dark nav-icon-space"
+                      icon={faUser}
+                      className="text-dark nav-icon-space"
                     /> */}
-                    
                     My Profile
                   </NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
+                    <FaMountain className="text-dark nav-icon-space" />
                     {/* <FontAwesomeIcon
-                      // icon={faMountain }
+                      icon={FaMountain}
                       className="text-dark nav-icon-space"
                     /> */}
                     Tweeter
                   </NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.3">
+                    <FaSignOutAlt className="text-dark nav-icon-space" />
                     {/* <FontAwesomeIcon
-                      // icon={faSignOut}
+                      icon={FaSignOutAlt}
                       className="text-dark nav-icon-space"
                     /> */}
                     Logout
@@ -146,7 +152,7 @@ const Chat = () => {
               <h1 className="chat-right-h1">FRONT-END DEVELOPERS</h1>
               <hr className="chat-line" />
               <div className="row">
-                <div className="col-2">
+                <div className="col-2 trim-space">
                   <img
                     src="https://res.cloudinary.com/ckgraphics/image/upload/v1644925390/tweeterclone/undraw_profile_pic_ic5t_rkejzu_lqnnhr.png"
                     alt=""
@@ -168,7 +174,7 @@ const Chat = () => {
               </div>
               <br />
               <div className="row">
-                <div className="col-2">
+                <div className="col-2 trim-space">
                   <img
                     src="https://res.cloudinary.com/ckgraphics/image/upload/v1644925390/tweeterclone/undraw_profile_pic_ic5t_rkejzu_lqnnhr.png"
                     alt=""
@@ -190,7 +196,7 @@ const Chat = () => {
               </div>
               <br />
               <div className="row">
-                <div className="col-2">
+                <div className="col-2 trim-space">
                   <img
                     src="https://res.cloudinary.com/ckgraphics/image/upload/v1644925390/tweeterclone/undraw_profile_pic_ic5t_rkejzu_lqnnhr.png"
                     alt=""
@@ -212,7 +218,7 @@ const Chat = () => {
               </div>
               <br />
               <div className="row">
-                <div className="col-2">
+                <div className="col-2 trim-space">
                   <img
                     src="https://res.cloudinary.com/ckgraphics/image/upload/v1644925390/tweeterclone/undraw_profile_pic_ic5t_rkejzu_lqnnhr.png"
                     alt=""
@@ -248,7 +254,7 @@ const Chat = () => {
               <br />
 
               <div className="row">
-                <div className="col-2">
+                <div className="col-2 trim-space">
                   <img
                     src="https://res.cloudinary.com/ckgraphics/image/upload/v1644925390/tweeterclone/undraw_profile_pic_ic5t_rkejzu_lqnnhr.png"
                     alt=""
@@ -270,7 +276,7 @@ const Chat = () => {
               </div>
               <br />
               <div className="row">
-                <div className="col-2">
+                <div className="col-2 trim-space">
                   <img
                     src="https://res.cloudinary.com/ckgraphics/image/upload/v1644925390/tweeterclone/undraw_profile_pic_ic5t_rkejzu_lqnnhr.png"
                     alt=""
@@ -292,7 +298,7 @@ const Chat = () => {
               </div>
               <br />
               <div className="row">
-                <div className="col-2">
+                <div className="col-2 trim-space">
                   <img
                     src="https://res.cloudinary.com/ckgraphics/image/upload/v1644925390/tweeterclone/undraw_profile_pic_ic5t_rkejzu_lqnnhr.png"
                     alt=""
@@ -314,7 +320,7 @@ const Chat = () => {
               </div>
               <br />
               <div className="row">
-                <div className="col-2">
+                <div className="col-2 trim-space">
                   <img
                     src="https://res.cloudinary.com/ckgraphics/image/upload/v1644925390/tweeterclone/undraw_profile_pic_ic5t_rkejzu_lqnnhr.png"
                     alt=""
@@ -335,13 +341,24 @@ const Chat = () => {
                 </div>
               </div>
               <br />
-
-              <input
-                type="email"
-                className="form-control chat-msg-form"
-                id="exampleFormControlInput1"
-                placeholder="Type a message here"
-              />
+              <div className="row">
+                <div className="col-10">
+                  <input
+                    type="email"
+                    className="form-control chat-msg-form"
+                    id="exampleFormControlInput1"
+                    placeholder="Type a message here"
+                  />
+                </div>
+                <div className="col-2 ">
+                  <button
+                    type="button"
+                    className="form-control btn-lg btn btn-primary button-color"
+                  >
+                    <FaPlay />
+                  </button>
+                </div>
+              </div>
 
               <br />
               <br />

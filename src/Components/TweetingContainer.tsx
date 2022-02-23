@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-// import styles from "../Tweeting_style/TweetController.css";
 import styles from "../styles/Tweeting_style/TweetController.module.css"
-import {motion} from "framer-motion"
+import {Link} from "react-router-dom";
+import {motion} from "framer-motion";
+import { useState } from "react";
 
 function TweetingContainer() {
   const [newheight, setNewHeight] = useState("22px");
@@ -147,27 +147,27 @@ function TweetingContainer() {
               <h3>trends for you</h3>
               <div className={styles.underline}></div>
               <div className = {styles["trending-content"]}>
-                  <a href ="">#Programming</a>
+                  <Link to = "/tweet/desktoptrending">#Programming</Link>
                   <p>213k Tweets</p>
               </div>
               <div className ={styles["trending-content" ]}>
-                  <a href ="">#Devchallenges</a>
+                  <Link to = "">#Devchallenges</Link>
                   <p>123k Tweets</p>
               </div>
               <div className = {styles["trending-content" ]}>
-                  <a href ="">#frontend</a>
+                  <Link to = "">#frontend</Link>
                   <p>43k Tweets</p>
               </div>
               <div className = {styles["trending-content" ]}>
-                  <a href ="">#helsinki</a>
+                  <Link to = "">#helsinki</Link>
                   <p>213k Tweets</p>
               </div>
               <div className ={styles["trending-content" ]} >
-                  <a href ="">#100DaysOfCode</a>
+                  <Link to = "">#100DaysOfCode</Link>
                   <p>213k Tweets</p>
               </div>
               <div className = {styles["trending-content"]}>
-                  <a href ="">#learntocode</a>
+                  <Link to = "">#learntocode</Link>
                   <p>213k Tweets</p>
               </div>
               
@@ -186,7 +186,7 @@ function TweetingContainer() {
                         <h3>Jerry Idoko Agada fdfdfdfdfdf dfdf<span>230k followers</span></h3>
                         <button><span></span>follow</button>
                     </div>
-                    <a href ="">Photographer and filmmake bsed in Nigeria Nollywoodfilmmake bsed in Nigeria Nollywood</a>
+                    <Link to = "">Photographer and filmmake bsed in Nigeria Nollywoodfilmmake bsed in Nigeria Nollywood</Link>
                     <img src="https://previews.123rf.com/images/dagadu/dagadu1008/dagadu100800015/7511808-.jpg?fj=1"/>
 
                     <div className={styles.underline}></div>
@@ -197,7 +197,7 @@ function TweetingContainer() {
                         <h3>Softtechy Developer  fdfdfdfdfdf dfdf<span>120k followers</span></h3>
                         <button><span></span>follow</button>
                     </div>
-                    <a href ="">Photographer and filmmake bsed in Nigeria Nollywoodfilmmake bsed in Nigeria Nollywood</a>
+                    <Link to ="">Photographer and filmmake bsed in Nigeria Nollywoodfilmmake bsed in Nigeria Nollywood</Link>
                     <img src="https://previews.123rf.com/images/dagadu/dagadu1008/dagadu100800015/7511808-.jpg?fj=1"/>
 
                     </div>
