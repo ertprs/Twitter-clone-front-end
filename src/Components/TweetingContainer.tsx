@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {motion} from "framer-motion";
 import { useState } from "react";
 import Tweet from "./Tweet/Tweet";
+import Nav from "./NavBar/Nav";
 
 function TweetingContainer() {
   const [newheight, setNewHeight] = useState("22px");
@@ -45,6 +46,7 @@ function TweetingContainer() {
 
   return (
     <>
+    <Nav/>
       <div className = {styles["tweet-wrapper"]}>
         {/* Tweeting something content */}
         <div>
