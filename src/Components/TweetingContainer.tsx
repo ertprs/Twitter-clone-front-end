@@ -54,7 +54,7 @@ function TweetingContainer() {
               <img
                 src="https://www.findjerry.tech/static/media/jerry2.a509e534aa3f11de93e1.png"
                 className={styles["user-image"]}
-                alt="user-image"
+                alt="user"
               />
               <motion.textarea
               initial ={{opacity:0}}
@@ -66,9 +66,9 @@ function TweetingContainer() {
               ></motion.textarea>
             </div>
 
-            <div className ={styles["set-media-image"]}><img  src ={imageUrl ?  imageUrl: ""}
+            <div className ={styles["set-media-image"]}><img alt= "media" src ={imageUrl ?  imageUrl: ""}
             style ={{width:imageWidth, height:imageHeight, borderRadius:"4px"}}
-            /><span onClick={removeImage}><img src= {exitImage}/></span></div>
+            /><span onClick={removeImage}><img src= {exitImage} alt= "img"/></span></div>
 
             <div className={styles["select-media-container"]}>
                 
@@ -109,7 +109,7 @@ function TweetingContainer() {
           >
             <h3>Who can reply?</h3>
             <p>Choose who can reply</p>
-            <a className={styles["image-n-text"]}>
+            <a href="/" className={styles["image-n-text"]}>
               <img
                 className= {styles["media-image"]}
                 src="https://img.icons8.com/material-rounded/28/000000/globe--v1.png"
