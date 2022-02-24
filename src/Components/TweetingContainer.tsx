@@ -2,8 +2,29 @@ import styles from "../styles/Tweeting_style/TweetController.module.css"
 import {Link} from "react-router-dom";
 import {motion} from "framer-motion";
 import { useState } from "react";
+import axios from "axios";
+import { useEffect} from "react";
 
 function TweetingContainer() {
+  const [trends, setTrends] = useState<any>([]);
+  let token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlhdCI6MTY0NTcyODY4MywiZXhwIjoxNjQ1NzQ2NjgzfQ.5rCiKPvdCDojk2VIwlbfua9ZiDQa88dz83HuekXb-oM";
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/trends", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setTrends(res.data.data.trending);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   const [newheight, setNewHeight] = useState("22px");
   const [modal, setModal] = useState(false);
   const [whoCanReplay, setWhoCanReplay] = useState("Everyone");
@@ -142,7 +163,20 @@ function TweetingContainer() {
         {/* Trending and who to follow content */}
 
 
-        <div className= {styles["trending-n-follow"]}>
+        <div className={styles["trending-n-follow"]}>
+        <div className={styles.trending}>
+          <h3>trends for you</h3>
+          <div className={styles.underline}></div>
+          {Object.keys(trends).map((trend: string) => (
+            <div key={trend} className={styles["trending-content"]}>
+              <a href="/">{trend}</a>
+              <p>{trends[trend].length} Tweets</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+        {/* <div className= {styles["trending-n-follow"]}>
           <div className= {styles.trending}>
               <h3>trends for you</h3>
               <div className={styles.underline}></div>
@@ -171,7 +205,7 @@ function TweetingContainer() {
                   <p>213k Tweets</p>
               </div>
               
-              </div>
+              </div> */}
           <div className={styles["who-to-follow" ]}>
                 <h3>Who to follow</h3>
                 <div className={styles.underline}></div>
@@ -204,7 +238,7 @@ function TweetingContainer() {
                 </div>
                 {/* End of sugestion container box */}
           </div>
-        </div>
+        {/* </div> */}
       </div>
     </>
   );

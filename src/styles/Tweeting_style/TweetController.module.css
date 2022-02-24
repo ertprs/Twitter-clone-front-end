@@ -10,6 +10,20 @@ body {
   background-color: #FAFAFA !important;
 }
 
+.trending {
+  width: 306px;
+  height: 495.7px;
+  overflow-y: auto;
+  margin: 0 auto;
+  background-color: #fff;
+  margin-bottom: 22px;
+  border-radius: 12px;
+  padding-left: 20px;
+  padding-top: 10.91px;
+  font-size: 12px;
+  font-family: Poppins, sans-serif;
+}
+
 .tweet-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
