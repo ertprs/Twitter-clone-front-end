@@ -241,48 +241,6 @@ function TweetingContainer() {
           </div>
         </div>
         {/* Trending and who to follow content */}
-
-        <div className={styles["trending-n-follow"]}>
-          <div className={styles.trending}>
-            <h3>trends for you</h3>
-            <div className={styles.underline}></div>
-            <div className={styles["trending-content"]}>
-              <a href="/tweet/desktoptrending">
-                #Programming
-                <span>213k Tweets</span>
-              </a>
-            </div>
-            <div className={styles["trending-content"]}>
-              <a href="/tweet/desktoptrending">
-                #Programming
-                <span>213k Tweets</span>
-              </a>
-            </div>
-            <div className={styles["trending-content"]}>
-              <a href="/tweet/desktoptrending">
-                #Programming
-                <span>213k Tweets</span>
-              </a>
-            </div>
-            <div className={styles["trending-content"]}>
-              <a href="/tweet/desktoptrending">
-                #Programming
-                <span>213k Tweets</span>
-              </a>
-            </div>
-            <div className={styles["trending-content"]}>
-              <a href="/tweet/desktoptrending">
-                #Programming
-                <span>213k Tweets</span>
-              </a>
-            </div>
-            <div className={styles["trending-content"]}>
-              <a href="/tweet/desktoptrending">
-                #Programming
-                <span>213k Tweets</span>
-              </a>
-            </div>
-          </div>
           <div className={styles["who-to-follow"]}>
             <h3>Who to follow</h3>
             <div className={styles.underline}></div>
@@ -302,7 +260,6 @@ function TweetingContainer() {
         </div>
        </div>
 
-        
           <div className={styles["who-to-follow" ]}>
                 <h3>Who to follow</h3>
                 <div className={styles.underline}></div>
@@ -347,7 +304,6 @@ function TweetingContainer() {
             {/* End of sugestion container box */}
           </div>
         </div>
-      </div>
       </div>
     </>
   );
