@@ -22,16 +22,21 @@ export default function ChangePassword() {
     });
   }
 
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlhdCI6MTY0NTczNTEyNSwiZXhwIjoxNjQ1NzUzMTI1fQ.DXm1jTeIGw6zF9R18FBWFcpvQkCyCWZMzGOskKH4JZM"
+  const url = 'https://tweetaclone.herokuapp.com/'
+ 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData.newPassword);
     try {
       const { data } = await axios({
-        url: "http://localhost:3000/api/v1/reset/changepassword",
+        url: `${url}api/v1/reset/changepassword`,
         method: "POST",
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlhdCI6MTY0NTU3Mjk2OCwiZXhwIjoxNjQ1NTkwOTY4fQ.--sLrU1YJcl35VYfgufsAsycKYc-4c7xjjM097hF6JU",
+          "Bearer " +
+          token //the token is a variable which holds the token
         },
         data:formData,
       });
