@@ -101,6 +101,7 @@ textarea:focus{
     margin-bottom: 14.03px;
     display: flex;
     align-items: center;
+    align-items: center;
  
 }
 
@@ -109,7 +110,7 @@ textarea:focus{
     width:16.67px;
     height: 16.67px;
     cursor: pointer;
-    margin-top: 7px;
+    // margin-top: 10px;
 }
 
 
@@ -134,6 +135,7 @@ textarea:focus{
 .select-media div{
 display: flex;
 cursor: pointer; 
+margin-top: 7px;
 }
 
 .select-media  div .media-image{
@@ -147,7 +149,7 @@ cursor: pointer;
 .select-media div h3{
     display:inline-block;
     font-size: 12px;
-    margin-top: -9px;
+    margin-top: -7px;
     color: $primaryColor;
     font-weight: bolder;
 }
@@ -201,6 +203,7 @@ p{
     color:#828282;
     font-weight: 400;
     margin-top: 1.3px;
+    margin-left: 0px;
 
 }
 

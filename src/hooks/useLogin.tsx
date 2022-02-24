@@ -44,7 +44,7 @@ export const isLoggedIn = () => {
     window.location.href = "/login";
     return false;
   } else if (data && loginUrl[loginUrl.length - 1] === "login") {
-    window.location.href = "/profile";
+    window.location.href = "/";
     return true;
   }
 };
