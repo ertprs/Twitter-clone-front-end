@@ -1,5 +1,7 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { BASE_URL } from "../constants/contants";
+import { UserContext } from "../hooks/useContext";
 
 export interface iFollowing {
   followerTweet: [];
@@ -12,18 +14,19 @@ export interface iFollowing {
 export const followingContext = createContext<iFollowing>(null!);
 
 function FollowingProvider({ children }: { children: React.ReactNode }) {
+
+  const userToken:any = useContext(UserContext)
+
   const [followerTweet, setFollowerTweet] = useState<[]>([]);
   const [followerRetweet, setFollowerRetweet] = useState(false);
   const [isbookMark, setIsBookMark] = useState(false);
 
-  const url = "http://localhost:4000/api/viewtweet/?pageNo=1&pageSize=9";
+  const url = `${BASE_URL}api/viewtweet/?pageNo=1&pageSize=9`
 
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIyOUBnbWFpbC5jb20iLCJpYXQiOjE2NDU3MTk1NzksImV4cCI6MTY0NTczNzU3OX0.lCWqs5wEPEoEMZM81wovT83IrBatc6A43mc7uQ9I_6Y";
-
+  
   const authorised = {
     headers: {
-      Authorization: "Bearer " + token,
+      Authorization: "Bearer " + userToken.token,
     },
   };
 
@@ -37,7 +40,7 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     getFollowerTweet();
-  }, []);
+  },[]);
 
 
   // function that handle bookmarking
@@ -55,18 +58,19 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
 
     const postData= {isBookmark:true}
 
-    const bookMarkUrl = "http://localhost:4000/tweet/" + tweetId + "/bookmark";
+    const bookMarkUrl = `${BASE_URL}tweet/${tweetId}/bookmark`;
 
+  
     fetch(bookMarkUrl, {
       method: "POST",
       body:JSON.stringify(postData),
 
       headers: {
-        Authorization: "Bearer " + token,'Content-Type': 'application/json'
+        Authorization: "Bearer " + userToken.token,'Content-Type': 'application/json'
       },
     })
       .then((res) => res.json())
-      .then((data) => console.log(data.data.isBookmark)).catch((err:any)=>console.log("Deleted bookmark"));
+      .then((data) => console.log(data.data.isBookmark)).catch((err:any)=>console.log(err));
     getFollowerTweet();
   }
 
@@ -75,12 +79,12 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
   const getAllUserBookMark = async ()=>{
 
 
-    const bookMarkUrl = "http://localhost:4000/tweet/bookmark";
+    const bookMarkUrl = `${BASE_URL}tweet/bookmark`;
 
     fetch(bookMarkUrl, {
       method: "GET",
       headers: {
-        Authorization: "Bearer " + token,'Content-Type': 'application/json'
+        Authorization: "Bearer " + userToken.token,'Content-Type': 'application/json'
       },
     })
       .then((res) => res.json())
@@ -107,12 +111,12 @@ useEffect(()=>{
   const handleReTweet = async (tweetId: string)=>{
 
 
-    const retweetUrl = "http://localhost:4000/tweeting/retweet/" + tweetId;
+    const retweetUrl = `${BASE_URL}tweeting/retweet/${tweetId}`;
 
     fetch(retweetUrl, {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + token
+        Authorization: "Bearer " + userToken.token
       },
     })
       .then((res) => res.json())
