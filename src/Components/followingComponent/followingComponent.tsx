@@ -13,7 +13,7 @@ function FollowingComponent(props:any) {
         <div className="header">
           <div className="img-component">
             <img
-              src="https://images.unsplash.com/photo-1607758164193-19539498ddf4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=758&q=80"
+              src={props.profilePic}
               alt=""
               className="follow-img"
             />
@@ -27,8 +27,8 @@ function FollowingComponent(props:any) {
           </Button>
         </div>
         <div>
-          <p className="description">
-             lorem ipsium lorem ipsium lorem ipsium lorem ipsium lorem
+          <p className="biodata">
+          {props.bioData}
           </p>
         </div>
       </article>
