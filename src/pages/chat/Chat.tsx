@@ -15,7 +15,7 @@ import {
 const Chat = () => {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="container-fluid">
         <div className="row">
           <div className="col-sm-3 themebg-left text-dark d-none d-xl-block ">

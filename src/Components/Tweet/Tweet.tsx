@@ -120,6 +120,14 @@ const Tweet = () => {
               </form>
             </div>
           </div>
+          <form action="" className={classes.form}>
+            <textarea
+              placeholder="Tweet your reply"
+            ></textarea>
+            <span className={classes.iconBox}>
+              <AiOutlineSend className={classes.icon} />
+            </span>
+          </form>
         </div>
       ))}
     </>

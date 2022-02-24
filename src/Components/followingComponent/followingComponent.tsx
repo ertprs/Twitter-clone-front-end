@@ -1,34 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Following/following";
 import { PersonPlusFill } from "react-bootstrap-icons";
 
 function FollowingComponent(props:any) {
-//   const [following, setFollowing] = useState([]);
-
-    // useEffect(() => {
-    //   const getFollowing = async () => {
-    //     try {
-    //       const res = await axios(
-    //         `http://localhost:3000/api/follow/?pageNo=1&pageSize=20`,
-    //         {
-    //           headers: {
-    //             Authorization:
-    //               "Bearer " +
-    //               "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlhdCI6MTY0NTU0OTM2NSwiZXhwIjoxNjQ1NTY3MzY1fQ.VsKioB8rYVDgqbE-1w-vpvLu6RvA9eYW-uSnT-G9VAU", //the token is a variable which holds the token
-    //           },
-    //         }
-    //       );
-    //       setFollowing(res.data.data);
-    //     //   console.log(following)
-    //     } catch (err) {
-    //       console.log(err);
-    //     }
-    //   };
-    //   getFollowing();
-    // }, []);
 
 
   return (

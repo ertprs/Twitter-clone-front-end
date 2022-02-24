@@ -4,14 +4,14 @@ import ProfileHeader from "../../Components/profile/ProfileHeader";
 import "./Profile.css";
 
 import Tweet from "../../Components/profile/Tweet";
-
+import TweetComp from '../../Components/Tweet/Tweet'
 import TweetNav from "../../Components/profile/TweetNav";
 
 const Profile = () => {
   return (
     <div>
       <ProfileHeader />
-      <br />
+      {/* <br /> */}
       <div className="container">
         <div className="row">
           <div className="col-sm-3">

@@ -1,11 +1,10 @@
-import React from 'react'
-import Navbar from '../../Components/NavBar/Nav'
-
+import React,{useContext} from 'react'
+import {UserContext} from '../../hooks/useContext'
 const Home = () => {
+  const msg=useContext(UserContext)
   return (
     <div>
-      <Navbar />
-        <h1>Tweeter Team A</h1>
+        <h1>Tweeter Team A{msg}</h1>
     </div>
   )
 }
