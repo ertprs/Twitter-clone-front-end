@@ -9,8 +9,8 @@ import { User } from "./login.interface";
 import { IoLogoTwitter, IoLogoGithub, IoMdPartlySunny } from "react-icons/io";
 import { BsMoonStarsFill } from "react-icons/bs";
 import { BASE_URL } from "../../../constants/contants";
-import Swal from "sweetalert2";
 import { storeUser } from "../../../hooks/useLogin";
+import { notify } from "../../../hooks/useNotification";
 
 const url: string = `${BASE_URL}users/login`;
 
@@ -55,12 +55,13 @@ const Login = (): JSX.Element => {
         const data = await response.json();
         console.log(data);
         storeUser(data)
-        Swal.fire({
-          icon: "success",
-          title: "Login successful",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        notify("success", "Login successful",true);
+        // Swal.fire({
+        //   icon: "success",
+        //   title: "Login successful",
+        //   showConfirmButton: false,
+        //   timer: 1500,
+        // });
         window.location.reload()
       }
       if (response.status === 400) {

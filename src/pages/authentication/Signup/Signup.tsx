@@ -8,9 +8,10 @@ import {IoIosLock} from "react-icons/io"
 import { User } from "./signup.interface"
 import {IoLogoTwitter, IoLogoGithub, IoMdPartlySunny} from "react-icons/io"
 import {BsMoonStarsFill} from 'react-icons/bs'
+import { BASE_URL } from "../../../constants/contants"
 
 
-const url:string = "http://localhost:3000/users/signup"
+const url: string =`${BASE_URL}users/signup`;
 
 const Signup = ():JSX.Element => {
     const [isLight, setIsLight] = useState(true)
@@ -46,6 +47,8 @@ const Signup = ():JSX.Element => {
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(form),
             });
+            console.log(response,form);
+            
             if (response.status === 201) {
               const data = await response.json();
               alert(data.message);

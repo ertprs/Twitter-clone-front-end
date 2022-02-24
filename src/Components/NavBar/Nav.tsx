@@ -3,6 +3,7 @@ import { MdGroup, MdSettings, MdLogout, MdArrowDropDown } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import classes from "./Nav.module.css";
 import { Link, NavLink } from "react-router-dom";
+import {logOut} from '../../hooks/useLogin'
 
 
 const Navbar = () => {
@@ -27,7 +28,7 @@ const Navbar = () => {
                   borderBottom: isActive
                     ? "2px solid #2f80ed"
                     : "2px solid transparent",
-                  paddingBottom: "25px"
+                  paddingBottom: "25px",
                 };
               }}
               to="/"
@@ -70,10 +71,13 @@ const Navbar = () => {
               <span className={classes.navText}>Settings</span>
             </Link>
             <div className={classes.divider}> &nbsp; </div>
-            <Link to="/logout" className={classes.navItem}>
+            <span className={classes.navItem}>
               <MdLogout className={classes.icon} />
-              <span className={classes.navText}>Log Out</span>
-            </Link>
+
+              <span className={classes.navText} onClick={logOut}>
+                Log Out
+              </span>
+            </span>
           </div>
         </div>
       </nav>
