@@ -28,7 +28,7 @@ const Navbar = () => {
                   borderBottom: isActive
                     ? "2px solid #2f80ed"
                     : "2px solid transparent",
-                  paddingBottom: "25px",
+                  paddingBottom: "25px"
                 };
               }}
               to="/"
