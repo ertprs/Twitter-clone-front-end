@@ -3,7 +3,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./ProfileHeader.css";
 import Navbar from '../NavBar/Nav'
 // import "@fortawesome/fontawesome-free/css/all.min.css";
+import {
 
+  FaPlus,
+
+} from "react-icons/fa";
 const ProfileHeader = () => {
   return (
     <div className="main">
@@ -34,16 +38,18 @@ const ProfileHeader = () => {
                   <div className="col-sm-6">
                     <h5>Daniel Jenson</h5>
                   </div>
-                  <div className="col-sm-6">2,569 Following 10.8K Followers</div>
+                  <div className="col-sm-6">
+                    2,569 Following 10.8K Followers
+                  </div>
                   <div className="col-sm-12">
                     Photographer & Filmmaker based in Copenhagen, Denmark ✵ 🇩🇰
                   </div>
                 </div>
               </div>
               <div className="col-sm-2">
-                <br />
-                <button className="btn btn-primary">
-                  <i className="fa fa-user-plus"></i>
+             
+                <button className="btn btn-primary" style={{padding:'10px'}}>
+                  <FaPlus className="" />
                   follow
                 </button>
               </div>

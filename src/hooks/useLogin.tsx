@@ -1,4 +1,5 @@
 import axios from "axios";
+import {notify} from  "../hooks/useNotification"
 export const useLogin = async () => {
   let response = await axios.post("/login", {
     firstName: "Finn",
@@ -35,7 +36,11 @@ export const isLoggedIn = () => {
   let loginUrl = window.location.href.split("/");
   console.log(loginUrl[loginUrl.length - 1]);
 
-  if (!data && loginUrl[loginUrl.length - 1] !== "login") {
+  if (
+    !data &&
+    loginUrl[loginUrl.length - 1] !== "login" &&
+    loginUrl[loginUrl.length - 1] !== "signup"
+  ) {
     window.location.href = "/login";
     return false;
   } else if (data && loginUrl[loginUrl.length - 1] === "login") {
@@ -46,5 +51,6 @@ export const isLoggedIn = () => {
 
 export const logOut = () => {
   localStorage.removeItem("tweeter");
+  notify('success', 'Signing Out Account',true)
   window.location.reload();
 };
