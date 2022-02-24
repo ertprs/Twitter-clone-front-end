@@ -128,6 +128,7 @@ textarea:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  align-items: center;
 }
 
 .select-media .select-image img {
@@ -135,7 +136,6 @@ textarea:focus {
   width: 16.67px;
   height: 16.67px;
   cursor: pointer;
-  margin-top: 7px;
 }
 
 .set-media-image {
@@ -159,6 +159,7 @@ textarea:focus {
   display: -ms-flexbox;
   display: flex;
   cursor: pointer;
+  margin-top: 7px;
 }
 
 .select-media div .media-image {
@@ -175,7 +176,7 @@ textarea:focus {
 .select-media div h3 {
   display: inline-block;
   font-size: 12px;
-  margin-top: -9px;
+  margin-top: -7px;
   color: #2F80ED;
   font-weight: bolder;
 }
@@ -223,6 +224,7 @@ textarea:focus {
   color: #828282;
   font-weight: 400;
   margin-top: 1.3px;
+  margin-left: 0px;
 }
 
 @media screen and (max-width: 720px) {

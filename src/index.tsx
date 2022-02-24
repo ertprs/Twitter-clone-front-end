@@ -5,6 +5,9 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import FollowingProvider from './Components/FollowingProvider';
+import TweetingContainer from './Components/TweetingContainer';
 
 ReactDOM.render(
   <React.StrictMode>
