@@ -2,6 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { NavDropdown } from "react-bootstrap";
 import "../../styles/chat.scss";
+import Navbar from '../../Components/NavBar/Nav'
 import {
   FaMountain,
   FaSignOutAlt,
@@ -14,6 +15,7 @@ import {
 const Chat = () => {
   return (
     <div>
+      {/* <Navbar /> */}
       <div className="container-fluid">
         <div className="row">
           <div className="col-sm-3 themebg-left text-dark d-none d-xl-block ">

@@ -1,9 +1,10 @@
-import React from 'react'
-
+import React,{useContext} from 'react'
+import {UserContext} from '../../hooks/useContext'
 const Home = () => {
+  const msg=useContext(UserContext)
   return (
     <div>
-        <h1>Tweeter Team A</h1>
+        <h1>Tweeter Team A{msg}</h1>
     </div>
   )
 }

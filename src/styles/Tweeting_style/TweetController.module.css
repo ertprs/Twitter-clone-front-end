@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: #FAFAFA !important;
+  background-color: #FAFAFA;
 }
 
 .trending {
@@ -196,11 +196,18 @@ textarea:focus {
 
 @media screen and (max-width: 720px) {
   .tweet-heading {
-    width: 400px;
     margin: 0 auto;
+    width: 70vw;
+    width: 65vw;
   }
   .tweet-heading .underline {
     width: auto;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .tweet-heading {
+    width: 65vw;
   }
 }
 
@@ -293,7 +300,7 @@ textarea:focus {
 
 .trending {
   width: 306px;
-  height: 495.7px;
+  height: auto;
   background-color: #fff;
   margin-bottom: 22px;
   border-radius: 12px;
@@ -301,6 +308,7 @@ textarea:focus {
   padding-top: 10.91px;
   font-size: 12px;
   font-family: Poppins, sans-serif;
+  margin-bottom: 10px;
 }
 
 .trending-content {
@@ -309,6 +317,13 @@ textarea:focus {
   border-radius: 4px;
   margin-top: 24px;
   cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .trending-content a {
@@ -317,9 +332,13 @@ textarea:focus {
   font-weight: bolder;
   font-size: 16px;
   margin-bottom: 8px;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
-.trending-content p {
+.trending-content span {
+  display: block;
   font-weight: 500;
   font-size: 15px;
   color: #828282;
@@ -472,7 +491,6 @@ textarea:focus {
 .tweet-body {
   width: 745px;
   height: 606px;
-  background-color: #fff;
   margin-top: 53.66px;
   margin-bottom: 23px;
 }
