@@ -30,6 +30,8 @@ function App() {
       <Route path='/settings' element={ <Settings /> } />
       <Route path='/following' element={ <Following/> }/>
       <Route path='/changePassword' element={ <ChangePassword/> }/>
+      <Route path='/tweetComp' element={ <Tweet/> }/>
+      <Route path='/navbar' element={ <Navbar/> }/>
     </Routes>
   </BrowserRouter>
   );

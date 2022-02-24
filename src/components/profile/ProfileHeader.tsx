@@ -1,11 +1,13 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./ProfileHeader.css";
+import Navbar from '../NavBar/Nav'
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const ProfileHeader = () => {
   return (
     <div className="main">
+      <Navbar />
       <div className="container-fluid header-img">
         <img
           className="banner_img"

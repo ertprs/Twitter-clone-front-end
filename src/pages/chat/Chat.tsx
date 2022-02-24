@@ -10,10 +10,14 @@ import {
   FaPlay
 } from "react-icons/fa";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faPlus, faUser, faSignOut,faMountain } from "@fortawesome/free-solid-svg-icons";
+import Navbar from '../../Components/NavBar/Nav'
 
 const Chat = () => {
   return (
     <div>
+      <Navbar />
       <div className="container-fluid">
         <div className="row">
           <div className="col-sm-3 themebg-left text-dark d-none d-xl-block ">
