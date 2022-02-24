@@ -31,30 +31,23 @@ function App() {
   isLoggedIn();
    let USERDATA = getUserData()
   return (
-    <UserContext.Provider value={USERDATA}>
-      <BrowserRouter>
-        <Routes>
-          {/* <Route path="/" element={<Profile />} /> */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/tweet" element={<TweetingContainer />} />
-          <Route path="/trending" element={<TrendingMobilePage />} />
-          <Route path="/explore" element={<ExplorePage />} />
-          <Route path="/bookmark" element={<BookMarksPage />} />
-          <Route path="/chat" element={<Chat />} />
-          <Route
-            path="/tweet/desktoptrending"
-            element={<TrendingDesktopPage />}
-          />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/following" element={<Following />} />
-          <Route path="/changePassword" element={<ChangePassword />} />
-          <Route path='/'  element={ <FollowingProvider> <TweetingContainer/> </FollowingProvider>}/>
-        </Routes>
-      </BrowserRouter>
-    </UserContext.Provider>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/' element={ <Home/> }/>
+      <Route path='/profile' element={ <Profile/> }/>
+      <Route path ="/tweet" element = {<TweetingContainer/>}/>
+      <Route path ="/trending" element = {<TrendingMobilePage/>}/>
+      <Route path ="/explore" element = {<ExplorePage/>}/>
+      <Route path ="/bookmark" element = {<BookMarksPage/>}/>
+      <Route path='/chat' element={ <Chat/> }/>
+      <Route path='/tweet/desktoptrending' element={ <TrendingDesktopPage/> }/>
+      <Route path='/settings' element={ <Settings /> } />
+      <Route path='/following' element={ <Following/> }/>
+      <Route path='/changePassword' element={ <ChangePassword/> }/>
+      <Route path='/tweetComp' element={ <Tweet/> }/>
+      <Route path='/navbar' element={ <Navbar/> }/>
+    </Routes>
+  </BrowserRouter>
   );
 }
 
