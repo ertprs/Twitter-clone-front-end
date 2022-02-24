@@ -3,6 +3,7 @@ import { Button, Modal } from "react-bootstrap";
 import FollowingComponent from "../followingComponent/followingComponent";
 import "./following.scss";
 import axios from "axios";
+import {BASE_URL} from "../../constants/contants"
 
 function Following() {
   const [show, setShow] = useState(false);

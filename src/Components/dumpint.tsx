@@ -5,14 +5,14 @@ import { AiOutlineSend } from "react-icons/ai";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Moment from 'moment';
-
+import {BASE_URL} from '../constants/contants'
 const Tweet = () => {
   const [followerTweet, setFollowerTweet] = useState([]);
   const [followerRetweet, setFollowerRetweet] = useState([]);
   const [isbookMark, setIsBookMark] = useState(false)
   const [countBk, setCountBk] = useState(0);
 
-  const url = "http://localhost:4000/api/viewtweet/?pageNo=1&pageSize=9";
+  const url = `${BASE_URL}api/viewtweet/?pageNo=1&pageSize=9`;
 
   const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imlkb2tvYWdhZGFAZ21haWwuY29tIiwiaWF0IjoxNjQ1NjI0NzU0LCJleHAiOjE2NDU2NDI3NTR9.PyIfXPx3AfEvVMRh1GHWisuQsW0fVVr5Iovdtar7288";
@@ -40,7 +40,7 @@ const Tweet = () => {
 
 const bookMarkTweet =  (tweetId:string)=>{
 
-  const bookMarkUrl =  'http://localhost:4000/tweet/'+tweetId+'/bookmark'
+  const bookMarkUrl = `${BASE_URL}tweet/'+tweetId+'/bookmark`;
 
   
   if(isbookMark ===false){
