@@ -243,7 +243,7 @@ function TweetingContainer() {
         {/* Trending and who to follow content */}
 
         <div className={styles["trending-n-follow"]}>
-          <div className={styles.trending}>
+          {/* <div className={styles.trending}>
             <h3>trends for you</h3>
             <div className={styles.underline}></div>
             <div className={styles["trending-content"]}>
@@ -282,7 +282,7 @@ function TweetingContainer() {
                 <span>213k Tweets</span>
               </a>
             </div>
-          </div>
+          </div> */}
           <div className={styles["who-to-follow"]}>
             <h3>Who to follow</h3>
             <div className={styles.underline}></div>
