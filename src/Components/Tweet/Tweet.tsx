@@ -79,8 +79,6 @@ const Tweet = () => {
           <form action="" className={classes.form}>
             <textarea
               placeholder="Tweet your reply"
-              // rows= {5} cols= {40}
-              // className={classes.input}
             ></textarea>
             <span className={classes.iconBox}>
               <AiOutlineSend className={classes.icon} />

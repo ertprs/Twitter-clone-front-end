@@ -14,10 +14,10 @@ import Signup from "./pages/authentication/Signup/Signup";
 import Following from "./Components/Following/following";
 import ChangePassword from "./Components/changePassword/changePassword";
 
-import Navbar from './Components/NavBar/Nav';
-import Tweet from './Components/Tweet/Tweet';
-import Profile from './pages/profile/Profile';
-import Settings from './pages/settings';
+import Navbar from "./Components/NavBar/Nav";
+import Tweet from "./Components/Tweet/Tweet";
+import Profile from "./pages/profile/Profile";
+import Settings from "./pages/settings";
 
 import { UserContext } from "./hooks/useContext";
 import {
