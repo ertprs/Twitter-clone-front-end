@@ -40,6 +40,7 @@ const Tweet = () => {
 
 const bookMarkTweet =  (tweetId:string)=>{
 
+  const postData= {isBookmark:true}
   const bookMarkUrl =  'http://localhost:4000/tweet/'+tweetId+'/bookmark'
 
   
@@ -47,9 +48,12 @@ const bookMarkTweet =  (tweetId:string)=>{
 
     fetch(bookMarkUrl,{
       method:"POST",
+      body:JSON.stringify(postData),
       headers: {
         Authorization: "Bearer " + token,
-      }
+      },
+      
+
     }).then(res=>res.json())
     .then(data=>console.log(data));
 

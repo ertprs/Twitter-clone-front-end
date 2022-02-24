@@ -209,6 +209,10 @@
   color: #bdbdbd;
 }
 
+.buttonColor{
+  color: red;
+}
+
 @media screen and (max-width: 788px) {
   .wrapper {
     /* background-color: #ffffff; */

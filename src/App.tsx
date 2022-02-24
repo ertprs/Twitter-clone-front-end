@@ -19,18 +19,22 @@ import Navbar from './Components/NavBar/Nav';
 import Tweet from './Components/Tweet/Tweet';
 import Profile from './pages/profile/Profile';
 import Settings from './pages/settings';
+import FollowerProvider from "./Components/FollowingProvider"
+import FollowingProvider from './Components/FollowingProvider';
 
 function App() {
   return (
     <BrowserRouter>
+
+   
+
     <Routes>
-      <Route path='/'  element={ <Home/> }/>
+    <Route path='/'  element={ <FollowingProvider> <TweetingContainer/> </FollowingProvider>}/>
       <Route path='/login'  element={ <Login />} />
       <Route path='/signup'  element={ <Signup />} />
-      <Route path='/' element={ <Home/> }/>
       <Route path='/profile' element={ <Profile/> }/>
       <Route path ="/tweet" element = {<TweetingContainer/>}/>
-      <Route path ="/trending" element = {<TrendingMobilePage/>}/>
+      <Route path ="/" element = {<TrendingMobilePage/>}/>
       <Route path ="/explore" element = {<ExplorePage/>}/>
       <Route path ="/bookmark" element = {<BookMarksPage/>}/>
       <Route path='/chat' element={ <Chat/> }/>
