@@ -9,12 +9,17 @@ import Moment from "moment";
 const Tweet = () => {
   const {
     followerTweet,
-    handleReTweet,
-    bookMarkTweet,
-    isbookMark,
+        bookMarkTweet,
+        isbookMark,
+        handleReTweet,
+        followerRetweet,
+        handleComment,
+        textField,
+        alertMsg,
+        getTextFieldValue
   } = useContext(followingContext);
 
-  console.log(isbookMark)
+  console.log(textField)
   return (
     <>
       {followerTweet.map((val: any, index: number) => (
@@ -59,7 +64,8 @@ const Tweet = () => {
                 <button>
                   <span>
                     <FiMessageSquare className={classes.icons} />
-                    <span className={classes.button}>Comments</span>
+                    <span 
+                    className={classes.button}>Comments</span>
                   </span>
                 </button>
                 <button>
@@ -110,24 +116,24 @@ const Tweet = () => {
               </div>
               <form action="" className={classes.form}>
                 <textarea
+
+                onChange={(e)=>getTextFieldValue(e,index)}
                   placeholder="Tweet your reply"
                   // rows= {5} cols= {40}
                   // className={classes.input}
                 ></textarea>
-                <span className={classes.iconBox}>
+                <span 
+
+                onClick={() => handleComment(val._id,index)
+                }
+                className={classes.iconBox}>
                   <AiOutlineSend className={classes.icon} />
                 </span>
               </form>
             </div>
           </div>
-          <form action="" className={classes.form}>
-            <textarea
-              placeholder="Tweet your reply"
-            ></textarea>
-            <span className={classes.iconBox}>
-              <AiOutlineSend className={classes.icon} />
-            </span>
-          </form>
+          <span>{alertMsg}</span>
+
         </div>
       ))}
     </>
