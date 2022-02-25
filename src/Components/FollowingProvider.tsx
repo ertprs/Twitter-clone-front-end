@@ -7,8 +7,12 @@ export interface iFollowing {
   followerTweet: [];
   bookMarkTweet: (id: string) => void;
   handleReTweet: (id: string) => void;
+  handleComment: (id: string,index:number) => void;
   isbookMark: boolean;
   followerRetweet:boolean;
+  textField:string;
+  alertMsg:string;
+  getTextFieldValue:(e:React.ChangeEvent<HTMLTextAreaElement>, index:number)=>void
 }
 
 export const followingContext = createContext<iFollowing>(null!);
@@ -20,6 +24,8 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
   const [followerTweet, setFollowerTweet] = useState<[]>([]);
   const [followerRetweet, setFollowerRetweet] = useState(false);
   const [isbookMark, setIsBookMark] = useState(false);
+  const [textField, setTextField] = useState<string>("");
+  const [alertMsg, setAlertMsg] = useState("")
 
   const url = `${BASE_URL}api/viewtweet/?pageNo=1&pageSize=9`
 
@@ -38,6 +44,7 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
     let result = await axios.get(url, authorised);
 
     setFollowerTweet(result.data.data.tweet);
+
   };
 
   useEffect(() => {
@@ -130,6 +137,46 @@ useEffect(()=>{
     getAllUserBookMark();
   }
 
+
+// handle comment for a tweet
+
+  const handleComment = async (tweetId: string,index:number)=>{
+
+    
+    if(textField === ""){
+      setAlertMsg("Empty textfield");
+    }else{
+
+      const postData= {content:textField}
+  
+      const commentUrl = `${BASE_URL}tweet/${tweetId}/comment`;
+  
+    
+      fetch(commentUrl, {
+        method: "POST",
+        body:JSON.stringify(postData),
+  
+        headers: {
+          Authorization: "Bearer " + userToken.token,'Content-Type': 'application/json'
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data)).catch((err:any)=>console.log(err));
+      getFollowerTweet();
+      getAllUserBookMark();
+      setTextField("")
+    }
+
+  }
+
+  const getTextFieldValue = (e:React.ChangeEvent<HTMLTextAreaElement>,index:number)=>{
+
+    if(followerTweet[index]){
+
+      setTextField(e.target.value);
+    }
+  }
+
   return (
     <followingContext.Provider
       value={{
@@ -138,6 +185,10 @@ useEffect(()=>{
         isbookMark,
         handleReTweet,
         followerRetweet,
+        handleComment,
+        textField,
+        alertMsg,
+        getTextFieldValue
       }}
     >
       {children}
