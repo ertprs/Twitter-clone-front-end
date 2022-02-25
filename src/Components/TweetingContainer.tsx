@@ -78,15 +78,7 @@ function TweetingContainer() {
     // }
   };
 
-  // function increaseHeight(e: any) {
-  //   let changeHeight = e.target.scrollHeight;
 
-  //   setNewHeight(changeHeight);
-
-  //   if (e.target.value === "") {
-  //     setNewHeight("25px");
-  //   }
-  // }
 
   //get text of who can replay
   function getText(e: any) {
@@ -110,6 +102,18 @@ function TweetingContainer() {
     setExitImage("");
   }
 
+  function increaseHeight(e: any) {
+    let changeHeight = e.target.scrollHeight;
+    setEnteredText(e.target.value);
+    console.log(enteredText)
+
+    setNewHeight(changeHeight);
+
+    if (e.target.value === "") {
+      setNewHeight("25px");
+    }
+  }
+
   return (
     <>
       <Nav />
@@ -130,10 +134,9 @@ function TweetingContainer() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1, duration: 2 }}
                 placeholder="What's happening?"
-                // onChange={(e) => increaseHeight(e)}
+                onChange={(e) => increaseHeight(e)}
                 style={{ height: newheight }}
                 value={enteredText}
-                onChange={(e) => setEnteredText(e.target.value)}
               ></motion.textarea>
             </div>
 
