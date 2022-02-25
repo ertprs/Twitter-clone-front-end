@@ -71,7 +71,7 @@ function TweetingContainer() {
         {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxOUBnbWFpbC5jb20iLCJpYXQiOjE2NDU2NDY5NTgsImV4cCI6MTY0NTY2NDk1OH0.OJWzpfqfXy8Nyqjy3GX4AfVIKoRri8TluqMg0ct3pOI",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxOUBnbWFpbC5jb20iLCJpYXQiOjE2NDU3MzU3MjksImV4cCI6MTY0NTc1MzcyOX0.U9DgjZ2BH38bjCkInA69SzYsGu3y6bhOnnRmLd7_n5c",
             "Accept-Language": "en-US,en;q=0.8",
             "Content-Type": `multipart/form-data`,
           },
@@ -94,15 +94,7 @@ function TweetingContainer() {
     // }
   };
 
-  // function increaseHeight(e: any) {
-  //   let changeHeight = e.target.scrollHeight;
 
-  //   setNewHeight(changeHeight);
-
-  //   if (e.target.value === "") {
-  //     setNewHeight("25px");
-  //   }
-  // }
 
   //get text of who can replay
   function getText(e: any) {
@@ -126,6 +118,18 @@ function TweetingContainer() {
     setExitImage("");
   }
 
+  function increaseHeight(e: any) {
+    let changeHeight = e.target.scrollHeight;
+    setEnteredText(e.target.value);
+    console.log(enteredText)
+
+    setNewHeight(changeHeight);
+
+    if (e.target.value === "") {
+      setNewHeight("25px");
+    }
+  }
+
   return (
     <>
       <Nav />
@@ -146,10 +150,9 @@ function TweetingContainer() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1, duration: 2 }}
                 placeholder="What's happening?"
-                // onChange={(e) => increaseHeight(e)}
+                onChange={(e) => increaseHeight(e)}
                 style={{ height: newheight }}
                 value={enteredText}
-                onChange={(e) => setEnteredText(e.target.value)}
               ></motion.textarea>
             </div>
 
@@ -256,12 +259,7 @@ function TweetingContainer() {
             <Tweet />
           </div>
         </div>
-        {/* Trending and who to follow content */}
-          <div className={styles["who-to-follow"]}>
-            {/* <h3>Who to follow</h3>
-            <div className={styles.underline}></div> */}
-
-            {/* Who to follow sugestion container */}
+          
 
         <div className={styles["trending-n-follow"]}>
         <div className={styles.trending}>
@@ -269,12 +267,12 @@ function TweetingContainer() {
           <div className={styles.underline}></div>
           {Object.keys(trends).map((trend: string) => (
             <div key={trend} className={styles["trending-content"]}>
-              <Link to="/trends">{trend}</Link>
-              <p>{trends[trend].length} Tweets</p>
+              <Link to="/trends">{trend}
+              <span>{trends[trend].length} Tweets</span>
+              </Link>
             </div>
           ))}
         </div>
-       </div>
 
           <div className={styles["who-to-follow" ]}>
                 <h3>Who to follow</h3>
@@ -320,7 +318,7 @@ function TweetingContainer() {
             {/* End of sugestion container box */}
           </div>
         </div>
-      </div>
+        </div>
     </>
   );
 }

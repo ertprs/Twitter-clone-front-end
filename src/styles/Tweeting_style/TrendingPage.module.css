@@ -6,10 +6,6 @@
 }
 
 .trending {
-  width: 306px;
-  height: 495.7px;
-  overflow-y: auto;
-  margin: 0 auto;
   width: 450px;
   height: auto;
   background-color: #fff;

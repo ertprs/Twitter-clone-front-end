@@ -11,6 +11,8 @@ import {
   FaPlay
 } from "react-icons/fa";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faPlus, faUser, faSignOut,faMountain } from "@fortawesome/free-solid-svg-icons";
 
 const Chat = () => {
   return (

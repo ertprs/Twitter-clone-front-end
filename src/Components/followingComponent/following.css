@@ -69,6 +69,15 @@ button {
   border: none;
 }
 
+.biodata {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: left !important;
+  margin: 0 !important;
+  font-size: 2rem !important;
+}
+
 .follow-name {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -76,6 +85,7 @@ button {
 
 p {
   font-size: 0.8rem;
+  margin: 0 !important;
 }
 
 .img-component {

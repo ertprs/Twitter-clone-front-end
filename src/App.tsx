@@ -17,7 +17,6 @@ import ChangePassword from "./Components/changePassword/changePassword";
 
 import Navbar from "./Components/NavBar/Nav";
 import Tweet from "./Components/Tweet/Tweet";
-import FollowerProvider from "./Components/FollowingProvider"
 import FollowingProvider from './Components/FollowingProvider';
 import Profile from "./pages/profile/Profile";
 import Settings from "./pages/settings";
