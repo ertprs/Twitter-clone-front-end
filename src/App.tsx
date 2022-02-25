@@ -55,7 +55,7 @@ function App() {
           <Route path="/following" element={<Following />} />
           <Route path="/changePassword" element={<ChangePassword />} />
           <Route path="/trends" element={<TrendsController />} />
-          {/* <Route path='/'  element={ <FollowingProvider> <TweetingContainer/> </FollowingProvider>}/> */}
+          <Route path='/'  element={ <FollowingProvider> <TweetingContainer/> </FollowingProvider>}/>
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import "./changePassword.scss";
 import InputLabel from "@mui/material/InputLabel";
 import axios from "axios";
+import { notify } from "../../hooks/useNotification";
 
 export default function ChangePassword() {
   const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ export default function ChangePassword() {
     });
   }
 
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlhdCI6MTY0NTczNTEyNSwiZXhwIjoxNjQ1NzUzMTI1fQ.DXm1jTeIGw6zF9R18FBWFcpvQkCyCWZMzGOskKH4JZM"
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlhdCI6MTY0NTc2NzQ5NSwiZXhwIjoxNjQ1Nzg1NDk1fQ.B-jo-TYIy-xIWTRRbMoayJeSsgaQ_03eZf82cptwSA4"
   const url = 'https://tweetaclone.herokuapp.com/'
  
 
@@ -45,7 +46,8 @@ export default function ChangePassword() {
         newPassword: "",
          confirmNewPassword: ""
         })
-        alert("password successfully changed")
+        notify("success", "Password Changed successful", true);
+        window.location.reload()
       console.log(data);
     } catch (err) {
       console.log(err.response.data);
