@@ -14,7 +14,7 @@ function Following() {
   const [following, setFollowing] = useState([]);
   const [follow, setFollow] = useState([false]);
 
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlhdCI6MTY0NTczNTEyNSwiZXhwIjoxNjQ1NzUzMTI1fQ.DXm1jTeIGw6zF9R18FBWFcpvQkCyCWZMzGOskKH4JZM"
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlhdCI6MTY0NTc2NzQ5NSwiZXhwIjoxNjQ1Nzg1NDk1fQ.B-jo-TYIy-xIWTRRbMoayJeSsgaQ_03eZf82cptwSA4"
   const url = 'https://tweetaclone.herokuapp.com/'
  
 
