@@ -283,12 +283,11 @@ textarea:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  overflow: hidden;
 }
 
 .trending {
   width: 306px;
-  height: auto;
+  height: 400px;
   background-color: #fff;
   margin-bottom: 22px;
   border-radius: 12px;
@@ -297,6 +296,7 @@ textarea:focus {
   font-size: 12px;
   font-family: Poppins, sans-serif;
   margin-bottom: 10px;
+  overflow-y: scroll;
 }
 
 .trending-content {
@@ -478,9 +478,10 @@ textarea:focus {
 
 .tweet-body {
   width: 745px;
-  height: 606px;
+  height: 706px;
   margin-top: 53.66px;
   margin-bottom: 23px;
+  overflow-y: scroll;
 }
 
 @media screen and (max-width: 720px) {

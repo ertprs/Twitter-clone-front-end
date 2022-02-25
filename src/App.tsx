@@ -1,4 +1,3 @@
-import React, { useState, useMemo,useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import BookMarksPage from "././Components/BookMarksPage";
@@ -18,7 +17,6 @@ import ChangePassword from "./Components/changePassword/changePassword";
 
 import Navbar from "./Components/NavBar/Nav";
 import Tweet from "./Components/Tweet/Tweet";
-import FollowerProvider from "./Components/FollowingProvider"
 import FollowingProvider from './Components/FollowingProvider';
 import Profile from "./pages/profile/Profile";
 import Settings from "./pages/settings";
@@ -51,7 +49,7 @@ function App() {
             path="/tweet/desktoptrending"
             element={<TrendingDesktopPage />}
           />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/setting" element={<Settings />} />
           <Route path="/following" element={<Following />} />
           <Route path="/changePassword" element={<ChangePassword />} />
           <Route path="/trends" element={<TrendsController />} />
