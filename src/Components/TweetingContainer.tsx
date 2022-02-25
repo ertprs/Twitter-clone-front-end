@@ -243,12 +243,7 @@ function TweetingContainer() {
             <Tweet />
           </div>
         </div>
-        {/* Trending and who to follow content */}
-          <div className={styles["who-to-follow"]}>
-            <h3>Who to follow</h3>
-            <div className={styles.underline}></div>
-
-            {/* Who to follow sugestion container */}
+      
 
         <div className={styles["trending-n-follow"]}>
         <div className={styles.trending}>
@@ -256,56 +251,14 @@ function TweetingContainer() {
           <div className={styles.underline}></div>
           {Object.keys(trends).map((trend: string) => (
             <div key={trend} className={styles["trending-content"]}>
-              <a href="/">{trend}</a>
-              <p>{trends[trend].length} Tweets</p>
+              <Link to ="/">{trend}
+              <span>{trends[trend].length} Tweets</span>
+              </Link>
             </div>
           ))}
         </div>
-       </div>
-
-          <div className={styles["who-to-follow" ]}>
-                <h3>Who to follow</h3>
-                <div className={styles.underline}></div>
-            <div className={styles["suggest-container"]}>
-              <div className={styles["suggest-content"]}>
-                <div className={styles["suggest-user"]}>
-                  <img src="https://www.findjerry.tech/static/media/jerry2.a509e534aa3f11de93e1.png" />
-                  <h3>
-                    Jerry Idoko Agada fdfdfdfdfdf dfdf
-                    <span>230k followers</span>
-                  </h3>
-                  <button>
-                    <span></span>follow
-                  </button>
-                </div>
-                <Link to="">
-                  Photographer and filmmake bsed in Nigeria Nollywoodfilmmake
-                  bsed in Nigeria Nollywood
-                </Link>
-                <img src="https://previews.123rf.com/images/dagadu/dagadu1008/dagadu100800015/7511808-.jpg?fj=1" />
-
-                <div className={styles.underline}></div>
-              </div>
-              <div className={styles["suggest-content"]}>
-                <div className={styles["suggest-user"]}>
-                  <img src="https://www.findjerry.tech/static/media/jerry2.a509e534aa3f11de93e1.png" />
-                  <h3>
-                    Softtechy Developer fdfdfdfdfdf dfdf
-                    <span>120k followers</span>
-                  </h3>
-                  <button>
-                    <span></span>follow
-                  </button>
-                </div>
-                <Link to="">
-                  Photographer and filmmake bsed in Nigeria Nollywoodfilmmake
-                  bsed in Nigeria Nollywood
-                </Link>
-                <img src="https://previews.123rf.com/images/dagadu/dagadu1008/dagadu100800015/7511808-.jpg?fj=1" />
-              </div>
-            </div>
-            {/* End of sugestion container box */}
-          </div>
+       
+       
         </div>
       </div>
     </>

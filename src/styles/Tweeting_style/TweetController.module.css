@@ -314,7 +314,7 @@ textarea:focus {
           flex-direction: column;
 }
 
-.trending-content a {
+.trending-content Link {
   text-decoration: none;
   color: #000;
   font-weight: bolder;
