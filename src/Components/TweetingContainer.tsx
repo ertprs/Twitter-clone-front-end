@@ -8,18 +8,20 @@ import Tweet from "./Tweet/Tweet";
 import Nav from "./NavBar/Nav";
 import Swal from "sweetalert2";
 import { Circles } from "react-loader-spinner";
-import { BASE_URL } from "../constants/contants";
 import { UserContext } from "../hooks/useContext";
+import { BASE_URL } from "../constants/contants"
 
 function TweetingContainer() {
 
-  const userToken:any  = useContext(UserContext)
-  const token =  userToken.token;
+  const userToken:any = useContext(UserContext)
+  const token = userToken.token
 
   const [trends, setTrends] = useState<any>([]);
   const [follow, setFollow] = useState<any>([]);
-  
-  const url = `${BASE_URL}api/trends`;
+
+  const url = `${BASE_URL}api/trends`
+  const uri = `${BASE_URL}api/follow/suggest/?pageNo=2&pageSize=5"`
+
 
   useEffect(() => {
     axios
@@ -37,7 +39,7 @@ function TweetingContainer() {
       });
 
       axios
-        .get("http://localhost:3000/api/follow/suggest/?pageNo=2&pageSize=5", {
+        .get(uri, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
