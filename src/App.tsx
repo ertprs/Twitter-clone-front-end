@@ -1,4 +1,3 @@
-import React, { useState, useMemo,useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import BookMarksPage from "././Components/BookMarksPage";
@@ -51,7 +50,7 @@ function App() {
             path="/tweet/desktoptrending"
             element={<TrendingDesktopPage />}
           />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/setting" element={<Settings />} />
           <Route path="/following" element={<Following />} />
           <Route path="/changePassword" element={<ChangePassword />} />
           <Route path="/trends" element={<TrendsController />} />

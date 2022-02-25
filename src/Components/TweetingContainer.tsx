@@ -11,9 +11,9 @@ import { Circles } from "react-loader-spinner";
 
 function TweetingContainer() {
   const [trends, setTrends] = useState<any>([]);
+  const [follow, setFollow] = useState<any>([]);
   let token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlhdCI6MTY0NTcyODY4MywiZXhwIjoxNjQ1NzQ2NjgzfQ.5rCiKPvdCDojk2VIwlbfua9ZiDQa88dz83HuekXb-oM";
-
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlhdCI6MTY0NTc4ODY2MCwiZXhwIjoxNjQ1ODA2NjYwfQ.dSDAePb5ERs7fH9b8g7fy1QU3ouYtnpm7y0qmDbxNo0"
   useEffect(() => {
     axios
       .get("http://localhost:3000/api/trends", {
@@ -22,13 +22,29 @@ function TweetingContainer() {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data)
         setTrends(res.data.data.trending);
       })
       .catch((err) => {
         console.log(err);
       });
+
+      axios
+        .get("http://localhost:3000/api/follow/suggest/?pageNo=2&pageSize=5", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res)=>{
+        console.log(res.data)
+        setFollow(res.data)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
+
+
   const [newheight, setNewHeight] = useState("22px");
   const [modal, setModal] = useState(false);
   const [whoCanReplay, setWhoCanReplay] = useState("Everyone");
@@ -242,8 +258,8 @@ function TweetingContainer() {
         </div>
         {/* Trending and who to follow content */}
           <div className={styles["who-to-follow"]}>
-            <h3>Who to follow</h3>
-            <div className={styles.underline}></div>
+            {/* <h3>Who to follow</h3>
+            <div className={styles.underline}></div> */}
 
             {/* Who to follow sugestion container */}
 
@@ -253,7 +269,7 @@ function TweetingContainer() {
           <div className={styles.underline}></div>
           {Object.keys(trends).map((trend: string) => (
             <div key={trend} className={styles["trending-content"]}>
-              <a href="/">{trend}</a>
+              <Link to="/trends">{trend}</Link>
               <p>{trends[trend].length} Tweets</p>
             </div>
           ))}
@@ -287,7 +303,7 @@ function TweetingContainer() {
                 <div className={styles["suggest-user"]}>
                   <img src="https://www.findjerry.tech/static/media/jerry2.a509e534aa3f11de93e1.png" />
                   <h3>
-                    Softtechy Developer fdfdfdfdfdf dfdf
+                    Softtechy Developer
                     <span>120k followers</span>
                   </h3>
                   <button>
