@@ -30,15 +30,18 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
     },
   };
 
+
+
+  // set  the content of the following tweet properts
+
   const getFollowerTweet = async () => {
     let result = await axios.get(url, authorised);
 
     setFollowerTweet(result.data.data.tweet);
   };
 
-  // set  the content of the following tweet properts
-
   useEffect(() => {
+
     getFollowerTweet();
   },[]);
 
@@ -72,7 +75,9 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
       .then((res) => res.json())
       .then((data) => console.log(data.data.isBookmark)).catch((err:any)=>console.log(err));
     getFollowerTweet();
+    getAllUserBookMark();
   }
+
 
   // get all book mark of a login user
 
@@ -90,7 +95,7 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
       .then((res) => res.json())
       .then((data) =>{
         data.data.map((val:any)=>{
-          setIsBookMark(val.isBookmark)
+         return setIsBookMark(val.isBookmark)
         })
       
       }).catch((err:any)=>console.log("deleted..."));
@@ -122,6 +127,7 @@ useEffect(()=>{
       .then((res) => res.json())
       .then((data) => console.log(data.data)).catch((err:any)=>console.log("Deleted bookmark"));
     getFollowerTweet();
+    getAllUserBookMark();
   }
 
   return (
