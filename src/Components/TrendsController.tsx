@@ -72,7 +72,7 @@ function TrendsController() {
 
         
           <div className={styles["tweet-body" ]}>
-            <Tweet />
+            <Tweet/>
           </div>
         </div>
 
