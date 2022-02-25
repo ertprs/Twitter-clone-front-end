@@ -258,13 +258,11 @@ p{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    overflow: hidden;
-
 }
 
 .trending{
     width:306px;
-    height: auto;
+    height:400px;
     background-color: $backgroundColor;
     margin-bottom: 22px;
     border-radius: $borderRadius;
@@ -273,11 +271,8 @@ p{
     font-size: $fontSize;
     font-family: $fontFamily;
     margin-bottom: 10px;
+    overflow-y: scroll;
 
-
-
-    
- 
 
     &-content{
             width:100%;
@@ -314,8 +309,6 @@ p{
    
     
 }
-
-
 
  .underline{
     @include underline();
@@ -428,10 +421,11 @@ p{
 
 .tweet-body {
     width: 745px;
-    height: 606px;
+    height: 706px;
     // background-color: $backgroundColor;
     margin-top: 53.66px;
     margin-bottom: 23px;
+    overflow-y: scroll;
 }
 
 @media screen and (max-width: 720px) {

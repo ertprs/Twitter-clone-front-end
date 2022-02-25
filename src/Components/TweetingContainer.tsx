@@ -1,22 +1,29 @@
 import styles from "../styles/Tweeting_style/TweetController.module.css";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { useEffect} from "react";
 import Tweet from "./Tweet/Tweet";
 import Nav from "./NavBar/Nav";
 import Swal from "sweetalert2";
 import { Circles } from "react-loader-spinner";
+import { BASE_URL } from "../constants/contants";
+import { UserContext } from "../hooks/useContext";
 
 function TweetingContainer() {
+
+  const userToken:any  = useContext(UserContext)
+  const token =  userToken.token;
+
   const [trends, setTrends] = useState<any>([]);
   const [follow, setFollow] = useState<any>([]);
-  let token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlhdCI6MTY0NTc4ODY2MCwiZXhwIjoxNjQ1ODA2NjYwfQ.dSDAePb5ERs7fH9b8g7fy1QU3ouYtnpm7y0qmDbxNo0"
+  
+  const url = `${BASE_URL}api/trends`;
+
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/trends", {
+      .get(url, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
