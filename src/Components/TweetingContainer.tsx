@@ -22,6 +22,7 @@ function TweetingContainer() {
   const url = `${BASE_URL}api/trends`
   const uri = `${BASE_URL}api/follow/suggest/?pageNo=2&pageSize=5"`
 
+
   useEffect(() => {
     axios
       .get(url, {
