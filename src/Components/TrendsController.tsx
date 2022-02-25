@@ -1,7 +1,8 @@
 import styles from "../styles/Tweeting_style/TweetController.module.css"
 import {motion} from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Tweet from "./profile/Tweet";
+import axios from "axios";
 
 function TrendsController() {
   const [newheight, setNewHeight] = useState("22px");
@@ -13,6 +14,12 @@ function TrendsController() {
   const [exitImage, setExitImage]  = useState("");
 
   function increaseHeight(e: any) {
+    // const [hashtag, setHashtag] = useState<any>([])
+
+    // useEffect(()=>{
+    //   axios.get(url)
+    // })
+
     let changeHeight = e.target.scrollHeight;
 
     setNewHeight(changeHeight);
