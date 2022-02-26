@@ -5,6 +5,7 @@ import { AiOutlineSend } from "react-icons/ai";
 import { useContext, useState } from "react";
 import { followingContext, iFollowing } from "../FollowingProvider";
 import Moment from "moment";
+import { Link } from "react-router-dom";
 
 const Tweet = () => {
   const {
@@ -19,7 +20,16 @@ const Tweet = () => {
         getTextFieldValue
   } = useContext(followingContext);
 
-  console.log(textField)
+
+  const loginUserPic:any = localStorage.getItem("userlogingImage");
+
+
+  const imageErrorHandler = (e:React.SyntheticEvent<HTMLImageElement>)=>{
+
+    e.currentTarget.src = "https://raw.githubusercontent.com/decadevs/live-project-frontend-tweeter-clone-team-a/main/Screen%20Shot%202022-02-25%20at%208.51.24%20PM.png?token=GHSAT0AAAAAABOGDBLLUQNS3I2GZVBZJMU4YRCN5JA"
+  }
+console.log(followerTweet);
+
   return (
     <>
       {followerTweet.map((val: any, index: number) => (
@@ -27,11 +37,12 @@ const Tweet = () => {
           <div className={classes.wrapper}>
             <div className={classes.top}>
               <div className={classes.profile}>
+                <Link to ="/profile">
                 <img
                   src={val.userId.profilePic}
-                  alt="pix"
-                  className={classes.profile__img}
-                />
+                 onError ={imageErrorHandler}
+                  className={classes.profile__img}/>
+                </Link>
               </div>
               <div className={classes.person}>
                 <p className={classes.person_name}>
@@ -48,7 +59,7 @@ const Tweet = () => {
             <div className={classes.main}>
               <img
                 src={val.tweetImage}
-                alt="journey"
+                onError ={imageErrorHandler}
                 className={classes.main_img}
               />
             </div>
@@ -108,17 +119,19 @@ const Tweet = () => {
             </div>
             <div className={classes.last}>
               <div className={classes.profile2}>
-                <img
-                  src="https://th.bing.com/th?q=Cute+Female+Nurse&w=120&h=120&c=1&rs=1&qlt=90&cb=1&pid=InlineBlock&mkt=en-WW&cc=NG&setlang=en&adlt=strict&t=1&mw=247"
-                  alt="pix"
+                <Link to ='profile'>
+              <img src={loginUserPic}
+                onError ={imageErrorHandler}
                   className={classes.profile2_img}
                 />
+                </Link>
               </div>
               <form action="" className={classes.form}>
                 <textarea
 
                 onChange={(e)=>getTextFieldValue(e,index)}
                   placeholder="Tweet your reply"
+                  value={textField}
                   // rows= {5} cols= {40}
                   // className={classes.input}
                 ></textarea>
