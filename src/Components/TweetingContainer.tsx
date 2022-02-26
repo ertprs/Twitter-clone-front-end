@@ -10,7 +10,6 @@ import Swal from "sweetalert2";
 import { Circles } from "react-loader-spinner";
 import { UserContext } from "../hooks/useContext";
 import { BASE_URL } from "../constants/contants"
-
 function TweetingContainer() {
 
   const userToken:any = useContext(UserContext)
@@ -75,12 +74,11 @@ function TweetingContainer() {
     try {
       setLoading(true);
       const data = await axios.post(
-        "https://tweetaclone.herokuapp.com/tweet",
+        "https://tweetaclone.herokuapp.com/tweeting",
         formData,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxOUBnbWFpbC5jb20iLCJpYXQiOjE2NDU3MzU3MjksImV4cCI6MTY0NTc1MzcyOX0.U9DgjZ2BH38bjCkInA69SzYsGu3y6bhOnnRmLd7_n5c",
+            Authorization: `Bearer ${token}`,
             "Accept-Language": "en-US,en;q=0.8",
             "Content-Type": `multipart/form-data`,
           },

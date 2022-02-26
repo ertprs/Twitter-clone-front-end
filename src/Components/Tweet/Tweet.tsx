@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import { followingContext, iFollowing } from "../FollowingProvider";
 import Moment from "moment";
 import { Link } from "react-router-dom";
-import {CirclesWithBar} from "react-loader-spinner"
+import {CirclesWithBar} from "react-loader-spinner";
 
 const Tweet = () => {
   const {
