@@ -6,7 +6,6 @@ import TrendingDesktopPage from "./Components/TrendingDesktopPage";
 import TrendingMobilePage from "./Components/TrendingMobilePage";
 import TweetingContainer from "./Components/TweetingContainer";
 import Chat from "./pages/chat/Chat";
-import Home from "./pages/home/Home";
 
 
 import TrendsController from './Components/TrendsController';

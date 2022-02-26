@@ -1,6 +1,5 @@
 import styles from "../styles/Tweeting_style/TweetController.module.css";
 import { useContext, useEffect, useState } from "react";
-import Tweet from "./profile/Tweet";
 import axios from "axios";
 import Nav from "./NavBar/Nav";
 import { Link, useParams } from "react-router-dom";

@@ -26,7 +26,7 @@ export const getUserToken = () => {
   let data: any = localStorage.getItem("tweeter");
   if (data) {
     data = JSON.parse(data);
-    console.log(data.token);
+    localStorage.setItem("userlogingImage", data.user.profilePic);
     return data.token;
   }
   return null;
@@ -51,6 +51,8 @@ export const isLoggedIn = () => {
 
 export const logOut = () => {
   localStorage.removeItem("tweeter");
+  localStorage.removeItem("userlogingImage");
+
   notify('success', 'Signing Out Account',true)
   window.location.reload();
 };
