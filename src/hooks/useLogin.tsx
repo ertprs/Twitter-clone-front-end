@@ -51,8 +51,6 @@ export const isLoggedIn = () => {
 
 export const logOut = () => {
   localStorage.removeItem("tweeter");
-  localStorage.removeItem("userlogingImage");
-
   notify('success', 'Signing Out Account',true)
   window.location.reload();
 };

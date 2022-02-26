@@ -2,6 +2,7 @@ import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 import { BASE_URL } from "../constants/contants";
 import { UserContext } from "../hooks/useContext";
+import {AuthContext} from "../context/Auth.context"
 
 export interface iFollowing {
   followerTweet: [];
@@ -23,6 +24,10 @@ export const followingContext = createContext<iFollowing>(null!);
 
 function FollowingProvider({ children }: { children: React.ReactNode }) {
   const userToken: any = useContext(UserContext);
+  const {user} = useContext(AuthContext);
+
+  console.log(user, "DATA")
+
 
   const [followerTweet, setFollowerTweet] = useState<[]>([]);
   const [followerRetweet, setFollowerRetweet] = useState(false);
