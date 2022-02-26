@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 import { followingContext, iFollowing } from "../FollowingProvider";
 import Moment from "moment";
 import { Link } from "react-router-dom";
+import {CirclesWithBar} from "react-loader-spinner"
 
 const Tweet = () => {
   const {
@@ -16,10 +17,12 @@ const Tweet = () => {
         followerRetweet,
         handleComment,
         textField,
-        alertMsg,
-        getTextFieldValue
+        getTextFieldValue,
+        isLoading,
+        newHeight
   } = useContext(followingContext);
 
+  console.log(newHeight)
 
   const loginUserPic:any = localStorage.getItem("userlogingImage");
 
@@ -28,12 +31,11 @@ const Tweet = () => {
 
     e.currentTarget.src = "https://raw.githubusercontent.com/decadevs/live-project-frontend-tweeter-clone-team-a/main/Screen%20Shot%202022-02-25%20at%208.51.24%20PM.png?token=GHSAT0AAAAAABOGDBLLUQNS3I2GZVBZJMU4YRCN5JA"
   }
-console.log(followerTweet);
 
   return (
     <>
-      {followerTweet.map((val: any, index: number) => (
-        <div className={classes.container} key={index}>
+      {followerTweet.map((val: any, index: any) => (
+        <div className={classes.container} key={val._id}>
           <div className={classes.wrapper}>
             <div className={classes.top}>
               <div className={classes.profile}>
@@ -129,24 +131,32 @@ console.log(followerTweet);
               <form action="" className={classes.form}>
                 <textarea
 
-                onChange={(e)=>getTextFieldValue(e,index)}
+                onChange={(e)=>getTextFieldValue(e)}
                   placeholder="Tweet your reply"
-                  value={textField}
-                  // rows= {5} cols= {40}
-                  // className={classes.input}
+                  value={textField.value}
+                  name= "reply"
+                  style ={{height:newHeight.reply}}
                 ></textarea>
                 <span 
 
                 onClick={() => handleComment(val._id,index)
                 }
                 className={classes.iconBox}>
-                  <AiOutlineSend className={classes.icon} />
+
+                  {isLoading ?  
+                  <CirclesWithBar
+                    color="##2F80ED"
+                    height={30}
+                    width={30}
+                    wrapperStyle={{ justifyContent: "center" }}/>
+                    :
+                    <AiOutlineSend className={classes.icon} />
+
+                  }
                 </span>
               </form>
             </div>
           </div>
-          <span>{alertMsg}</span>
-
         </div>
       ))}
     </>

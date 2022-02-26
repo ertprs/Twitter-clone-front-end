@@ -10,11 +10,12 @@ export interface iFollowing {
   handleComment: (id: string, index: number) => void;
   isbookMark: boolean;
   followerRetweet: boolean;
-  textField: string;
-  alertMsg: string;
+  textField: any;
+  isLoading:boolean;
+  newHeight:any;
+
   getTextFieldValue: (
-    e: React.ChangeEvent<HTMLTextAreaElement>,
-    index: number
+    e: React.ChangeEvent<HTMLTextAreaElement>
   ) => void;
 }
 
@@ -26,8 +27,9 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
   const [followerTweet, setFollowerTweet] = useState<[]>([]);
   const [followerRetweet, setFollowerRetweet] = useState(false);
   const [isbookMark, setIsBookMark] = useState(false);
-  const [textField, setTextField] = useState<string>("");
-  const [alertMsg, setAlertMsg] = useState("");
+  const [textField, setTextField] = useState<any>("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [newHeight,setNewHeight] = useState<any>(22)
 
   const url = `${BASE_URL}api/viewtweet/?pageNo=1&pageSize=9`;
 
@@ -127,9 +129,10 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
 
   const handleComment = async (tweetId: string, index: number) => {
     if (textField === "") {
-      setAlertMsg("Empty textfield");
+      return;
     } else {
       const postData = { content: textField };
+      setIsLoading(true)
 
       const commentUrl = `${BASE_URL}tweet/${tweetId}/comment`;
 
@@ -148,20 +151,27 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
           setTextField(" ");
         })
         .catch((err: any) => console.log(err));
-      getFollowerTweet();
-      getAllUserBookMark();
-      setTextField(" ");
+        getFollowerTweet();
+        getAllUserBookMark();
+        setIsLoading(false);
+
     }
   };
 
-  const getTextFieldValue = (
-    e: React.ChangeEvent<HTMLTextAreaElement>,
-    index: number
-  ) => {
-    if (followerTweet[index]) {
-      setTextField(e.target.value);
+  const getTextFieldValue = (e: any) => {
+
+      setTextField({[e.target.name]:e.target.value});
+
+    // let changeHeight:number = e.target.scrollHeight;
+
+    setNewHeight({[e.target.name]:e.target.scrollHeight});
+
+    if (e.target.value === "") {
+      setNewHeight(25);
     }
   };
+
+
 
   return (
     <followingContext.Provider
@@ -173,8 +183,9 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
         followerRetweet,
         handleComment,
         textField,
-        alertMsg,
         getTextFieldValue,
+        isLoading,
+        newHeight
       }}
     >
       {children}
