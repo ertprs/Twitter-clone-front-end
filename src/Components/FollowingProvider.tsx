@@ -7,36 +7,35 @@ export interface iFollowing {
   followerTweet: [];
   bookMarkTweet: (id: string) => void;
   handleReTweet: (id: string) => void;
-  handleComment: (id: string,index:number) => void;
+  handleComment: (id: string, index: number) => void;
   isbookMark: boolean;
-  followerRetweet:boolean;
-  textField:string;
-  alertMsg:string;
-  getTextFieldValue:(e:React.ChangeEvent<HTMLTextAreaElement>, index:number)=>void
+  followerRetweet: boolean;
+  textField: string;
+  alertMsg: string;
+  getTextFieldValue: (
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+    index: number
+  ) => void;
 }
 
 export const followingContext = createContext<iFollowing>(null!);
 
 function FollowingProvider({ children }: { children: React.ReactNode }) {
-
-  const userToken:any = useContext(UserContext)
+  const userToken: any = useContext(UserContext);
 
   const [followerTweet, setFollowerTweet] = useState<[]>([]);
   const [followerRetweet, setFollowerRetweet] = useState(false);
   const [isbookMark, setIsBookMark] = useState(false);
   const [textField, setTextField] = useState<string>("");
-  const [alertMsg, setAlertMsg] = useState("")
+  const [alertMsg, setAlertMsg] = useState("");
 
-  const url = `${BASE_URL}api/viewtweet/?pageNo=1&pageSize=9`
+  const url = `${BASE_URL}api/viewtweet/?pageNo=1&pageSize=9`;
 
-  
   const authorised = {
     headers: {
       Authorization: "Bearer " + userToken.token,
     },
   };
-
-
 
   // set  the content of the following tweet properts
 
@@ -44,138 +43,125 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
     let result = await axios.get(url, authorised);
 
     setFollowerTweet(result.data.data.tweet);
-
   };
 
   useEffect(() => {
-
     getFollowerTweet();
-  },[]);
-
+  }, []);
 
   // function that handle bookmarking
 
   const bookMarkTweet = (tweetId: string) => {
-
     bookMarkNewTweet(tweetId);
-   
   };
 
-
-
   //handle bookmarking
-  const bookMarkNewTweet = async (tweetId: string)=>{
-
-    const postData= {isBookmark:true}
+  const bookMarkNewTweet = async (tweetId: string) => {
+    const postData = { isBookmark: true };
 
     const bookMarkUrl = `${BASE_URL}tweet/${tweetId}/bookmark`;
 
-  
     fetch(bookMarkUrl, {
       method: "POST",
-      body:JSON.stringify(postData),
+      body: JSON.stringify(postData),
 
       headers: {
-        Authorization: "Bearer " + userToken.token,'Content-Type': 'application/json'
+        Authorization: "Bearer " + userToken.token,
+        "Content-Type": "application/json",
       },
     })
       .then((res) => res.json())
-      .then((data) => console.log(data.data.isBookmark)).catch((err:any)=>console.log(err));
+      .then((data) => console.log(data.data.isBookmark))
+      .catch((err: any) => console.log(err));
     getFollowerTweet();
     getAllUserBookMark();
-  }
-
+  };
 
   // get all book mark of a login user
 
-  const getAllUserBookMark = async ()=>{
-
-
+  const getAllUserBookMark = async () => {
     const bookMarkUrl = `${BASE_URL}tweet/bookmark`;
 
     fetch(bookMarkUrl, {
       method: "GET",
       headers: {
-        Authorization: "Bearer " + userToken.token,'Content-Type': 'application/json'
+        Authorization: "Bearer " + userToken.token,
+        "Content-Type": "application/json",
       },
     })
       .then((res) => res.json())
-      .then((data) =>{
-        data.data.map((val:any)=>{
-         return setIsBookMark(val.isBookmark)
-        })
-      
-      }).catch((err:any)=>console.log("deleted..."));
+      .then((data) => {
+        data.data.map((val: any) => {
+          return setIsBookMark(val.isBookmark);
+        });
+      })
+      .catch((err: any) => console.log("deleted..."));
     getFollowerTweet();
-  }
+  };
 
-// rerender getAllBookmark function
+  // rerender getAllBookmark function
 
-useEffect(()=>{
-  getAllUserBookMark()
-},[])
-
-
+  useEffect(() => {
+    getAllUserBookMark();
+  }, []);
 
   //handle retweet count
 
-
-  const handleReTweet = async (tweetId: string)=>{
-
-
+  const handleReTweet = async (tweetId: string) => {
     const retweetUrl = `${BASE_URL}tweeting/retweet/${tweetId}`;
 
     fetch(retweetUrl, {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + userToken.token
+        Authorization: "Bearer " + userToken.token,
       },
     })
       .then((res) => res.json())
-      .then((data) => console.log(data.data)).catch((err:any)=>console.log("Deleted bookmark"));
+      .then((data) => console.log(data.data))
+      .catch((err: any) => console.log("Deleted bookmark"));
     getFollowerTweet();
     getAllUserBookMark();
-  }
+  };
 
+  // handle comment for a tweet
 
-// handle comment for a tweet
-
-  const handleComment = async (tweetId: string,index:number)=>{
-
-    
-    if(textField === ""){
+  const handleComment = async (tweetId: string, index: number) => {
+    if (textField === "") {
       setAlertMsg("Empty textfield");
-    }else{
+    } else {
+      const postData = { content: textField };
 
-      const postData= {content:textField}
-  
       const commentUrl = `${BASE_URL}tweet/${tweetId}/comment`;
-  
-    
+
       fetch(commentUrl, {
         method: "POST",
-        body:JSON.stringify(postData),
-  
+        body: JSON.stringify(postData),
+
         headers: {
-          Authorization: "Bearer " + userToken.token,'Content-Type': 'application/json'
+          Authorization: "Bearer " + userToken.token,
+          "Content-Type": "application/json",
         },
       })
         .then((res) => res.json())
-        .then((data) => console.log(data)).catch((err:any)=>console.log(err));
+        .then((data) => {
+          console.log(data);
+          setTextField(" ");
+        })
+        .catch((err: any) => console.log(err));
       getFollowerTweet();
       getAllUserBookMark();
-      setTextField("")
+      setTextField(" ");
     }
+  };
 
-  }
-
-  const getTextFieldValue = (e:React.ChangeEvent<HTMLTextAreaElement>,index:number)=>{
-
-    if(followerTweet[index]){
-
+  const getTextFieldValue = (
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+    index: number
+  ) => {
+    if (followerTweet[index]) {
       setTextField(e.target.value);
     }
-  }
+  };
 
   return (
     <followingContext.Provider
@@ -188,7 +174,7 @@ useEffect(()=>{
         handleComment,
         textField,
         alertMsg,
-        getTextFieldValue
+        getTextFieldValue,
       }}
     >
       {children}
