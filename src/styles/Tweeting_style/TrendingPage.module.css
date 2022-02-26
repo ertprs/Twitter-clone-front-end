@@ -1,11 +1,14 @@
+@media screen and (max-width: 720px) {
 .trending-container-mobile {
   width: 90%;
   margin: 60px auto;
+  }
 }
 
 .trending {
   width: 450px;
-  height: auto;
+  height: 700px;
+  overflow-y: scroll;
   background-color: #fff;
   margin-bottom: 22px;
   border-radius: 12px;
