@@ -20,7 +20,7 @@ function TweetingContainer() {
   const [follow, setFollow] = useState<any>([]);
 
   const url = `${BASE_URL}api/trends`
-  const uri = `${BASE_URL}api/follow/suggest/?pageNo=2&pageSize=5"`
+  const uri = `${BASE_URL}api/follow/suggest/?pageNo=2&pageSize=5`
 
 
   useEffect(() => {
@@ -46,7 +46,7 @@ function TweetingContainer() {
       })
       .then((res)=>{
         console.log(res.data)
-        setFollow(res.data)
+        setFollow(res.data.data.suggestedConnection)
       })
       .catch((err) => {
         console.log(err);
@@ -276,7 +276,7 @@ function TweetingContainer() {
           <div className={styles.underline}></div>
           {Object.keys(trends).map((trend: string) => (
             <div key={trend} className={styles["trending-content"]}>
-              <Link to="/trends">{trend}
+            <Link to={`/trends/${trend.replace(/#/g, '')}`}>{trend}
               <span>{trends[trend].length} Tweets</span>
               </Link>
             </div>
@@ -287,23 +287,18 @@ function TweetingContainer() {
                 <h3>Who to follow</h3>
                 <div className={styles.underline}></div>
             <div className={styles["suggest-container"]}>
-              <div className={styles["suggest-content"]}>
-                <div className={styles["suggest-user"]}>
-                  <img src="https://www.findjerry.tech/static/media/jerry2.a509e534aa3f11de93e1.png" />
-                  <h3>
-                    Jerry Idoko Agada fdfdfdfdfdf dfdf
-                    <span>230k followers</span>
-                  </h3>
-                  <button>
-                    <span></span>follow
-                  </button>
-                </div>
-                <Link to="">
-                  Photographer and filmmake bsed in Nigeria Nollywoodfilmmake
-                  bsed in Nigeria Nollywood
-                </Link>
-                <img src="https://previews.123rf.com/images/dagadu/dagadu1008/dagadu100800015/7511808-.jpg?fj=1" />
-
+              {Object.keys(follow).map((item: string)=>(
+                <div className={styles["suggest-content"]}>
+                <h3>
+                {follow[item].length}
+                  <span></span>
+                </h3>
+                <button>
+                  <span></span>follow
+                </button>
+              </div>
+              ))}
+                
                 <div className={styles.underline}></div>
               </div>
               <div className={styles["suggest-content"]}>
@@ -326,7 +321,6 @@ function TweetingContainer() {
             </div>
             {/* End of sugestion container box */}
           </div>
-        </div>
         </div>
     </>
   );

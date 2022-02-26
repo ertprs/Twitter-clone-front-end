@@ -328,6 +328,7 @@ p{
     padding-left: 20px;
     font-size: $fontSize;
     font-family: $fontFamily;
+    overflow: hidden;
 
     .underline{
         @include underline();

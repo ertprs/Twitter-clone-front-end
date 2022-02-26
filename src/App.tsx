@@ -40,6 +40,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
 
           <Route path="/profile" element={<Profile />} />
+          <Route path="/trends/:id" element={<TrendsController />} />
           <Route path="/tweet" element={<TweetingContainer />} />
           <Route path="/trending" element={<TrendingMobilePage />} />
           <Route path="/explore" element={<ExplorePage />} />
@@ -52,7 +53,6 @@ function App() {
           <Route path="/setting" element={<Settings />} />
           <Route path="/following" element={<Following />} />
           <Route path="/changePassword" element={<ChangePassword />} />
-          <Route path="/trends" element={<TrendsController />} />
           <Route path='/'  element={ <FollowingProvider> <TweetingContainer/> </FollowingProvider>}/>
         </Routes>
       </BrowserRouter>

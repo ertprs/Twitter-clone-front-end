@@ -357,6 +357,8 @@ textarea:focus {
   padding-left: 20px;
   font-size: 12px;
   font-family: Poppins, sans-serif;
+  overflow: hidden;
+
 }
 
 .who-to-follow .underline {
