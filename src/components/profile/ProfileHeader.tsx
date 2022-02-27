@@ -8,6 +8,7 @@ import {
   FaPlus,
 
 } from "react-icons/fa";
+
 const ProfileHeader = () => {
   return (
     <div className="main">
