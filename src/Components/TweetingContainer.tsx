@@ -94,6 +94,11 @@ function TweetingContainer() {
     } catch (e: any) {
       console.log(e.response.data);
       setLoading(false);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Unable to tweet. Try again!'
+      })
     }
 
     // for (var pair of formData.entries()) {
