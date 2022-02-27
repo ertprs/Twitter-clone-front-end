@@ -268,7 +268,6 @@ function TweetingContainer() {
           Tweet, retweet body */}
 
           <div className={styles["tweet-body"]}>
-            <Tweet />
           </div>
         </div>
           
