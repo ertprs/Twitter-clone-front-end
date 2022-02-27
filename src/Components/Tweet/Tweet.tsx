@@ -7,11 +7,29 @@ import { followingContext, iFollowing } from "../FollowingProvider";
 import Moment from "moment";
 import { Link } from "react-router-dom";
 import {CirclesWithBar} from "react-loader-spinner";
+import React from "react";
 
-const Tweet = () => {
+
+
+export interface iTweet{
+  tweetImage:string;
+  commentCount:number;
+  retweetCount:number;
+  messageBody:string;
+  bookMarkTweet:string;
+  userId:any;
+  createdAt:Date;
+  _id:string;
+  bookmarkCount:number
+
+}
+const Tweet : React.FC<iTweet> = ({
+  tweetImage, commentCount, retweetCount, 
+  messageBody,userId,createdAt,bookMarkTweet,
+  _id,bookmarkCount
+}) => {
   const {
     followerTweet,
-        bookMarkTweet,
         isbookMark,
         handleReTweet,
         followerRetweet,
@@ -22,7 +40,7 @@ const Tweet = () => {
         newHeight
   } = useContext(followingContext);
 
-  console.log(newHeight)
+console.log(followerRetweet);
 
   const loginUserPic:any = localStorage.getItem("userlogingImage");
 
@@ -34,42 +52,41 @@ const Tweet = () => {
 
   return (
     <>
-      {followerTweet.map((val: any, index: any) => (
-        <div className={classes.container} key={val._id}>
+        <div className={classes.container}>
           <div className={classes.wrapper}>
             <div className={classes.top}>
               <div className={classes.profile}>
                 <Link to ="/profile">
                 <img
-                  src={val.userId.profilePic}
+                  src={userId.profilePic}
                  onError ={imageErrorHandler}
                   className={classes.profile__img}/>
                 </Link>
               </div>
               <div className={classes.person}>
                 <p className={classes.person_name}>
-                  {val.userId.firstName + " " + val.userId.lastName}
+                  {userId.firstName + " " + userId.lastName}
                 </p>
                 <p className={classes.person_date}>
-                  {Moment(val.createdAt).format("DD-MM-YYYY hh:ss")}
+                  {Moment(createdAt).format("DD-MM-YYYY hh:ss")}
                 </p>
               </div>
             </div>
             <div className={classes.tweet}>
-              <p>{val.messageBody}</p>
+              <p>{messageBody}</p>
             </div>
             <div className={classes.main}>
               <img
-                src={val.tweetImage}
+                src={tweetImage}
                 onError ={imageErrorHandler}
                 className={classes.main_img}
               />
             </div>
             <div>
               <ul className={classes.second}>
-                <li>{val.commentCount} Comments</li>
-                <li> {val.retweetCount} Retweets</li>
-                <li>{val.bookmarkCount} Saved</li>
+                <li>{commentCount} Comments</li>
+                <li> {retweetCount} Retweets</li>
+                <li>{bookmarkCount} Saved</li>
               </ul>
             </div>
             <div className={classes.action}>
@@ -88,7 +105,7 @@ const Tweet = () => {
                     
                     onClick={() =>
                       handleReTweet(
-                        val._id
+                        _id
                         
                       )
                     }
@@ -106,12 +123,8 @@ const Tweet = () => {
                     <FiBookmark className={classes.icons} />
                     <span
                       className={isbookMark ? classes.buttonColor:classes.button}
-                      onClick={() =>
-                        bookMarkTweet(
-                          val._id                          
-                        )
-                      }
-                    >
+                      // onClick={()=>bookMarkTweet(_id)}
+                       >
                       
                       Saved
                     </span>
@@ -139,8 +152,8 @@ const Tweet = () => {
                 ></textarea>
                 <span 
 
-                onClick={() => handleComment(val._id,index)
-                }
+                // onClick={() => handleComment(val._id,index)
+                // }
                 className={classes.iconBox}>
 
                   {isLoading ?  
@@ -158,7 +171,6 @@ const Tweet = () => {
             </div>
           </div>
         </div>
-      ))}
     </>
   );
 };
