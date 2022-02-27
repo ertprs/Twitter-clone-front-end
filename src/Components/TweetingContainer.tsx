@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import { useEffect} from "react";
 import Tweet from "./Tweet/Tweet";
-import Nav from "./NavBar/Nav";
+import Navbar from "./NavBar/Nav";
 import Swal from "sweetalert2";
 import { Circles } from "react-loader-spinner";
 import { UserContext } from "../hooks/useContext";
@@ -144,7 +144,7 @@ function TweetingContainer() {
 
   return (
     <>
-      <Nav />
+      <Navbar />
       <div className={styles["tweet-wrapper"]}>
         {/* Tweeting something content */}
         <div>
