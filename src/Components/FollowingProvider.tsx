@@ -36,6 +36,8 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(false);
   const [newHeight,setNewHeight] = useState<any>(22)
 
+
+
   const url = `${BASE_URL}api/viewtweet/?pageNo=1&pageSize=9`;
 
   const authorised = {
@@ -124,7 +126,7 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
       },
     })
       .then((res) => res.json())
-      .then((data) => console.log(data.data))
+      .then((data) => console.log(data))
       .catch((err: any) => console.log("Deleted bookmark"));
     getFollowerTweet();
     getAllUserBookMark();
