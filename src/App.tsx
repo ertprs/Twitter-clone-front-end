@@ -4,7 +4,6 @@ import BookMarksPage from "././Components/BookMarksPage";
 import ExplorePage from "./Components/ExplorePage";
 import TrendingDesktopPage from "./Components/TrendingDesktopPage";
 import TrendingMobilePage from "./Components/TrendingMobilePage";
-import TweetingContainer from "./Components/TweetingContainer";
 import Chat from "./pages/chat/Chat";
 import AuthProvider from "./context/Auth.context";
 
@@ -27,6 +26,7 @@ import {
   getUserToken,
   isLoggedIn,
 } from "./hooks/useLogin";
+import TweetContent from "./Components/TweetContent";
 function App() {
   isLoggedIn();
   let USERDATA = getUserData();
@@ -41,7 +41,6 @@ function App() {
 
             <Route path="/profile" element={<Profile />} />
             <Route path="/trends/:id" element={<TrendsController />} />
-            <Route path="/tweet" element={<TweetingContainer />} />
             <Route path="/trending" element={<TrendingMobilePage />} />
             <Route path="/explore" element={<ExplorePage />} />
             <Route path="/bookmark" element={<BookMarksPage />} />
@@ -58,7 +57,7 @@ function App() {
               element={
                 <FollowingProvider>
                   {" "}
-                  <TweetingContainer />{" "}
+                  <TweetContent />{" "}
                 </FollowingProvider>
               }
             />
