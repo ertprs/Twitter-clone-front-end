@@ -45,7 +45,6 @@
 }
 .user-name-date {
 	color: #858585;
-	width: 99px;
 	height: 16px;
 	left: 589.51px;
 	top: 578.9px;
@@ -74,6 +73,6 @@
 @media screen and (min-width: 980px) {
 	.user-name-tweet,
 	.user-name-date {
-		margin-left: -100px !important;
+		margin-left: -55px !important;
 	}
 }

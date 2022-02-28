@@ -6,6 +6,10 @@ import { PersonPlusFill } from "react-bootstrap-icons";
 
 function FollowingComponent(props:any) {
 
+  const handleClick = () => {
+    
+  }
+
 
   return (
     <Modal.Body>
@@ -13,7 +17,7 @@ function FollowingComponent(props:any) {
         <div className="header">
           <div className="img-component">
             <img
-              src="https://images.unsplash.com/photo-1607758164193-19539498ddf4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=758&q=80"
+              src={props.profilePic}
               alt=""
               className="follow-img"
             />
@@ -22,13 +26,13 @@ function FollowingComponent(props:any) {
               <p className="description"> 120k followers</p>
             </div>
           </div>
-          <Button className="my-button">
-            <PersonPlusFill className="ml-4" /> Follow
+          <Button className="my-button"  onClick={handleClick}>
+            { props.isFollow ? "Unfollow": "Follow" }
           </Button>
         </div>
         <div>
-          <p className="description">
-             lorem ipsium lorem ipsium lorem ipsium lorem ipsium lorem
+          <p className="biodata">
+          {props.bioData}
           </p>
         </div>
       </article>

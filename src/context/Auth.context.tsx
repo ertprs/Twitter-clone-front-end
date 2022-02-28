@@ -15,7 +15,7 @@ interface AuthContextType {
 export const AuthContext = React.createContext<AuthContextType>(null!);
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = React.useState<any>(
-    () => JSON.parse(localStorage.getItem("twiteeUser") as string) || null
+    () => JSON.parse(localStorage.getItem("tweeter") as string) || null
   );
   const [isAuthing, setIsAuthing] = useState(false);
   const [authError, setAuthError] = useState(null);

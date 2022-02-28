@@ -27,7 +27,7 @@ export const getUserToken = () => {
   let data: any = localStorage.getItem("tweeter");
   if (data) {
     data = JSON.parse(data);
-    console.log(data.token);
+    localStorage.setItem("userlogingImage", data.user.profilePic);
     return data.token;
   }
   return null;
