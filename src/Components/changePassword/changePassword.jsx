@@ -7,6 +7,7 @@ import axios from "axios";
 import { notify } from "../../hooks/useNotification";
 import {AuthContext} from '../../context/Auth.context'
 import { useContext } from "react";
+import Nav from "./../NavBar/Nav";
 
 
 export default function ChangePassword() {
@@ -62,6 +63,9 @@ export default function ChangePassword() {
   };
 
   return (
+    <>
+    <Nav/>
+   
     <Box
       onSubmit={handleSubmit}
       component="form"
@@ -121,5 +125,6 @@ export default function ChangePassword() {
         <button className="button"> Change password</button>
       </section>
     </Box>
+    </>
   );
 }

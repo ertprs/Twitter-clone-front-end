@@ -3,8 +3,11 @@ import { Button, Modal } from "react-bootstrap";
 import FollowingComponent from "../followingComponent/followingComponent";
 import "./following.scss";
 import axios from "axios";
+import {AuthContext} from '../../context/Auth.context'
+import { useContext } from "react";
 
 function Following() {
+  const {user} = useContext(AuthContext);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -14,7 +17,6 @@ function Following() {
   const [following, setFollowing] = useState([]);
   const [follow, setFollow] = useState([false]);
 
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlhdCI6MTY0NTc2NzQ5NSwiZXhwIjoxNjQ1Nzg1NDk1fQ.B-jo-TYIy-xIWTRRbMoayJeSsgaQ_03eZf82cptwSA4"
   const url = 'https://tweetaclone.herokuapp.com/'
  
 
@@ -27,7 +29,7 @@ function Following() {
             headers: {
               Authorization:
                 "Bearer " +
-                token //the token is a variable which holds the token
+                user.token //the token is a variable which holds the token
             },
           }
         );
@@ -50,7 +52,7 @@ function Following() {
             headers: {
               Authorization:
                 "Bearer " +
-               token //the token is a variable which holds the token
+               user.token //the token is a variable which holds the token
             },
           }
         );
@@ -64,8 +66,8 @@ function Following() {
     getFollowing();
   }, []);
 
-  const followerElement = followers.map(({index,firstName, lastName ,profilePic, bioData}) => (
-      <FollowingComponent key={index} name={firstName+" "+ lastName} profilePic={profilePic} bioData={bioData} /> ))
+  const followerElement = followers.map(({index,firstName, lastName ,profilePic, bioData, isFollow}) => (
+      <FollowingComponent key={index} name={firstName+" "+ lastName} profilePic={profilePic} bioData={bioData} isFollow={isFollow} /> ))
 
 
 
