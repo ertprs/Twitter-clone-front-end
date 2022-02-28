@@ -4,8 +4,18 @@ import TextField from "@mui/material/TextField";
 import "./changePassword.scss";
 import InputLabel from "@mui/material/InputLabel";
 import axios from "axios";
+import { notify } from "../../hooks/useNotification";
+import {AuthContext} from '../../context/Auth.context'
+import { useContext } from "react";
+import Nav from "./../NavBar/Nav";
+
 
 export default function ChangePassword() {
+
+  const {user} = useContext(AuthContext);
+
+  console.log(user, "USER@")
+
   const [formData, setFormData] = useState({
     previousPassword: "",
     newPassword: "",
@@ -22,7 +32,6 @@ export default function ChangePassword() {
     });
   }
 
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlhdCI6MTY0NTczNTEyNSwiZXhwIjoxNjQ1NzUzMTI1fQ.DXm1jTeIGw6zF9R18FBWFcpvQkCyCWZMzGOskKH4JZM"
   const url = 'https://tweetaclone.herokuapp.com/'
  
 
@@ -36,7 +45,7 @@ export default function ChangePassword() {
         headers: {
           Authorization:
           "Bearer " +
-          token //the token is a variable which holds the token
+          user.token //the token is a variable which holds the token
         },
         data:formData,
       });
@@ -45,7 +54,8 @@ export default function ChangePassword() {
         newPassword: "",
          confirmNewPassword: ""
         })
-        alert("password successfully changed")
+        notify("success", "Password Changed successful", true);
+        window.location.reload()
       console.log(data);
     } catch (err) {
       console.log(err.response.data);
@@ -53,6 +63,9 @@ export default function ChangePassword() {
   };
 
   return (
+    <>
+    <Nav/>
+   
     <Box
       onSubmit={handleSubmit}
       component="form"
@@ -112,5 +125,6 @@ export default function ChangePassword() {
         <button className="button"> Change password</button>
       </section>
     </Box>
+    </>
   );
 }
