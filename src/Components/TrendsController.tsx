@@ -34,6 +34,7 @@ function TrendsController() {
   return (
     <>
       <Nav />
+      
       <div className={styles["tweet-wrapper"]}>
         
         <div className={styles["tweet-body"]}>
