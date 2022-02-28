@@ -55,7 +55,7 @@ function TweetingContainer() {
         {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxOUBnbWFpbC5jb20iLCJpYXQiOjE2NDU2NDY5NTgsImV4cCI6MTY0NTY2NDk1OH0.OJWzpfqfXy8Nyqjy3GX4AfVIKoRri8TluqMg0ct3pOI",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxOUBnbWFpbC5jb20iLCJpYXQiOjE2NDU3MzU3MjksImV4cCI6MTY0NTc1MzcyOX0.U9DgjZ2BH38bjCkInA69SzYsGu3y6bhOnnRmLd7_n5c",
             "Accept-Language": "en-US,en;q=0.8",
             "Content-Type": `multipart/form-data`,
           },
