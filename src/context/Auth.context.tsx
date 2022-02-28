@@ -28,7 +28,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           : `${BASE_URL}/users/signup`;
       const { data } = await axios.post(url, credentials);
       setIsAuthing(false);
-      console.log(data, "DATA");
+      // console.log(data, "DATA");
       data.data.token = data.token;
       // if (type === "login") {
       //   const user = [data.user];
