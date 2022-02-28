@@ -11,6 +11,8 @@ import { BsMoonStarsFill } from "react-icons/bs";
 import { BASE_URL } from "../../../constants/contants";
 import { notify } from "../../../hooks/useNotification";
 import Swal from "sweetalert2";
+import { BeatLoader } from "react-spinners";
+
 
 const url: string = `${BASE_URL}users/signup`;
 
@@ -24,6 +26,7 @@ const Signup = (): JSX.Element => {
   });
   const [showError, setShowError] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string>("");
+  const [loadingMsg, setloadingMsg] = useState<string>("");
 
   const focusPoint = useRef<HTMLInputElement>(null);
   const focusPoint2 = useRef<HTMLInputElement>(null);
@@ -35,6 +38,7 @@ const Signup = (): JSX.Element => {
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    setloadingMsg("loading")
     if (!form.email) {
       focusPoint.current!.style.border = "1.5px solid red";
       setTimeout(
@@ -86,9 +90,11 @@ const Signup = (): JSX.Element => {
           showConfirmButton: false,
           timer: 2500,
         });
-                const data = await response.json();
-                setErrorMsg(data.message);
-                setShowError(true);
+            setloadingMsg("");
+
+        // const data = await response.json();
+        // setErrorMsg(data.message);
+        // setShowError(true);
 
         notify("warning", "Registration failed", false);
       }
@@ -191,7 +197,11 @@ const Signup = (): JSX.Element => {
             required
           />
         </div>
-        <button onClick={handleSubmit}> Sign up </button>
+
+        <button onClick={handleSubmit}>
+          {loadingMsg === "loading" && <BeatLoader color="#2F80ED" />}
+          {loadingMsg !=="loading" && 'Sign up'}
+        </button>
       </div>
       <p>or continue with these social profile</p>
       <div className={styles["social-logins"]}>
@@ -216,12 +226,12 @@ const Signup = (): JSX.Element => {
           </div>
         </div>
       </div>
-      {/* <p>
-              Dont't have an account yet? <a href="/SignUp">Register </a>
-            </p>
-            <p className={styles["forogt-password"]}>
-              <a href="/forgotPassword">Forgot Password ?</a>
-            </p> */}
+      <p>
+        Already have Account? <a href="/login">login </a>
+      </p>
+      <p className={styles["forogt-password"]}>
+        <a href="/forgotPassword">Forgot Password ?</a>
+      </p>
     </div>
   );
 };

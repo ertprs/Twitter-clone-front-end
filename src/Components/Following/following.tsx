@@ -3,12 +3,8 @@ import { Button, Modal } from "react-bootstrap";
 import FollowingComponent from "../followingComponent/followingComponent";
 import "./following.scss";
 import axios from "axios";
-<<<<<<< HEAD
-import {BASE_URL} from "../../constants/contants"
-=======
 import {AuthContext} from '../../context/Auth.context'
 import { useContext } from "react";
->>>>>>> 2ebacd483ac241b5dbb9b5cde64b24811ac95cc6
 
 function Following() {
   const {user} = useContext(AuthContext);
