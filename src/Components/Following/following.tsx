@@ -15,7 +15,7 @@ function Following() {
   const [follow, setFollow] = useState([false]);
 
   const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlhdCI6MTY0NTczNTEyNSwiZXhwIjoxNjQ1NzUzMTI1fQ.DXm1jTeIGw6zF9R18FBWFcpvQkCyCWZMzGOskKH4JZM"
-  const url = 
+  const url = 'https://tweetaclone.herokuapp.com/'
  
 
   useEffect(() => {
