@@ -60,7 +60,9 @@ console.log(followerRetweet);
                 <img
                   src={userId.profilePic}
                  onError ={imageErrorHandler}
-                  className={classes.profile__img}/>
+                  className={classes.profile__img}
+                  alt="pro-img"
+                  />
                 </Link>
               </div>
               <div className={classes.person}>
@@ -80,6 +82,7 @@ console.log(followerRetweet);
                 src={tweetImage}
                 onError ={imageErrorHandler}
                 className={classes.main_img}
+                alt="img"
               />
             </div>
             <div>
@@ -138,6 +141,7 @@ console.log(followerRetweet);
               <img src={loginUserPic}
                 onError ={imageErrorHandler}
                   className={classes.profile2_img}
+                  alt="pro-img"
                 />
                 </Link>
               </div>
