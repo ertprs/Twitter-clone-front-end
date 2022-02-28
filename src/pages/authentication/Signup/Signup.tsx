@@ -86,18 +86,13 @@ const Signup = (): JSX.Element => {
           showConfirmButton: false,
           timer: 2500,
         });
+                const data = await response.json();
+                setErrorMsg(data.message);
+                setShowError(true);
 
         notify("warning", "Registration failed", false);
-        // setErrorMsg(data);
-        // setShowError(true);
-        // setTimeout(() => setShowError(false), 3000);
       }
-      if (response.status === 403) {
-        const data = await response.json();
-        setErrorMsg(data.message);
-        setShowError(true);
-        setTimeout(() => setShowError(false), 3000);
-      }
+
       console.log(response);
     } catch (err: any) {
       console.error(err);
