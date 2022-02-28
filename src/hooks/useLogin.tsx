@@ -1,5 +1,6 @@
 import axios from "axios";
-import {notify} from  "../hooks/useNotification"
+import { notify } from "../hooks/useNotification";
+import Swal from "sweetalert2";
 export const useLogin = async () => {
   let response = await axios.post("/login", {
     firstName: "Finn",
@@ -49,6 +50,12 @@ export const isLoggedIn = () => {
 
 export const logOut = () => {
   localStorage.removeItem("tweeter");
-  notify('success', 'Signing Out Account',true)
+  Swal.fire({
+    icon: "success",
+    title: "Signing Out Account",
+    showConfirmButton: false,
+    timer: 1500,
+  });
+  // notify("success", "Signing Out Account", true);
   window.location.reload();
 };
