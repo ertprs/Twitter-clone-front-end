@@ -10,6 +10,7 @@ import { IoLogoTwitter, IoLogoGithub, IoMdPartlySunny } from "react-icons/io";
 import { BsMoonStarsFill } from "react-icons/bs";
 import { BASE_URL } from "../../../constants/contants";
 import { notify } from "../../../hooks/useNotification";
+import Swal from "sweetalert2";
 
 const url: string = `${BASE_URL}users/signup`;
 
@@ -54,14 +55,23 @@ const Signup = (): JSX.Element => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      !response
-        ? notify("success", "Creating Account", false)
-        : console.log("finished");
-      console.log(response, form);
+      // !response
+      //   ? notify("success", "Creating Account", false)
+      //   : console.log("finished");
+      // console.log(response, form);
 
       if (response.status === 201 || response.status === 200) {
         const data = await response.json();
-        notify("success", "Registeration Successful", "login");
+        Swal.fire({
+          icon: "success",
+          title: "Registeration Successful",
+          showConfirmButton: false,
+          timer: 2500,
+        });
+        setTimeout(() => {
+          window.location.href = "login";
+        }, 3000);
+        // notify("success", "Registeration Successful", "login");
       }
       if (
         response.status === 400 ||
@@ -70,11 +80,17 @@ const Signup = (): JSX.Element => {
       ) {
         const data = await response.json();
         console.log(data);
+        Swal.fire({
+          icon: "warning",
+          title: "Failed to register account",
+          showConfirmButton: false,
+          timer: 2500,
+        });
 
         notify("warning", "Registration failed", false);
-        setErrorMsg(data);
-        setShowError(true);
-        setTimeout(() => setShowError(false), 3000);
+        // setErrorMsg(data);
+        // setShowError(true);
+        // setTimeout(() => setShowError(false), 3000);
       }
       if (response.status === 403) {
         const data = await response.json();

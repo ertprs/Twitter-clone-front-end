@@ -11,6 +11,7 @@ import { BsMoonStarsFill } from "react-icons/bs";
 import { BASE_URL } from "../../../constants/contants";
 import { storeUser } from "../../../hooks/useLogin";
 import { notify } from "../../../hooks/useNotification";
+import Swal from "sweetalert2";
 
 const url: string = `${BASE_URL}users/login`;
 
@@ -19,6 +20,7 @@ const Login = (): JSX.Element => {
   const [form, setForm] = useState<User>({ email: "", password: "" });
   const [showError, setShowError] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string>("");
+  const [loadMsg, setLoadMsg] = useState<string>("");
 
   const focusPoint = useRef<HTMLInputElement>(null);
   const focusPoint2 = useRef<HTMLInputElement>(null);
@@ -54,27 +56,28 @@ const Login = (): JSX.Element => {
       if (response.status === 201) {
         const data = await response.json();
         console.log(data);
-        storeUser(data)
-        notify("success", "Login successful",true);
-        // Swal.fire({
-        //   icon: "success",
-        //   title: "Login successful",
-        //   showConfirmButton: false,
-        //   timer: 1500,
-        // });
-        window.location.reload()
+        storeUser(data);
+        Swal.fire({
+          icon: "success",
+          title: "Login successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       }
-      if (response.status === 400) {
-        const data = await response.text();
-        setErrorMsg(data);
-        setShowError(true);
-        setTimeout(() => setShowError(false), 3000);
-      }
-      if (response.status === 403) {
-        const data = await response.json();
-        setErrorMsg(data.message);
-        setShowError(true);
-        setTimeout(() => setShowError(false), 3000);
+      if (
+        response.status === 401 ||
+        response.status === 400 ||
+        response.status === 403
+      ) {
+        Swal.fire({
+          icon: "error",
+          title: "Incorrect Credentials",
+          showConfirmButton: false,
+          timer: 4500,
+        });
       }
       console.log(response);
     } catch (err: any) {
@@ -138,7 +141,7 @@ const Login = (): JSX.Element => {
               required
             />
           </div>
-          <button onClick={handleSubmit}> Login </button>
+          <button onClick={handleSubmit}> {}Login </button>
         </div>
         <p>or continue with these social profile</p>
         <div className={styles["social-logins"]}>
@@ -164,7 +167,7 @@ const Login = (): JSX.Element => {
           </div>
         </div>
         <p>
-          Dont't have an account yet? <a href="/signup">Register </a>
+          Don't have an account yet? <a href="/signup">Register </a>
         </p>
         <p className={styles["forget-password"]}>
           <a href="/forgetPassword">Forget password?</a>

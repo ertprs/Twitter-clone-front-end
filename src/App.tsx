@@ -13,9 +13,10 @@ import Login from "./pages/authentication/Login/Login";
 import Signup from "./pages/authentication/Signup/Signup";
 import Following from "./Components/Following/following";
 import ChangePassword from "./Components/changePassword/changePassword";
-
-import Navbar from "./Components/NavBar/Nav";
-import Tweet from "./Components/Tweet/Tweet";
+import Navbar from './Components/NavBar/Nav';
+import Tweet from './Components/Tweet/Tweet';
+import FollowerProvider from "./Components/FollowingProvider"
+import FollowingProvider from './Components/FollowingProvider';
 import Profile from "./pages/profile/Profile";
 import Settings from "./pages/settings";
 
@@ -33,7 +34,7 @@ function App() {
     <UserContext.Provider value={USERDATA}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Profile />} />
+          {/* <Route path="/" element={<Profile />} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
 
@@ -50,6 +51,7 @@ function App() {
           <Route path="/settings" element={<Settings />} />
           <Route path="/following" element={<Following />} />
           <Route path="/changePassword" element={<ChangePassword />} />
+          <Route path='/'  element={ <FollowingProvider> <TweetingContainer/> </FollowingProvider>}/>
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
