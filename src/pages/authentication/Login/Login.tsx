@@ -11,6 +11,8 @@ import { BsMoonStarsFill } from "react-icons/bs";
 import { BASE_URL } from "../../../constants/contants";
 import { storeUser } from "../../../hooks/useLogin";
 import { notify } from "../../../hooks/useNotification";
+import { BeatLoader } from "react-spinners";
+
 import Swal from "sweetalert2";
 
 const url: string = `${BASE_URL}users/login`;
@@ -21,6 +23,7 @@ const Login = (): JSX.Element => {
   const [showError, setShowError] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string>("");
   const [loadMsg, setLoadMsg] = useState<string>("");
+  const [loadingMsg, setloadingMsg] = useState<string>("");
 
   const focusPoint = useRef<HTMLInputElement>(null);
   const focusPoint2 = useRef<HTMLInputElement>(null);
@@ -32,6 +35,8 @@ const Login = (): JSX.Element => {
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    setloadingMsg("loading");
+
     if (!form.email) {
       focusPoint.current!.style.border = "1.5px solid red";
       setTimeout(
@@ -72,11 +77,13 @@ const Login = (): JSX.Element => {
         response.status === 400 ||
         response.status === 403
       ) {
+        setloadingMsg("");
+
         Swal.fire({
           icon: "error",
           title: "Incorrect Credentials",
           showConfirmButton: false,
-          timer: 4500,
+          timer: 2500,
         });
       }
       console.log(response);
@@ -141,7 +148,10 @@ const Login = (): JSX.Element => {
               required
             />
           </div>
-          <button onClick={handleSubmit}> {}Login </button>
+          <button onClick={handleSubmit}>
+            {loadingMsg === "loading" && <BeatLoader color="#2F80ED" />}
+            {loadingMsg !== "loading" && "Login"}
+          </button>
         </div>
         <p>or continue with these social profile</p>
         <div className={styles["social-logins"]}>

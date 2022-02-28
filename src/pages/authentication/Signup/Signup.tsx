@@ -92,10 +92,6 @@ const Signup = (): JSX.Element => {
         });
             setloadingMsg("");
 
-        // const data = await response.json();
-        // setErrorMsg(data.message);
-        // setShowError(true);
-
         notify("warning", "Registration failed", false);
       }
 
