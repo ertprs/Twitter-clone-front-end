@@ -31,6 +31,7 @@ function TweetContent() {
                   userId={val.userId}
                   createdAt={val.createdAt}
                   bookMarkTweet={val.bookMarkTweet}
+                  noOfLikes={val.noOfLikes}
                   _id={val._id}
                   bookmarkCount={val.bookmarkCount}
                 />

@@ -213,9 +213,32 @@
   color: red;
 }
 
-/* 
 
 
 
 
-*/
+@media screen and (max-width: 788px) {
+  
+  /* .wrapper {
+    background-color: #ffffff; 
+    width: 65vw;
+  } */
+}
+
+@media screen and (max-width: 475px) {
+  .wrapper {
+    /* background-color: #ffffff; */
+    /* width: 70vw; */
+  }
+
+  .button {
+    /* display: none !important; */
+  }
+}
+
+@media screen and (max-width: 485px) {
+  .second li {
+    /* background-color: #ffffff; */
+    /* font-size: 11px; */
+  }
+}

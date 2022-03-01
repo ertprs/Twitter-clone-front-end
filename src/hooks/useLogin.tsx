@@ -17,7 +17,6 @@ export const useLogin = async () => {
 
 export const storeUser = (userData: any) => {
   let data = localStorage.setItem("tweeter", JSON.stringify(userData));
-  console.log("dtaa");
 };
 export const getUserData = () => {
   let data: any = localStorage.getItem("tweeter");
