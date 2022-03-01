@@ -10,62 +10,59 @@ import { CirclesWithBar } from "react-loader-spinner";
 import React from "react";
 import { BASE_URL } from "../../constants/contants";
 import { UserContext } from "../../hooks/useContext";
-import { AuthContext } from "../../context/Auth.context"
+import { AuthContext } from "../../context/Auth.context";
 import axios from "axios";
+import { NumbersSharp } from "@mui/icons-material";
 
-
-
-export interface iTweet{
-  tweetImage:string;
-  commentCount:number;
-  retweetCount:number;
-  messageBody:string;
-  bookMarkTweet:string;
-  userId:any;
-  createdAt:Date;
-  _id:string;
-  bookmarkCount:number;
-  noOfLikes:number;
-
+export interface iTweet {
+  tweetImage: string;
+  commentCount: number;
+  retweetCount: number;
+  messageBody: string;
+  userId: any;
+  createdAt: Date;
+  _id: string;
+  bookmarkCount: number;
+  noOfLikes: number;
+  isLiked: boolean;
+  isRetweeted: boolean;
+  isBookmarked: boolean;
 }
-const Tweet : React.FC<iTweet> = ({
-  tweetImage, commentCount, retweetCount, 
-  messageBody,userId,createdAt,bookMarkTweet,
-  _id,bookmarkCount,noOfLikes,
+const Tweet: React.FC<iTweet> = ({
+  tweetImage,
+  commentCount,
+  retweetCount,
+  messageBody,
+  userId,
+  createdAt,
+  _id,
+  bookmarkCount,
+  noOfLikes,
+  isLiked,
+  isRetweeted,
+  isBookmarked,
 }) => {
-  const {
-    followerTweet,
-  } = useContext(followingContext);
 
   const [textField, setTextField] = useState<any>("");
   const [newHeight, setNewHeight] = useState<any>("22px");
   const [isLoading, setIsLoading] = useState(false);
-  const [isbookMark, setIsBookMark] = useState(false);
-  const [isLike, setIsLike] = useState(false);
+  const [isbookMark, setIsBookMark] = useState(isBookmarked);
+  const [isLike, setIsLike] = useState(isLiked);
+  const [isFollowerRetweet, setIsFollowerRetweet] = useState(isRetweeted);
   const [likeTweet, setLikeTweet] = useState(noOfLikes);
   const [allBookMarkCount, setAllBookMarkCount] = useState(bookmarkCount);
+  const [allCommentCount, setAllCommentCount] = useState(commentCount);
   const [allretweetCount, setAllretweetCount] = useState(retweetCount);
-  const [isFollowerRetweet, setIsFollowerRetweet] = useState(false);
-
-
 
   const userToken: any = useContext(UserContext);
   const { user } = useContext(AuthContext);
 
+  console.log(isbookMark, isFollowerRetweet, isLike, _id);
 
-  const authorised = {
-    headers: {
-      Authorization: "Bearer " + userToken.token,
-    },
-  };
+  //get text field value
 
-
-    //get text field value
-
-  const getTextFieldValue = (e:ChangeEvent<HTMLTextAreaElement>) => {
-
+  const getTextFieldValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTextField(e.target.value);
-          
 
     setNewHeight(e.target.scrollHeight);
 
@@ -74,73 +71,39 @@ const Tweet : React.FC<iTweet> = ({
     }
   };
 
-
-  // reply a tweet
-
-
   const handleComment = async (tweetId: string) => {
+    try {
+      if (textField === "") {
+        return console.log("Empty field");
+      } else {
+        setAllCommentCount(Number(allCommentCount)+1)
+        const postData = { content: textField };
+        setIsLoading(true);
 
-    try{
+        const commentUrl = `${BASE_URL}tweet/${tweetId}/comment`;
 
-    if (textField === "") {
-      return console.log("Empty field");
-    } else {
-      const postData = { content: textField };
-      setIsLoading(true)
+        fetch(commentUrl, {
+          method: "POST",
+          body: JSON.stringify(postData),
 
-      const commentUrl = `${BASE_URL}tweet/${tweetId}/comment`;
-
-      fetch(commentUrl, {
-        method: "POST",
-        body: JSON.stringify(postData),
-
-        headers: {
-          Authorization: "Bearer " + userToken.token,
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          // console.log(data);
-          setTextField(" ");
-          setNewHeight("22px");
+          headers: {
+            Authorization: "Bearer " + userToken.token,
+            "Content-Type": "application/json",
+          },
         })
-        .catch((err: any) => console.log(err));
-      setIsLoading(false);
-      getAllUserBookMark();
+          .then((res) => res.json())
+          .then((data) => {
 
+            setTextField(" ");
+            setNewHeight("22px");
+          })
+          .catch((err: any) => console.log(err));
+        setIsLoading(false);
+      }
+    } catch (err: any) {
+      return console.error(err);
     }
-  }catch(err:any){return console.error(err)}
-  }
-
-
-  //get all user bookmarks
-
-  const getAllUserBookMark = async () => {
-    const bookMarkUrl = `${BASE_URL}tweet/bookmark`;
-
-    fetch(bookMarkUrl, {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + userToken.token,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        data.data.map((val: any) => {
-          return ;
-        });
-      })
-      .catch((err: any) => console.log("deleted..."));
   };
-
-  // rerender getAllBookmark function
-
-  useEffect(() => {
-    getAllUserBookMark();
-  }, []);
-
 
   //handle bookmarking
   const bookMarkNewTweet = async (tweetId: string) => {
@@ -162,180 +125,110 @@ const Tweet : React.FC<iTweet> = ({
       .catch((err: any) => console.log(err));
   };
 
-  //handle book marking event listener function
-  const handleBookMarkTweet = (tweetId: string) => {
-    if(isbookMark){
-      bookMarkNewTweet(tweetId);
-      setIsBookMark(true)
-      setAllBookMarkCount(bookmarkCount)
-    }else{
-      bookMarkNewTweet(tweetId);
-      setIsBookMark(false);
-      setAllBookMarkCount(bookmarkCount)
+  //handle bookmark delete
 
-    }
-    getAllUserBookMark();
-  };
+  const bookMarkDelete = async (tweetId: string) => {
+    const bookMarkUrl = `${BASE_URL}tweet/${tweetId}/bookmark`;
 
-
-  // get single bookmark
-
-  const getSingleBookMark = async()=>{
-
-    const bookMarkUrl = `${BASE_URL}tweet/bookmark/${_id}/`;
-
-
-    try {
-        const singleBk:any = await axios.get(bookMarkUrl,{
-          headers:{Authorization: 'Bearer ' +userToken.token}
-        })
-console.log(singleBk,"single mark")
-        if(singleBk.data.data.isBookmark){
-
-          setIsBookMark(singleBk.data.data.isBookmark);
-          setAllBookMarkCount(bookmarkCount);
-        }
-
-       
-
-    } catch (error) {
-      
-    }
-
-  }
-
-//get all like tweets
-
-useEffect(()=>{
-
-const getLikeTweet = async ()=>{
-
-  let likeUrl = `${BASE_URL}tweet/${_id}/like`
-  try {
-
-   return await axios.get(likeUrl,{
-      headers:{
-        Authorization: "Bearer " +userToken.token,
-        "Content-Type": "application/json"
-      }
-    });
-
-    
-  } catch (error) {
-    
-  }
-}
-getLikeTweet();
-
-if(allBookMarkCount>0){
-
-  setIsBookMark(true)
-}
-getSingleBookMark();
-},[_id]);
-
-
-const handleLikes = async ()=>{
-
-  const unlikeTweetUrl = `${BASE_URL}tweet/${_id}/like`;
-  if(isLike){
-    setLikeTweet(Number(likeTweet)-1);
-
-    await axios.delete(unlikeTweetUrl,{headers:{Authorization: 'Bearer ' +userToken.token}});
-    setIsLike(false);
-  }else{
-    setLikeTweet(Number(likeTweet)+1);
-
-    await axios.post(unlikeTweetUrl,{}, {headers:{Authorization: 'Bearer ' +userToken.token,
-    "Content-Type": "application/json"}})
-
-    setIsLike(true);
-
-  }
-}
-
-
-
-//handle retweet count
-//
-function handleReTweet (id:string){
-
-  if(isFollowerRetweet == false){
-
-    const retweetUrl = `${BASE_URL}tweeting/retweet/${id}`;
-
-    fetch(retweetUrl, {
-      method: "POST",
+    fetch(bookMarkUrl, {
+      method: "DELETE",
       headers: {
         Authorization: "Bearer " + userToken.token,
+        "Content-Type": "application/json",
       },
     })
       .then((res) => res.json())
-      .then((data) =>{console.log(data,"retweeted...")});
+      .then((data) => console.log(data))
+      .catch((err: any) => console.log(err));
+  };
 
-      setIsFollowerRetweet(true)
-      setAllretweetCount(Number(allretweetCount)+1);
-  }else{
-    setIsFollowerRetweet(false);
-    setAllretweetCount(Number(allretweetCount)-1)
+  //handle book marking event listener function
 
-  }
+  const handleBookMarkTweet = (tweetId: string) => {
+    if (isbookMark === false) {
+      setAllBookMarkCount(Number(allBookMarkCount) + 1);
+      bookMarkNewTweet(tweetId);
+      setIsBookMark(true);
+    } else {
+      setIsBookMark(false);
+      setAllBookMarkCount(Number(allBookMarkCount) - 1);
+      bookMarkDelete(tweetId);
+    }
+  };
 
-}
-
-const allReTweet = async () => {
-
-  const retweetUrl = `${BASE_URL}tweeting/allretweet`;
-
-  fetch(retweetUrl, {
-    method: "GET",
-    headers: {
-      Authorization: "Bearer " + userToken.token,
-    },
-  })
-    .then((res) => res.json())
-    .then((data) =>{
-      
-      data.data.map((val:any)=>{
-
-        if(val.tweetId.id === _id){
-          setIsFollowerRetweet(val.isRetweeted);
-          console.log(val.isRetweeted, "check");
-          
-        }
-
-      })
-    })
-    .catch((err: any) => console.log(err));
-};
-
-
-
-//check the length of the like tweet if greater than 0
-
-useEffect(()=>{
-  if(likeTweet > 0){
-    setIsLike(true);
-    allReTweet()
-  }
-},[_id])
-// console.log(isLike, noOfLikes);
   
 
-  const loginUserPic: any = localStorage.getItem("userlogingImage");
+  //handle likes
+
+  const handleLikes = async () => {
+    const unlikeTweetUrl = `${BASE_URL}tweet/${_id}/like`;
+    if (isLike === true) {
+      setLikeTweet(Number(likeTweet) - 1);
+
+      await axios.delete(unlikeTweetUrl, {
+        headers: { Authorization: "Bearer " + userToken.token },
+      });
+      setIsLike(false);
+    } else {
+      setLikeTweet(Number(likeTweet) + 1);
+
+      await axios.post(
+        unlikeTweetUrl,
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + userToken.token,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      setIsLike(true);
+    }
+  };
+
+  //handle retweet count
+  //
+  function handleReTweet(id: string) {
+    try {
+      if (isFollowerRetweet === false) {
+        const retweetUrl = `${BASE_URL}tweeting/retweet/${id}`;
+
+        fetch(retweetUrl, {
+          method: "POST",
+          headers: {
+            Authorization: "Bearer " + userToken.token,
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setIsFollowerRetweet(true);
+            setAllretweetCount(Number(allretweetCount) + 1);
+          });
+      } else {
+        setIsFollowerRetweet(false);
+        setAllretweetCount(Number(allretweetCount) - 1);
+
+        const undoretweetUrl = `${BASE_URL}tweeting/undoretweet/${id}`;
+
+        fetch(undoretweetUrl, {
+          method: "DELETE",
+          headers: {
+            Authorization: "Bearer " + userToken.token,
+          },
+        });
+      }
+    } catch (err: any) {
+      console.error(err);
+    }
+  }
+
+
 
   const imageErrorHandler = (e: React.SyntheticEvent<HTMLImageElement>) => {
     e.currentTarget.src =
       "https://raw.githubusercontent.com/decadevs/live-project-frontend-tweeter-clone-team-a/main/Screen%20Shot%202022-02-25%20at%208.51.24%20PM.png?token=GHSAT0AAAAAABOGDBLLUQNS3I2GZVBZJMU4YRCN5JA";
   };
-
-
-
-
-
-
-
-
 
   return (
     <>
@@ -372,9 +265,9 @@ useEffect(()=>{
           </div>
           <div>
             <ul className={classes.second}>
-              <li>{commentCount} Comments</li>
+              <li>{allCommentCount} Comments</li>
               <li> {allretweetCount} Retweets</li>
-              <li>{bookmarkCount} Saved</li>
+              <li>{allBookMarkCount} Saved</li>
             </ul>
           </div>
           <div className={classes.action}>
@@ -385,34 +278,22 @@ useEffect(()=>{
                   <span className={classes.button}>Comments</span>
                 </span>
               </button>
-              <button>
-                <span>
+              <button onClick={() => handleReTweet(_id)}>
+                <span style={{ color: isFollowerRetweet ? "red" : "green" }}>
                   <IoIosRepeat className={classes.icons} />
-                  <span
-                    onClick={() => handleReTweet(_id)}
-                    className={classes.button}
-                  >
-                    Retweets
-                  </span>
+                  <span className={classes.button}>Retweets</span>
                 </span>
               </button>
-              <button onClick = {()=>handleLikes()}>
-                <span style ={{color: isLike ? "red":"green"}}>
+              <button onClick={() => handleLikes()}>
+                <span style={{ color: isLike ? "red" : "green" }}>
                   <FiHeart className={classes.icons} />
                   <span className={classes.button}>Likes</span>
                 </span>
               </button>
-              <button>
-                <span>
+              <button onClick={() => handleBookMarkTweet(_id)}>
+                <span style={{ color: isbookMark ? "red" : "green" }}>
                   <FiBookmark className={classes.icons} />
-                  <span
-                    className={
-                      isbookMark ? classes.buttonColor : classes.button
-                    }
-                    // onClick={()=>bookMarkTweet(_id)}
-                  >
-                    Saved
-                  </span>
+                  <span className={classes.button}>Saved</span>
                 </span>
               </button>
             </div>
@@ -421,26 +302,25 @@ useEffect(()=>{
             <div className={classes.profile2}>
               <Link to="profile">
                 <img
-                  src={loginUserPic}
+                src={user.user.profilePic}
                   onError={imageErrorHandler}
                   className={classes.profile2_img}
                 />
-                </Link>
-              </div>
-              <form action="" className={classes.form}>
-                <textarea
-
-                onChange={(e)=>getTextFieldValue(e)}
-                  placeholder="Tweet your reply"
-                  value={textField}
-                  name= {"message"}
-                  style ={{height:newHeight}}
-                ></textarea>
-                <span 
+              </Link>
+            </div>
+            <form action="" className={classes.form}>
+              <textarea
+                onChange={(e) => getTextFieldValue(e)}
+                placeholder="Tweet your reply"
+                value={textField}
+                name={"message"}
+                style={{ height: newHeight }}
+              ></textarea>
+              <span
                 onClick={() => handleComment(_id)}
-                className={classes.iconBox}>
-
-                  {isLoading ?  (
+                className={classes.iconBox}
+              >
+                {isLoading ? (
                   <CirclesWithBar
                     color="#2F80ED"
                     height={30}

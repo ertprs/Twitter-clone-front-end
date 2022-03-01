@@ -6,18 +6,14 @@ import Swal from 'sweetalert2';
 import { BASE_URL } from '../constants/contants';
 import { UserContext } from '../hooks/useContext';
 import styles from "../styles/Tweeting_style/TweetController.module.css";
-import { followingContext } from './FollowingProvider';
 
 function CreateTweet() {
 
 
-    const {followerTweet} = useContext(followingContext)
   
   const userToken:any = useContext(UserContext)
   const token = userToken.token
 
-  const [trends, setTrends] = useState<any>([]);
-  const [follow, setFollow] = useState<any>([]);
 
   const url = `${BASE_URL}api/trends`
   const uri = `${BASE_URL}api/follow/suggest/?pageNo=2&pageSize=5`
@@ -210,9 +206,7 @@ function CreateTweet() {
                 </div>
               </div>
 
-              <motion.button
-                initial={{ x: "-100vw" }}
-                animate={{ x: 0 }}
+              <button
                 type="submit"
                 onClick={addTextHandler}
               >
@@ -226,7 +220,7 @@ function CreateTweet() {
                 ) : (
                   "Tweet"
                 )}
-              </motion.button>
+              </button>
             </div>
           </div>
           <div

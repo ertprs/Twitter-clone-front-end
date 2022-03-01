@@ -5,12 +5,13 @@ import Navbar from "./NavBar/Nav";
 import Tweet from "./Tweet/Tweet";
 import styles from "../styles/Tweeting_style/TweetController.module.css";
 import Trending_Follow from "./Trending_Follow";
+import { CirclesWithBar } from "react-loader-spinner";
 
 interface iTweet {
   commentCount: number;
 }
 function TweetContent() {
-  const { followerTweet } = useContext(followingContext);
+  const { followerTweet, followerCondition, isLoading } = useContext(followingContext);
 
   return (
     <>
@@ -20,22 +21,33 @@ function TweetContent() {
           <div>
             <CreateTweet />
 
+            {isLoading ?  <CirclesWithBar
+                    color="#2F80ED"
+                    height={70}
+                    width={70}
+                    wrapperStyle={{ justifyContent: "center",marginTop:"30px" }}
+                  />:""}
+
             <div className={styles["tweet-body"]}>
-              {followerTweet.map((val: any, index: number) => (
-                <Tweet
-                  key={index}
-                  tweetImage={val.tweetImage}
-                  commentCount={val.commentCount}
-                  retweetCount={val.retweetCount}
-                  messageBody={val.messageBody}
-                  userId={val.userId}
-                  createdAt={val.createdAt}
-                  bookMarkTweet={val.bookMarkTweet}
-                  noOfLikes={val.noOfLikes}
-                  _id={val._id}
-                  bookmarkCount={val.bookmarkCount}
-                />
-              ))}
+              {followerCondition.map((val: any, index: number) => {
+                return (
+                  <Tweet
+                    key={index}
+                    isLiked={val.isLiked}
+                    isRetweeted={val.isRetweeted}
+                    isBookmarked={val.isBookmarked}
+                    tweetImage={followerTweet[index].tweetImage}
+                    commentCount={followerTweet[index].commentCount}
+                    retweetCount={followerTweet[index].retweetCount}
+                    messageBody={followerTweet[index].messageBody}
+                    userId={followerTweet[index].userId}
+                    createdAt={followerTweet[index].createdAt}
+                    noOfLikes={followerTweet[index].noOfLikes}
+                    _id={followerTweet[index]._id}
+                    bookmarkCount={followerTweet[index].bookmarkCount}
+                  />
+                );
+              })}
             </div>
           </div>
 
