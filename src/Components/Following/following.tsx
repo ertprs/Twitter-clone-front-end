@@ -65,9 +65,10 @@ function Following() {
     };
     getFollowing();
   }, []);
+  
 
-  const followerElement = followers.map(({index,firstName, lastName ,profilePic, bioData, isFollow}) => (
-      <FollowingComponent key={index} name={firstName+" "+ lastName} profilePic={profilePic} bioData={bioData} isFollow={isFollow} /> ))
+  const followerElement = followers.map(({index,firstName, _id, lastName ,profilePic, bioData, isFollow}) => (
+      <FollowingComponent key={index} name={firstName+" "+ lastName} profilePic={profilePic} bioData={bioData} isFollow={isFollow} id={_id} /> ))
 
 
 
