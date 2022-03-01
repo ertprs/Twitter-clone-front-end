@@ -25,8 +25,12 @@ export const getUserData = () => {
 };
 export const getUserToken = () => {
   let data: any = localStorage.getItem("tweeter");
+  console.log(data);
+
   if (data) {
     data = JSON.parse(data);
+    if (!data.user.profilePic) localStorage.removeItem("tweeter");
+    
     localStorage.setItem("userlogingImage", data.user.profilePic);
     return data.token;
   }
@@ -34,17 +38,16 @@ export const getUserToken = () => {
 };
 export const isLoggedIn = () => {
   let data: any = getUserToken();
+
   let loginUrl = window.location.href.split("/");
   console.log(loginUrl[loginUrl.length - 1]);
-
-  if (
-    !data &&
-    loginUrl[loginUrl.length - 1] !== "login" &&
-    loginUrl[loginUrl.length - 1] !== "signup"
-  ) {
+  const pages = ["login", "signup", "forgot-password"];
+  const currentUrl = loginUrl[loginUrl.length - 1];
+  // redirect
+  if (!data && !pages.includes(currentUrl)) {
     window.location.href = "/login";
     return false;
-  } else if (data && loginUrl[loginUrl.length - 1] === "login") {
+  } else if (data && currentUrl === "login") {
     window.location.href = "/";
     return true;
   }

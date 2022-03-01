@@ -226,7 +226,7 @@ const Signup = (): JSX.Element => {
         Already have Account? <a href="/login">login </a>
       </p>
       <p className={styles["forogt-password"]}>
-        <a href="/forgotPassword">Forgot Password ?</a>
+        <a href="/forgot-password">Forgot Password ?</a>
       </p>
     </div>
   );
