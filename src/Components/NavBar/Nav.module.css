@@ -36,6 +36,7 @@ nav {
   font-weight: 600;
   font-size: 18px;
   line-height: 27px;
+  color: #333333;
 }
 
 .menu {
@@ -88,7 +89,7 @@ nav {
 .dropcontent {
   display: none;
   position: absolute;
-  z-index: 2;
+  z-index: 2000;
   right: 0;
   border: 1px solid #e0e0e0;
   box-sizing: border-box;
@@ -140,14 +141,14 @@ nav {
   height: 100%;
   object-fit: cover;
   display: block;
-  background-color: blue;
+  background-color: rgb(71, 144, 240);
   border-radius: 5px;
   color: white;
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
-  padding: 4px 2px;
+  padding: 4px 2px 4px 2px;
 }
 
 .arrow {
@@ -161,6 +162,7 @@ nav {
 .linkedNav {
   position: relative;
   padding: 0 25px;
+  color:#828282;
 }
 
 
@@ -188,6 +190,15 @@ nav {
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
 }
+
+.nameTxt{
+  color: #333333;
+  font-family: 'Noto Sans', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+font-style: normal;
+font-weight: bold;
+font-size: 12px;
+}
+
 
 .navright:hover .dropdown {
   display: block;

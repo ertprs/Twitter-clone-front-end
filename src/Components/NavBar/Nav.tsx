@@ -55,10 +55,12 @@ const Navbar = () => {
             <NavLink className={classes.linkedNav}
               style={({ isActive }) => {
                 return {
+              
                   borderBottom: isActive
                     ? "2px solid #2f80ed"
                     : "2px solid transparent",
-                  paddingBottom: "25px"
+                  paddingBottom: "25px",
+                  
                 };
               }} to="/bookmark">
               Bookmark
@@ -88,7 +90,7 @@ const Navbar = () => {
           </div>
 
           <div className={classes.dropdown}>
-            <Link to="/profile" className={classes.navItem}>
+            <Link to={`/profile/${user.user._id}`} className={classes.navItem}>
               <CgProfile className={classes.icon} />
               <span className={classes.navText}>My Profile</span>
             </Link>
