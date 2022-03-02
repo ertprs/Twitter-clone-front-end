@@ -12,6 +12,7 @@ import { AuthContext } from "../../context/Auth.context";
 import { useContext } from "react";
 
 
+// import TweetNav from "../../Components/profile/TweetNav";
 
 const Profile = () => {
   let params = useParams();

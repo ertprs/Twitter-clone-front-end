@@ -13,7 +13,6 @@ const Navbar = () => {
   const {user} = useContext(AuthContext);
 
 
-
   return (
     <div className={classes.wrapper}>
       <nav>
