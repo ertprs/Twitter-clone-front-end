@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/Tweeting_style/Bookmark.module.css"
+import Nav from "./NavBar/Nav";
 
 
 function BookMarksPage() {
 
   return (
-
+    <>
+    <Nav/>
     <div className={styles["bookmark-container"]}>
        
         <ul className={styles["bookmark-links"]}>
@@ -18,6 +20,7 @@ function BookMarksPage() {
         Body of Bookmarks
         </div>
     </div>
+    </>
   )
 }
 

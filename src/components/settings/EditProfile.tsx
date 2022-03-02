@@ -21,7 +21,7 @@ const EditProfile = () => {
             <p>Changes will be reflected to every services</p>
           </div>
           <div>
-            <a href="/change-password">change password</a>
+            <a href="/changePassword">change password</a>
           </div>
         </div>
         <div className="change-profile-pics">
