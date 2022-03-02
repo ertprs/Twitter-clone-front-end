@@ -2,8 +2,8 @@ import classes from "./Tweet.module.css";
 import { FiMessageSquare, FiHeart, FiBookmark } from "react-icons/fi";
 import { IoIosRepeat } from "react-icons/io";
 import { AiOutlineSend } from "react-icons/ai";
-import { ChangeEvent, useContext, useState, useEffect } from "react";
-import { followingContext, iFollowing } from "../FollowingProvider";
+import { ChangeEvent, useContext, useState } from "react";
+// import { followingContext, iFollowing } from "../FollowingProvider";
 import Moment from "moment";
 import { Link } from "react-router-dom";
 import { CirclesWithBar } from "react-loader-spinner";
@@ -254,6 +254,7 @@ const Tweet: React.FC<iTweet> = ({
             <div className={classes.profile}>
               <Link to="/profile">
                 <img
+                alt="logo"
                   src={userId.profilePic}
                   onError={imageErrorHandler}
                   className={classes.profile__img}
@@ -274,6 +275,7 @@ const Tweet: React.FC<iTweet> = ({
           </div>
           <div className={classes.main}>
             <img
+            alt='logo'
               src={tweetImage}
               onError={imageErrorHandler}
               className={classes.main_img}
@@ -318,6 +320,7 @@ const Tweet: React.FC<iTweet> = ({
             <div className={classes.profile2}>
               <Link to="profile">
                 <img
+                alt="logo"
                 src={user.user.profilePic}
                   onError={imageErrorHandler}
                   className={classes.profile2_img}
