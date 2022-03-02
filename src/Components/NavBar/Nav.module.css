@@ -89,7 +89,7 @@ nav {
 .dropcontent {
   display: none;
   position: absolute;
-  z-index: 2;
+  z-index: 2000;
   right: 0;
   border: 1px solid #e0e0e0;
   box-sizing: border-box;
