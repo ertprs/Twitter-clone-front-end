@@ -27,6 +27,7 @@ import {
   isLoggedIn,
 } from "./hooks/useLogin";
 import TweetContent from "./Components/TweetContent";
+import Forgotpassword from "./pages/authentication/resetpassword/Forgotpassword";
 function App() {
   isLoggedIn();
   let USERDATA = getUserData();
@@ -38,6 +39,7 @@ function App() {
             {/* <Route path="/" element={<Profile />} /> */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/forgot-password" element={<Forgotpassword />} />
 
             <Route path="/profile" element={<Profile />} />
             <Route path="/trends/:id" element={<TrendsController />} />
