@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { BASE_URL } from "../constants/contants";
 import { UserContext } from "../hooks/useContext";
 import styles from "../styles/Tweeting_style/TweetController.module.css";
-import { followingContext } from "./FollowingProvider";
+// import { followingContext } from "./FollowingProvider";
 import { BeatLoader } from "react-spinners";
 
 function Trending_Follow() {
-  const { followerTweet } = useContext(followingContext);
+  // const { followerTweet } = useContext(followingContext);
 
   const userToken: any = useContext(UserContext);
   const token = userToken.token;
