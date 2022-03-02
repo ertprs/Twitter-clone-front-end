@@ -12,7 +12,6 @@ import { BASE_URL } from "../../constants/contants";
 import { UserContext } from "../../hooks/useContext";
 import { AuthContext } from "../../context/Auth.context";
 import axios from "axios";
-import { NumbersSharp } from "@mui/icons-material";
 
 export interface iTweet {
   tweetImage: string;
@@ -105,6 +104,8 @@ const Tweet: React.FC<iTweet> = ({
     }
   };
 
+
+
   //handle bookmarking
   const bookMarkNewTweet = async (tweetId: string) => {
     const postData = { isBookmark: true };
@@ -127,6 +128,10 @@ const Tweet: React.FC<iTweet> = ({
 
   //handle bookmark delete
 
+
+
+
+
   const bookMarkDelete = async (tweetId: string) => {
     const bookMarkUrl = `${BASE_URL}tweet/${tweetId}/bookmark`;
 
@@ -141,6 +146,9 @@ const Tweet: React.FC<iTweet> = ({
       .then((data) => console.log(data))
       .catch((err: any) => console.log(err));
   };
+
+
+
 
   //handle book marking event listener function
 
@@ -157,6 +165,9 @@ const Tweet: React.FC<iTweet> = ({
   };
 
   
+
+
+
 
   //handle likes
 
@@ -186,6 +197,9 @@ const Tweet: React.FC<iTweet> = ({
       setIsLike(true);
     }
   };
+
+
+
 
   //handle retweet count
   //
@@ -225,6 +239,8 @@ const Tweet: React.FC<iTweet> = ({
 
 
 
+
+
   const imageErrorHandler = (e: React.SyntheticEvent<HTMLImageElement>) => {
     e.currentTarget.src =
       "https://raw.githubusercontent.com/decadevs/live-project-frontend-tweeter-clone-team-a/main/Screen%20Shot%202022-02-25%20at%208.51.24%20PM.png?token=GHSAT0AAAAAABOGDBLLUQNS3I2GZVBZJMU4YRCN5JA";
@@ -249,7 +265,7 @@ const Tweet: React.FC<iTweet> = ({
                 {userId.firstName + " " + userId.lastName}
               </p>
               <p className={classes.person_date}>
-                {Moment(createdAt).format("DD-MM-YYYY hh:ss")}
+                {Moment.utc(createdAt).local().startOf("seconds").fromNow()}
               </p>
             </div>
           </div>

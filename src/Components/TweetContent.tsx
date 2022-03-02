@@ -11,7 +11,7 @@ interface iTweet {
   commentCount: number;
 }
 function TweetContent() {
-  const { followerTweet, followerCondition, isLoading } = useContext(followingContext);
+  const { followerTweet, followerCondition, isLoading,isScrolling } = useContext(followingContext);
 
   return (
     <>
@@ -48,6 +48,13 @@ function TweetContent() {
                   />
                 );
               })}
+
+                  {isScrolling ?  <CirclesWithBar
+                    color="#2F80ED"
+                    height={70}
+                    width={70}
+                    wrapperStyle={{ justifyContent: "center",marginTop:"30px" }}
+                  />:""}
             </div>
           </div>
 
