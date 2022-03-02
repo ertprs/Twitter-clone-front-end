@@ -7,9 +7,9 @@ import styles from "../styles/Tweeting_style/TweetController.module.css";
 import Trending_Follow from "./Trending_Follow";
 import { CirclesWithBar } from "react-loader-spinner";
 
-interface iTweet {
-  commentCount: number;
-}
+// interface iTweet {
+//   commentCount: number;
+// }
 function TweetContent() {
   const { followerTweet, followerCondition, isLoading,isScrolling } = useContext(followingContext);
 
