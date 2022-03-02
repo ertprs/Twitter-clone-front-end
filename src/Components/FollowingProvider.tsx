@@ -1,36 +1,31 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
+import { TRUE } from "sass";
 import { BASE_URL } from "../constants/contants";
 import { UserContext } from "../hooks/useContext";
-import { AuthContext } from "../context/Auth.context"
 
 export interface iFollowing {
-  followerTweet: [];
-  followerRetweet: boolean;
-  textField: any;
-  isLoading: boolean;
-  newHeight: any;
-  isLoadingTweet: boolean;
+  followerTweet: any[];
+  followerCondition: any | boolean[];
+  isLoading:boolean;
+  isScrolling:boolean
 }
 
 export const followingContext = createContext<iFollowing>(null!);
 
 function FollowingProvider({ children }: { children: React.ReactNode }) {
+
   const userToken: any = useContext(UserContext);
-  const { user } = useContext(AuthContext);
+  const pageNumber:number = 1;
 
-  // console.log(user, "DATA")
+  const [followerTweet, setFollowerTweet] = useState<any[]>([]);
+  const [followerCondition, setFollowerCondition] = useState<any | boolean[]>([]);
+  const [ isLoading, setIsLoading]  = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false)
+  const [page, setPage] = useState(pageNumber)
 
-
-  const [followerTweet, setFollowerTweet] = useState<[]>([]);
-  const [followerRetweet, setFollowerRetweet] = useState(false);
-  const [textField, setTextField] = useState<any>({reply:""});
-  const [isLoading, setIsLoading] = useState(false);
-  const [newHeight, setNewHeight] = useState<any>({reply:22})
-  const [isLoadingTweet, setIsLoadingTweet] = useState(false)
-
-
-  const url = `${BASE_URL}api/viewtweet/?pageNo=1&pageSize=9`;
+  const url = `${BASE_URL}api/viewtweet/?pageNo=${page}&pageSize=5`;
+console.log(page);
 
   const authorised = {
     headers: {
@@ -38,53 +33,55 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
     },
   };
 
+
+  const scrollToEnd = ()=>{
+    setPage(page+1);
+    setIsScrolling(true);
+  }
+
+  window.onscroll = function(){
+
+    //check if page has reach the bottom
+    if(
+      window.innerHeight + document.documentElement.scrollTop
+       === document.documentElement.offsetHeight){
+         scrollToEnd()
+       }
+  }
   // set  the content of the following tweet properts
 
   const getFollowerTweet = async () => {
-
     try {
-      setIsLoadingTweet(true)
+      setIsLoading(true);
+      setIsScrolling(false)
       let result = await axios.get(url, authorised);
-
       setFollowerTweet(result.data.data.tweet);
+      setFollowerCondition(result.data.data.conditionalTweet);
 
-      console.log(result.data.data.tweet, "**())")
+      console.log(result.data.data);
 
-      if (result) {
-        setIsLoadingTweet(false)
+
+      if(result){
+        setIsLoading(false)
+        setIsScrolling(false)
       }
+     
+    } catch (err: any) {
+      console.error(err);
+      setIsLoading(false)
     }
-    catch (err: any) {
-      setIsLoadingTweet(false)
-    }
-  }
+  };
   useEffect(() => {
     getFollowerTweet();
   }, []);
-
-  // function that handle bookmarking
-
-  
-
-  
-
-  // get all book mark of a login user
-
-
-
-
-
-
 
   return (
     <followingContext.Provider
       value={{
         followerTweet,
-        followerRetweet,
-        textField,
+        followerCondition,
         isLoading,
-        newHeight,
-        isLoadingTweet
+        isScrolling
       }}
     >
       {children}
@@ -93,4 +90,3 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
 }
 
 export default FollowingProvider;
-

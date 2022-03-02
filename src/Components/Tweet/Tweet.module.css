@@ -118,7 +118,8 @@
 
 .actions button span .icons {
   margin-right: 5px;
-  font-size: 17px;
+  font-size: 18px;
+  font-weight: bolder;
 }
 
 .second {
