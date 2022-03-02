@@ -37,6 +37,7 @@ function Following() {
     };
     getFollowings();
   }, []);
+  
 
   const followingElement = following.map(
     ({ index, firstName, _id, lastName, profilePic, bioData, isFollow }) => (
