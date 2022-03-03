@@ -26,3 +26,24 @@ export interface ButtonPropInterface {
     type?: "button" | "submit" | "reset";
     children: ReactNode;
 }
+
+export interface memberObj {
+    createdAt: string;
+    id:string;
+    members: eachMember[];
+    updatedAt: string;
+    _v?:number;
+    _id:string
+}
+
+export type eachMember = {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    biodata: string;
+    profilePic:string;
+    createdAt:string;
+    updatedAt:string;
+    provider:string;
+}
