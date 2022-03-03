@@ -1,44 +1,31 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
+// import { TRUE } from "sass";
 import { BASE_URL } from "../constants/contants";
 import { UserContext } from "../hooks/useContext";
-import {AuthContext} from "../context/Auth.context"
 
 export interface iFollowing {
-  followerTweet: [];
-  bookMarkTweet: (id: string) => void;
-  handleReTweet: (id: string) => void;
-  handleComment: (id: string, index: number) => void;
-  isbookMark: boolean;
-  followerRetweet: boolean;
-  textField: any;
+  followerTweet: any[];
+  followerCondition: any | boolean[];
   isLoading:boolean;
-  newHeight:any;
-
-  getTextFieldValue: (
-    e: React.ChangeEvent<HTMLTextAreaElement>
-  ) => void;
+  isScrolling:boolean
 }
 
 export const followingContext = createContext<iFollowing>(null!);
 
 function FollowingProvider({ children }: { children: React.ReactNode }) {
+
   const userToken: any = useContext(UserContext);
-  const {user} = useContext(AuthContext);
+  const pageNumber:number = 1;
 
-  console.log(user, "DATA")
+  const [followerTweet, setFollowerTweet] = useState<any[]>([]);
+  const [followerCondition, setFollowerCondition] = useState<any | boolean[]>([]);
+  const [ isLoading, setIsLoading]  = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false)
+  const [page, setPage] = useState(pageNumber)
 
-
-  const [followerTweet, setFollowerTweet] = useState<[]>([]);
-  const [followerRetweet, setFollowerRetweet] = useState(false);
-  const [isbookMark, setIsBookMark] = useState(false);
-  const [textField, setTextField] = useState<any>("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [newHeight,setNewHeight] = useState<any>(22)
-
-
-
-  const url = `${BASE_URL}api/viewtweet/?pageNo=1&pageSize=9`;
+  const url = `${BASE_URL}api/viewtweet/?pageNo=${page}&pageSize=5`;
+console.log(page);
 
   const authorised = {
     headers: {
@@ -46,153 +33,55 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
     },
   };
 
+
+  const scrollToEnd = ()=>{
+    setPage(page+1);
+    setIsScrolling(true);
+  }
+
+  window.onscroll = function(){
+
+    //check if page has reach the bottom
+    if(
+      window.innerHeight + document.documentElement.scrollTop
+       === document.documentElement.offsetHeight){
+         scrollToEnd()
+       }
+  }
   // set  the content of the following tweet properts
 
   const getFollowerTweet = async () => {
-    let result = await axios.get(url, authorised);
+    try {
+      setIsLoading(true);
+      setIsScrolling(false)
+      let result = await axios.get(url, authorised);
+      setFollowerTweet(result.data.data.tweet);
+      setFollowerCondition(result.data.data.conditionalTweet);
 
-    setFollowerTweet(result.data.data.tweet);
+      console.log(result.data.data);
+
+
+      if(result){
+        setIsLoading(false)
+        setIsScrolling(false)
+      }
+     
+    } catch (err: any) {
+      console.error(err);
+      setIsLoading(false)
+    }
   };
-
   useEffect(() => {
     getFollowerTweet();
   }, []);
-
-  // function that handle bookmarking
-
-  const bookMarkTweet = (tweetId: string) => {
-    bookMarkNewTweet(tweetId);
-  };
-
-  //handle bookmarking
-  const bookMarkNewTweet = async (tweetId: string) => {
-    const postData = { isBookmark: true };
-
-    const bookMarkUrl = `${BASE_URL}tweet/${tweetId}/bookmark`;
-
-    fetch(bookMarkUrl, {
-      method: "POST",
-      body: JSON.stringify(postData),
-
-      headers: {
-        Authorization: "Bearer " + userToken.token,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data.data.isBookmark))
-      .catch((err: any) => console.log(err));
-    getFollowerTweet();
-    getAllUserBookMark();
-  };
-
-  // get all book mark of a login user
-
-  const getAllUserBookMark = async () => {
-    const bookMarkUrl = `${BASE_URL}tweet/bookmark`;
-
-    fetch(bookMarkUrl, {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + userToken.token,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        data.data.map((val: any) => {
-          return setIsBookMark(val.isBookmark);
-        });
-      })
-      .catch((err: any) => console.log("deleted..."));
-    getFollowerTweet();
-  };
-
-  // rerender getAllBookmark function
-
-  useEffect(() => {
-    getAllUserBookMark();
-  }, []);
-
-  //handle retweet count
-
-  const handleReTweet = async (tweetId: string) => {
-    const retweetUrl = `${BASE_URL}tweeting/retweet/${tweetId}`;
-
-    fetch(retweetUrl, {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + userToken.token,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err: any) => console.log("Deleted bookmark"));
-    getFollowerTweet();
-    getAllUserBookMark();
-  };
-
-  // handle comment for a tweet
-
-  const handleComment = async (tweetId: string, index: number) => {
-    if (textField === "") {
-      return;
-    } else {
-      const postData = { content: textField };
-      setIsLoading(true)
-
-      const commentUrl = `${BASE_URL}tweet/${tweetId}/comment`;
-
-      fetch(commentUrl, {
-        method: "POST",
-        body: JSON.stringify(postData),
-
-        headers: {
-          Authorization: "Bearer " + userToken.token,
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          setTextField(" ");
-        })
-        .catch((err: any) => console.log(err));
-        getFollowerTweet();
-        getAllUserBookMark();
-        setIsLoading(false);
-
-    }
-  };
-
-  const getTextFieldValue = (e: any) => {
-
-      setTextField({[e.target.name]:e.target.value});
-
-    // let changeHeight:number = e.target.scrollHeight;
-
-    setNewHeight({[e.target.name]:e.target.scrollHeight});
-
-    if (e.target.value === "") {
-      setNewHeight(25);
-    }
-  };
-
-
 
   return (
     <followingContext.Provider
       value={{
         followerTweet,
-        bookMarkTweet,
-        isbookMark,
-        handleReTweet,
-        followerRetweet,
-        handleComment,
-        textField,
-        getTextFieldValue,
+        followerCondition,
         isLoading,
-        newHeight
+        isScrolling
       }}
     >
       {children}
@@ -201,7 +90,3 @@ function FollowingProvider({ children }: { children: React.ReactNode }) {
 }
 
 export default FollowingProvider;
-
-function getFollowing(): iFollowing {
-  throw new Error("Function not implemented.");
-}

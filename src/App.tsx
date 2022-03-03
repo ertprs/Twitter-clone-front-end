@@ -5,6 +5,7 @@ import ExplorePage from "./Components/ExplorePage";
 import TrendingDesktopPage from "./Components/TrendingDesktopPage";
 import TrendingMobilePage from "./Components/TrendingMobilePage";
 import Chat from "./pages/chat/Chat";
+import Chat2 from "./pages/chat/Chat2"
 import AuthProvider from "./context/Auth.context";
 
 import TrendsController from "./Components/TrendsController";
@@ -27,6 +28,7 @@ import {
   isLoggedIn,
 } from "./hooks/useLogin";
 import TweetContent from "./Components/TweetContent";
+import Forgotpassword from "./pages/authentication/resetpassword/Forgotpassword";
 function App() {
   isLoggedIn();
   let USERDATA = getUserData();
@@ -38,13 +40,15 @@ function App() {
             {/* <Route path="/" element={<Profile />} /> */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/profile/:id" element={<Profile />} />
+            <Route path="/forgot-password" element={<Forgotpassword />} />
 
             <Route path="/profile" element={<Profile />} />
             <Route path="/trends/:id" element={<TrendsController />} />
             <Route path="/trending" element={<TrendingMobilePage />} />
             <Route path="/explore" element={<ExplorePage />} />
             <Route path="/bookmark" element={<BookMarksPage />} />
-            <Route path="/chat" element={<Chat />} />
+            <Route path="/chat" element={<Chat2 />} />
             <Route
               path="/tweet/desktoptrending"
               element={<TrendingDesktopPage />}

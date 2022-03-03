@@ -1,26 +1,22 @@
 import axios from 'axios';
 import { motion } from 'framer-motion';
-import React, { useContext, useEffect, useState } from 'react'
+import  { useContext, useState } from 'react'
 import { Circles } from 'react-loader-spinner';
 import Swal from 'sweetalert2';
-import { BASE_URL } from '../constants/contants';
+// import { BASE_URL } from '../constants/contants';
 import { UserContext } from '../hooks/useContext';
 import styles from "../styles/Tweeting_style/TweetController.module.css";
-import { followingContext } from './FollowingProvider';
 
 function CreateTweet() {
 
 
-    const {followerTweet} = useContext(followingContext)
   
   const userToken:any = useContext(UserContext)
   const token = userToken.token
 
-  const [trends, setTrends] = useState<any>([]);
-  const [follow, setFollow] = useState<any>([]);
 
-  const url = `${BASE_URL}api/trends`
-  const uri = `${BASE_URL}api/follow/suggest/?pageNo=2&pageSize=5`
+  // const url = `${BASE_URL}api/trends`
+  // const uri = `${BASE_URL}api/follow/suggest/?pageNo=2&pageSize=5`
 
 
 //   useEffect(() => {
@@ -210,9 +206,7 @@ function CreateTweet() {
                 </div>
               </div>
 
-              <motion.button
-                initial={{ x: "-100vw" }}
-                animate={{ x: 0 }}
+              <button
                 type="submit"
                 onClick={addTextHandler}
               >
@@ -226,7 +220,7 @@ function CreateTweet() {
                 ) : (
                   "Tweet"
                 )}
-              </motion.button>
+              </button>
             </div>
           </div>
           <div
@@ -238,7 +232,7 @@ function CreateTweet() {
           >
             <h3>Who can reply?</h3>
             <p>Choose who can reply</p>
-            <a href="/" className={styles["image-n-text"]}>
+            <a href="#!" className={styles["image-n-text"]}>
               <img
                 className={styles["media-image"]}
                 src="https://img.icons8.com/material-rounded/28/000000/globe--v1.png"
@@ -246,7 +240,7 @@ function CreateTweet() {
               />
               <h3 onClick={(e) => getText(e)}>Everyone</h3>
             </a>
-            <a className={styles["image-n-text"]}>
+            <a href="#!"  className={styles["image-n-text"]}>
               <img
                 className={styles["media-image"]}
                 src="https://img.icons8.com/ios-glyphs/30/000000/group-foreground-selected.png"
