@@ -11,6 +11,7 @@ import { BASE_URL } from "../constants/contants";
 // import { Navbar } from "reactstrap";
 import Trending_Follow from "./Trending_Follow";
 import { BeatLoader } from "react-spinners";
+import Tweet from "./Tweet/Tweet";
 
 function TrendsController() {
   
@@ -233,6 +234,8 @@ function TrendsController() {
           </div>
         </div>
       </div>
+
+      {/* <Tweet /> */}
       </div>
     </>
   );
