@@ -2,7 +2,7 @@
   background: #f2f2f2;
   margin: 0;
   padding: 0;
-  width:100vw;
+  width: 100vw;
   /* position: fixed; */
 }
 
@@ -27,7 +27,7 @@ nav {
 .logo .icon {
   font-size: 40px;
   margin-right: 15px;
-  color: blue;
+  color: #2F80ED;
 }
 
 .logo .theme {
@@ -43,7 +43,6 @@ nav {
   margin: 0;
   padding: 0;
 }
-
 
 .link {
   color: grey;
@@ -76,7 +75,6 @@ nav {
   border-radius: 10px;
   object-fit: cover;
 }
-
 
 .dropbtn {
   color: black;
@@ -136,7 +134,7 @@ nav {
   display: block;
   border-radius: 5px;
 }
-.profileImg{
+.profileImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -162,9 +160,8 @@ nav {
 .linkedNav {
   position: relative;
   padding: 0 25px;
-  color:#828282;
+  color: #828282;
 }
-
 
 .linkedNav:not(:last-child) {
   margin-right: 10px;
@@ -185,20 +182,27 @@ nav {
   display: none;
   background-color: #fff;
   width: 200px;
-  top: 67px;
+  top: 65px;
   padding: 10px 20px;
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  right: 10px;
+  padding: 5px;
+  z-index: 200;
+  /* top: 80px; */
+  opacity: 1;
+
 }
 
-.nameTxt{
+.nameTxt {
   color: #333333;
-  font-family: 'Noto Sans', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-font-style: normal;
-font-weight: bold;
-font-size: 12px;
+  font-family: "Noto Sans", sans-serif; 
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  /* margin: 0 !important; */
+  margin-top: -10px;
 }
-
 
 .navright:hover .dropdown {
   display: block;
@@ -274,13 +278,10 @@ font-size: 12px;
     display: none !important;
   }
 
-  .dropdown {
-    right: 10px;
-    padding: 5px;
-    z-index: 2;
-    top: 80px;
+  /* .dropdown {
+    
 
-  }
+  } */
 
   .navItem {
     padding: 5px 15px;

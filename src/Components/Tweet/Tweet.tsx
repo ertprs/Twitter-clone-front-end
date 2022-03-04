@@ -258,6 +258,7 @@ const Tweet: React.FC<iTweet> = ({
                   src={userId.profilePic}
                  onError ={imageErrorHandler}
                   className={classes.profile__img}
+            
                   />
                 </Link>
               </div>
@@ -348,6 +349,7 @@ const Tweet: React.FC<iTweet> = ({
                 src={user.user.profilePic}
                   onError={imageErrorHandler}
                   className={classes.profile2_img}
+               
                 />
               </Link>
             </div>

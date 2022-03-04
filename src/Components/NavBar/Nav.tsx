@@ -96,7 +96,7 @@ const Navbar = () => {
             </Link>
             <Link to="/chat" className={classes.navItem}>
               <MdGroup className={classes.icon} />
-              <span className={classes.navText}>Group Chat</span>
+              <span className={classes.navText}>Chat</span>
             </Link>
             <Link to="/setting" className={classes.navItem}>
               <MdSettings className={classes.icon} />
