@@ -47,3 +47,32 @@ export type eachMember = {
     updatedAt:string;
     provider:string;
 }
+
+export interface Conversation  {
+    conversationId: string;
+    userId: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    bioData: string;
+    profilePic:string;
+}
+
+export interface Message {
+    messageId: string;
+    id: string;
+    conversationId: string;
+    senderId: eachMember;
+    deleted: Boolean;
+    text: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface IMessage {
+    
+    conversationId: string;
+    senderId: eachMember;
+    text: string;
+    
+}

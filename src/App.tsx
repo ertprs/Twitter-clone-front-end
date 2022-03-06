@@ -65,6 +65,15 @@ function App() {
                 </FollowingProvider>
               }
             />
+            <Route
+              path="/home"
+              element={
+                <FollowingProvider>
+                  {" "}
+                  <TweetContent />{" "}
+                </FollowingProvider>
+              }
+            />
           </Routes>
         </AuthProvider>
       </BrowserRouter>
