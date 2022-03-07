@@ -51,16 +51,19 @@ function Trending_Follow() {
 
   const handleFollow = (userId: string) => {
     axios
-      .post(`${BASE_URL}api/follow`, { userId }, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      .post(
+        `${BASE_URL}api/follow`,
+        { userId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      })
+      )
       .then((res) => {
         console.log(res.data);
-        // setFollow({
-        //     item: `following ${item._id}`
-        // })
+        const newFollow = follow.filter(item => item._id !== userId)
+        setFollow(newFollow)
       })
       .catch((err) => {
         console.log(err);
@@ -82,7 +85,9 @@ function Trending_Follow() {
               </div>
             ))
           ) : (
-            <BeatLoader color="#2F80ED" />
+            <div className="d-flex justify-content-center my-3 h-100">
+              <BeatLoader color="#2F80ED" />
+            </div>
           )}
         </div>
 
@@ -103,7 +108,9 @@ function Trending_Follow() {
                 </div>
               ))
             ) : (
-              <BeatLoader color="#2F80ED" />
+              <div className="d-flex justify-content-center my-3">
+                <BeatLoader color="#2F80ED" />
+              </div>
             )}
 
             <div className={styles.underline}></div>
