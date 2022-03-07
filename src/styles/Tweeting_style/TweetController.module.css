@@ -384,6 +384,8 @@ textarea:focus {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding-right: 40px;
+  align-items: center;
+  text-align: center;
 }
 
 .who-to-follow .suggest-user img {

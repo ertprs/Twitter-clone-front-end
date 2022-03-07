@@ -1,10 +1,11 @@
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input, TextArea } from "../common/Input";
 import { useSettings } from "../../hooks/useSettings";
 import Button from "../common/Button";
 import "./scss/editProfile.scss";
+import {BASE_URL} from '../../constants/contants'
 
 const EditProfile = () => {
   const { selectPhoto, image } = useSettings();
@@ -17,6 +18,11 @@ const EditProfile = () => {
   const handleInputChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const url = `${BASE_URL}/profile/picture`
+
+  useEffect(()=> {
+    // axios.get
+  })
   return (
     <div className="container edit-profile">
       <div className="navigation">
