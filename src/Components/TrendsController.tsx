@@ -216,7 +216,23 @@ function TrendsController() {
               follow.map((item) => (
                 <div className={styles["suggest-content"]}>
                   <div className={styles["suggest-user"]}>
-                    <img src={item.profilePic} alt="" />
+                    {item.profilePic ? 
+                    <img src={item.profilePic} alt="" /> : <div
+                    style={{
+                      background: "#2F80ED",
+                      width: "43px",
+                      height: "43px",
+                      borderRadius: "20px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#fff",
+                      marginTop: "20px",
+                      fontWeight: "bold"
+                    }}
+                  >
+                    {item.firstName.charAt(0).toUpperCase() + item.lastName.charAt(0).toUpperCase()}
+                  </div>}
                     <h3>{`${item.firstName} ${item.lastName}`}</h3>
                     <button onClick={() => handleFollow(item._id)}>
                       <span></span>follow

@@ -163,12 +163,6 @@ const Tweet: React.FC<iTweet> = ({
       bookMarkDelete(tweetId);
     }
   };
-
-  
-
-
-
-
   //handle likes
 
   const handleLikes = async () => {
