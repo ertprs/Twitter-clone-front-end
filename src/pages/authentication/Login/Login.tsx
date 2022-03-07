@@ -12,12 +12,39 @@ import { BASE_URL, HTTPCODE } from "../../../constants/contants";
 import { storeUser } from "../../../hooks/useLogin";
 import { notify } from "../../../hooks/useNotification";
 import { BeatLoader } from "react-spinners";
+import axios from "axios";
 
+import { AuthContext } from "./../../../context/Auth.context";
+import { useContext } from "react";
 import Swal from "sweetalert2";
 
 const url: string = `${BASE_URL}users/login`;
+const url2: string = `${BASE_URL}auth/google`;
 
 const Login = (): JSX.Element => {
+  const { user: any } = useContext(AuthContext);
+
+  const google = () => {
+    window.open(url2, "_self");
+  };
+
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const res = await axios.get(`http://localhost:3000/auth/login/success`);
+        console.log(res);
+        const response = res.data;
+        setUser(response);
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getUser();
+  }, []);
+
+  console.log(user);
   const [isLight, setIsLight] = useState(true);
   const [form, setForm] = useState<User>({ email: "", password: "" });
   const [showError, setShowError] = useState<boolean>(false);
@@ -84,7 +111,7 @@ const Login = (): JSX.Element => {
         });
       }
       console.log(response);
-    } catch (err: any) {
+    } catch (err) {
       console.error(err);
     }
   };
@@ -154,7 +181,7 @@ const Login = (): JSX.Element => {
         <div className={styles["social-logins"]}>
           <div className={styles["social-circle"]}>
             <div>
-              <FaGoogle />
+              <FaGoogle onClick={google} />
             </div>
           </div>
         </div>

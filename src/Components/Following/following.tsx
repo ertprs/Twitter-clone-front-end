@@ -54,9 +54,9 @@ function Following() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <p onClick={handleShow}>
         Following List
-      </Button>
+      </p>
 
       {following && console.log(following)}
 

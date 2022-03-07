@@ -4,6 +4,8 @@ import "./ProfileHeader.css";
 import Navbar from "../NavBar/Nav";
 import { Circles } from "react-loader-spinner";
 import { FaPlus } from "react-icons/fa";
+import Following from "../Following/following";
+import Follower from "../Follower/follower";
 
 interface IProps {
   firstName: string;
@@ -44,15 +46,17 @@ const ProfileHeader = (props: IProps) => {
               <div className="row">
                 <div className="col-sm-4 ">
                   <div className="spacer">
-                    {!props.profilePic ? 
-                    <div className='avatar-profile1'>{props.firstName + " " + props.lastName}</div>
-                    :  
-                    <img
-                    className="avatar-profile"
-                    src={props.profilePic}
-                    alt=""
-                    />
-                  }
+                    {!props.profilePic ? (
+                      <div className="avatar-profile1">
+                        {props.firstName + " " + props.lastName}
+                      </div>
+                    ) : (
+                      <img
+                        className="avatar-profile"
+                        src={props.profilePic}
+                        alt=""
+                      />
+                    )}
                   </div>
                 </div>
                 <div className="col-sm-6">
@@ -61,9 +65,12 @@ const ProfileHeader = (props: IProps) => {
                     <div className="col-sm-6">
                       <h5>{props.firstName + " " + props.lastName}</h5>
                     </div>
-                    <div className="col-sm-6">
-                      {props.followingCount} Following {props.followerCount}{" "}
-                      Followers
+                    <div className="col-sm-6 d-flex">
+                      <span>
+                        {" "}
+                        {props.followingCount} <Following />{" "}
+                        {props.followerCount} <Follower />{" "}
+                      </span>
                     </div>
                     <div className="col-sm-12">
                       {props.bioData}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import FollowingComponent from "../followingComponent/followingComponent";
-import "./following.scss";
+import "./follower.scss";
 import axios from "axios";
 import { AuthContext } from "../../context/Auth.context";
 import { useContext } from "react";
@@ -35,7 +35,6 @@ function Follower() {
     getFollowers();
   }, []);
 
-
   const followerElement = followers.map(
     ({ index, firstName, _id, lastName, profilePic, bioData, isFollow }) => (
       <FollowingComponent
@@ -51,9 +50,7 @@ function Follower() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Followers List
-      </Button>
+      <div onClick={handleShow}>Followers List</div>
 
       {followers && console.log(followers)}
 
