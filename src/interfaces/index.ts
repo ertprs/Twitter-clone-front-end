@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 export interface InputPropInterface {
     type?: string ;
     className?: string;
-    onChange: (value: string) => void;
+    onChange: (e: any) => void;
     name: string;
     label?: string;
     placeholder: string;
@@ -12,7 +12,7 @@ export interface InputPropInterface {
 
 export interface TextAreaPropInterface {
     className?: string;
-    onChange: (value: string) => void;
+    onChange: (e: any) => void;
     name: string;
     label?: string;
     placeholder: string;
@@ -25,4 +25,25 @@ export interface ButtonPropInterface {
     onClick: () => void;
     type?: "button" | "submit" | "reset";
     children: ReactNode;
+}
+
+export interface memberObj {
+    createdAt: string;
+    id:string;
+    members: eachMember[];
+    updatedAt: string;
+    _v?:number;
+    _id:string
+}
+
+export type eachMember = {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    biodata: string;
+    profilePic:string;
+    createdAt:string;
+    updatedAt:string;
+    provider:string;
 }

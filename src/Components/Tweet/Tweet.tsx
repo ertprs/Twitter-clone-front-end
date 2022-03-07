@@ -164,12 +164,6 @@ const Tweet: React.FC<iTweet> = ({
       bookMarkDelete(tweetId);
     }
   };
-
-  
-
-
-
-
   //handle likes
 
   const handleLikes = async () => {
@@ -259,10 +253,35 @@ const Tweet: React.FC<iTweet> = ({
                 <img
                
                   src={userId.profilePic}
-                  onError={imageErrorHandler}
+                 onError ={imageErrorHandler}
+                  className={classes.profile__img}
+            
+                  />
+                </Link>
+              </div>
+              <div className={classes.person}>
+                <p className={classes.person_name}>
+                  {userId.firstName + " " + userId.lastName}
+                </p>
+                <p className={classes.person_date}>
+                  {Moment(createdAt).format("DD-MM-YYYY hh:ss")}
+                </p>
+              </div>
+            </div>
+            <div className={classes.tweet}>
+              <p>{messageBody}</p>
+            </div>
+            <div className={classes.main}>
+              <img
+                src={tweetImage}
+                onError ={imageErrorHandler}
+                className={classes.main_img}
+                alt="img"
+              />
+                  {/* onError={imageErrorHandler}
                   className={classes.profile__img}
                 />
-              </Link>
+              </Link> */}
             </div>
             <div className={classes.person}>
               <p className={classes.person_name}>
@@ -328,6 +347,7 @@ const Tweet: React.FC<iTweet> = ({
                 src={user.user.profilePic}
                   onError={imageErrorHandler}
                   className={classes.profile2_img}
+               
                 />
                 }
               </Link>
@@ -358,9 +378,6 @@ const Tweet: React.FC<iTweet> = ({
             </form>
           </div>
         </div>
-     
-
-      </div>
     </>
   );
 };

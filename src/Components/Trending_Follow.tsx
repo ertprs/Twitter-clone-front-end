@@ -6,9 +6,12 @@ import { UserContext } from "../hooks/useContext";
 import styles from "../styles/Tweeting_style/TweetController.module.css";
 // import { followingContext } from "./FollowingProvider";
 import { BeatLoader } from "react-spinners";
+import {AuthContext} from "../context/Auth.context";
+
 
 function Trending_Follow() {
   // const { followerTweet } = useContext(followingContext);
+  const {user} = useContext(AuthContext);
 
   const userToken: any = useContext(UserContext);
   const token = userToken.token;
@@ -51,16 +54,19 @@ function Trending_Follow() {
 
   const handleFollow = (userId: string) => {
     axios
-      .post(`${BASE_URL}api/follow`, { userId }, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      .post(
+        `${BASE_URL}api/follow`,
+        { userId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      })
+      )
       .then((res) => {
         console.log(res.data);
-        // setFollow({
-        //     item: `following ${item._id}`
-        // })
+        const newFollow = follow.filter((item) => item._id !== userId);
+        setFollow(newFollow);
       })
       .catch((err) => {
         console.log(err);
@@ -82,7 +88,9 @@ function Trending_Follow() {
               </div>
             ))
           ) : (
-            <BeatLoader color="#2F80ED" />
+            <div className="d-flex justify-content-center my-3 h-100">
+              <BeatLoader color="#2F80ED" />
+            </div>
           )}
         </div>
 
@@ -94,7 +102,23 @@ function Trending_Follow() {
               follow.map((item) => (
                 <div className={styles["suggest-content"]}>
                   <div className={styles["suggest-user"]}>
-                    <img src={item.profilePic} alt="" />
+                    {item.profilePic ? 
+                    <img src={item.profilePic} alt="" /> : <div
+                    style={{
+                      background: "#2F80ED",
+                      width: "43px",
+                      height: "43px",
+                      borderRadius: "20px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#fff",
+                      marginTop: "20px",
+                      fontWeight: "bold"
+                    }}
+                  >
+                    {item.firstName.charAt(0).toUpperCase() + item.lastName.charAt(0).toUpperCase()}
+                  </div>}
                     <h3>{`${item.firstName} ${item.lastName}`}</h3>
                     <button onClick={() => handleFollow(item._id)}>
                       <span></span>follow
@@ -103,9 +127,10 @@ function Trending_Follow() {
                 </div>
               ))
             ) : (
-              <BeatLoader color="#2F80ED" />
+              <div className="d-flex justify-content-center my-3">
+                <BeatLoader color="#2F80ED" />
+              </div>
             )}
-
             <div className={styles.underline}></div>
           </div>
         </div>
