@@ -13,7 +13,10 @@ import { AiOutlineSend } from "react-icons/ai";
 import { MdInsertEmoticon } from "react-icons/md";
 import { AuthContext } from "../../context/Auth.context";
 import { BASE_URL } from "../../constants/contants";
-// import { Item } from "framer-motion/types/components/Reorder/Item";
+import io from 'socket.io-client';
+import {Picker} from 'emoji-mart';
+import "emoji-mart/css/emoji-mart.css"
+
 import {
   memberObj,
   eachMember,
@@ -23,10 +26,13 @@ import {
 } from "../../interfaces/index";
 
 interface IcurrentUser {
+  userId: string;
   firstName: string;
   lastName: string;
   profilePic: string;
 }
+
+const sockets = io("http://localhost:3000");
 
 const Chat2 = () => {
   const { user } = useContext(AuthContext);
@@ -44,6 +50,45 @@ const Chat2 = () => {
   const [getConversationError, setGetConversationError] = useState(null);
   const [style, setStyle] = useState("classes.friend");
   const messageEndRef = useRef<null | HTMLDivElement>(null);
+  const [showEmojis, setShowEmojis]= useState(false);
+ const [socket, setSocket] = useState<any |null>(null);
+
+
+ useEffect(() => {
+   sockets.emit('addUser', user.user._id)
+   console.log("I am in")
+ }, [user.user._id])
+
+ useEffect(() => {
+
+  const data = {
+    senderId: currentUser?.userId,
+    text: message
+  }
+  //  sockets.emit('getMessage', data )
+ })
+
+ const handleSendMessage = async() => {
+    const data = {
+      senderId: user.user._id,
+      receiverId: currentUser?.userId,
+      text: message
+    }
+    console.log(data)
+    //return data;
+    sockets.emit('sendMessage', data)
+
+   
+    
+ }
+
+//  useEffect(() => {
+//    sockets.emit('sendMessage', { 
+//      senderId: user.user._id, 
+//      receiverId: `${currentConversationId}`, 
+//      text: newMessage
+//     })
+//  }, [currentConversationId, newMessage, user.user._id])
 
   useEffect(() => {
     const fetchConversation = async () => {
@@ -63,11 +108,14 @@ const Chat2 = () => {
 
         const conversations = info.map((item: any) => {
           const conversation: Conversation = {} as Conversation;
+          
 
           conversation.conversationId = item._id;
           const personB = item.members.filter(
             (el: any) => el._id !== user.user._id
           );
+          
+          
           conversation.firstName = personB[0].firstName;
           conversation.lastName = personB[0].lastName;
           conversation.email = personB[0].email;
@@ -85,6 +133,7 @@ const Chat2 = () => {
         setCurrentConversationId(conversations[1].conversationId);
 
         setCurrentUser({
+          userId: conversations[1].userId,
           firstName: conversations[1].firstName,
           lastName: conversations[1].lastName,
           profilePic: conversations[1].profilePic,
@@ -94,6 +143,7 @@ const Chat2 = () => {
           conversations[1].firstName,
           conversations[1].lastName,
           conversations[1].profilePic,
+          conversations[1].userId,
           "current"
         );
         // setCurrentUser(conversations[1].firstName );
@@ -139,6 +189,24 @@ const Chat2 = () => {
       fetchMessage();
     }
   }, [currentConversationId, user.token]);
+
+  // useEffect(() => {
+  //   setSocket(io("http://localhost:3001"), {
+  //     headers: {
+  //       Authorization: `Bearer ${user.token}`,
+  //     },
+  //   } )
+  // }, [])
+
+  
+
+  const addEmoji = (e: any) => {  
+    let sym = e.unified.split("-");  
+    let codesArray:any = [];  
+    sym.forEach((el:any) => codesArray.push("0x" + el));  
+    let emoji = String.fromCodePoint(...codesArray);  
+    setMessage(message + emoji);  
+  };  
 
   // const scrollToBottom = () => {
   //   messageEndRef.current?.scrollIntoView({ behavior: "smooth", block: 'end',
@@ -243,6 +311,7 @@ const Chat2 = () => {
                   onClick={() => {
                     setCurrentConversationId(item.conversationId);
                     setCurrentUser({
+                      userId: item.userId,
                       firstName: item.firstName,
                       lastName: item.lastName,
                       profilePic: item.profilePic,
@@ -368,13 +437,14 @@ const Chat2 = () => {
                 );
               })}
 
-              {currentMessage && currentMessage.length === 0 &&
+              {!isFetchingMessage && currentMessage && currentMessage.length === 0 &&
           <span className={classes.chat_background}>
             <p className={classes.chat_shadow}>Start a conversation</p>
             <FaTwitter className={classes.chat_shadowicon} />
           </span> }
           </div>
-
+          
+     
           <div className={classes.chat_form}>
             <div className={classes.form_body}>
               <form className={classes.form_case}>
@@ -387,9 +457,11 @@ const Chat2 = () => {
                   value={message}
                 ></textarea>
               </form>
-              <MdInsertEmoticon className={classes.form_emoji} />
-              <AiOutlineSend className={classes.form_send} />
+              <MdInsertEmoticon className={classes.form_emoji} onClick={() => setShowEmojis(!showEmojis)}/>
+              <AiOutlineSend className={classes.form_send} onClick={handleSendMessage}/>
+              
             </div>
+           
           </div>
 
           {/* <span className={classes.chat_background}>
