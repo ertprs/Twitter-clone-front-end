@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 export interface InputPropInterface {
     type?: string ;
     className?: string;
-    onChange: (value: string) => void;
+    onChange: (e: any) => void;
     name: string;
     label?: string;
     placeholder: string;
@@ -12,7 +12,7 @@ export interface InputPropInterface {
 
 export interface TextAreaPropInterface {
     className?: string;
-    onChange: (value: string) => void;
+    onChange: (e: any) => void;
     name: string;
     label?: string;
     placeholder: string;

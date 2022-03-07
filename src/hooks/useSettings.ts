@@ -4,7 +4,7 @@ export const useSettings = () => {
     const [inputs, setInputs] = useState({})
     const [image, setImage] = useState({
         file: {},
-        preview: ""
+        preview: ''
     })
 
     const selectPhoto = (e: any) => {
