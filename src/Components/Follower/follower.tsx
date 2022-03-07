@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import FollowingComponent from "../followingComponent/followingComponent";
 import "./follower.scss";
 import axios from "axios";

@@ -48,11 +48,10 @@ function TweetContent() {
                   />
                 );
               })}
-
                   {isScrolling ?  <CirclesWithBar
                     color="#2F80ED"
-                    height={70}
-                    width={70}
+                    height={50}
+                    width={50}
                     wrapperStyle={{ justifyContent: "center",marginTop:"30px" }}
                   />:""}
             </div>
