@@ -6,9 +6,12 @@ import { UserContext } from "../hooks/useContext";
 import styles from "../styles/Tweeting_style/TweetController.module.css";
 // import { followingContext } from "./FollowingProvider";
 import { BeatLoader } from "react-spinners";
+import {AuthContext} from "../context/Auth.context";
+
 
 function Trending_Follow() {
   // const { followerTweet } = useContext(followingContext);
+  const {user} = useContext(AuthContext);
 
   const userToken: any = useContext(UserContext);
   const token = userToken.token;
@@ -62,8 +65,8 @@ function Trending_Follow() {
       )
       .then((res) => {
         console.log(res.data);
-        const newFollow = follow.filter(item => item._id !== userId)
-        setFollow(newFollow)
+        const newFollow = follow.filter((item) => item._id !== userId);
+        setFollow(newFollow);
       })
       .catch((err) => {
         console.log(err);
@@ -112,6 +115,16 @@ function Trending_Follow() {
                 <BeatLoader color="#2F80ED" />
               </div>
             )}
+
+            <div
+              style={{
+                background: "#2F80ED",
+                width: "43px",
+                height: "43px",
+                borderRadius: "20px",
+              }}
+            >
+            </div>
 
             <div className={styles.underline}></div>
           </div>

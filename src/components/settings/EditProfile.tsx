@@ -33,6 +33,8 @@ const EditProfile = () => {
             <a href="/changePassword">change password</a>
           </div>
         </div>
+        
+      
         <div className="change-profile-pics">
           <label htmlFor="upload-button">
             <div className="photo-input">
