@@ -33,7 +33,7 @@ interface IcurrentUser {
   profilePic: string;
 }
 
-const sockets = io("http://localhost:3000");
+const sockets = io("https://tweetaclone.herokuapp.com");
 
 const Chat2 = () => {
   const { user } = useContext(AuthContext);
