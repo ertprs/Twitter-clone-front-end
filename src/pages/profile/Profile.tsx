@@ -79,7 +79,7 @@ const Profile = () => {
       <div className="container">
         <div className="row">
           <div className="col-sm-3">
-            <Tweet />
+            <TweetNav />
             
           </div>
           <div className="col-sm-9">
