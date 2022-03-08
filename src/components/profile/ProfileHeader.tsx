@@ -44,7 +44,7 @@ const ProfileHeader = (props: IProps) => {
           ) : (
             <div className="card-body">
               <div className="row">
-                <div className="col-sm-4 ">
+                <div className="col-sm-3 ">
                   <div className="spacer">
                     {!props.profilePic ? (
                       <div className="avatar-profile1">
@@ -62,17 +62,15 @@ const ProfileHeader = (props: IProps) => {
                 <div className="col-sm-6">
                   {/* <br /> */}
                   <div className="row">
-                    <div className="col-sm-6">
+                    <div className="col-sm-4">
                       <h5>{props.firstName + " " + props.lastName}</h5>
                     </div>
-                    <div className="col-sm-6 d-flex">
-                      <span>
-                        {" "}
-                        {props.followingCount} <Following />{" "}
-                        {props.followerCount} <Follower />{" "}
-                      </span>
+                    <div className="col-sm-6 d-flex ">
+                      {props.followingCount}<Following /> 
+                      {props.followerCount}
+                      <Follower />
                     </div>
-                    <div className="col-sm-12">
+                    <div className="col-sm-12" style={{marginTop: "40px"}} >
                       {props.bioData}
                       {/* Photographer & Filmmaker based in Copenhagen, Denmark ✵ 🇩🇰 */}
                     </div>

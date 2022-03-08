@@ -50,7 +50,7 @@ function Follower() {
 
   return (
     <>
-      <div onClick={handleShow}>Followers List</div>
+      <div className="follow-button" onClick={handleShow}>Followers List</div>
 
       {followers && console.log(followers)}
 

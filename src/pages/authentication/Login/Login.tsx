@@ -25,7 +25,8 @@ const Login = (): JSX.Element => {
   const { user: any } = useContext(AuthContext);
 
   const google = () => {
-    window.open(url2, "_self");
+    window.open("http://localhost:3000/auth/google", "_self");
+    console.log(user)
   };
 
   const [user, setUser] = useState(null);
