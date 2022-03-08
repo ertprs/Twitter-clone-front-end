@@ -8,7 +8,9 @@ import { AuthContext } from "../../context/Auth.context";
 import { useContext } from "react";
 
 function FollowingComponent(props: any, _id: any) {
+  let followT = props.isFollow ? 'Unfollow' : 'Follow'
   const { user } = useContext(AuthContext);
+  const [followText, setFollowText] = useState(followT);
   console.log(user);
 
   const instance = axios.create({
@@ -19,26 +21,27 @@ function FollowingComponent(props: any, _id: any) {
     },
   });
 
-  const follow = (id: string) => {
+  const follow = async (id: string) => {
     try {
-      const res = instance.post("/api/follow", {
+      const res = await instance.post("/api/follow", {
         userId: props.id,
       });
-
+      console.log(res.status);
+      res.status === 200 && setFollowText("Unfollow");
       return res;
     } catch (error) {
       console.log(error);
     }
   };
 
-  const unfollow = (id: string) => {
+  const unfollow = async (id: string) => {
     try {
-      const res = instance.delete("/api/follow", {
+      const res = await instance.delete("/api/follow", {
         data: {
           userId: props.id,
         },
       });
-
+      res.status === 200 && setFollowText("Follow");
       return res;
     } catch (error) {
       console.log(error);
@@ -61,7 +64,8 @@ function FollowingComponent(props: any, _id: any) {
             </div>
           </div>
           <Button className="my-button" onClick={handleClick}>
-            {props.isFollow ? "Unfollow" : "Follow"}
+            {/* {props.isFollow ? "Unfollow" : "Follow"} */}
+            {followText}
           </Button>
         </div>
         <div>

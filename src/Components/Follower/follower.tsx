@@ -9,6 +9,7 @@ import { useContext } from "react";
 function Follower() {
   const { user } = useContext(AuthContext);
   const [show, setShow] = useState(false);
+  const [unfollowClick, setUnfollowClick] = useState(false)
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -31,10 +32,14 @@ function Follower() {
       } catch (err) {
         console.log(err);
       }
+      console.log(unfollowClick)
     };
     getFollowers();
-  }, []);
-
+  }, [unfollowClick, user.token]);
+  
+  const handleUnfollow = () =>{
+    setUnfollowClick(false)
+  }
   const followerElement = followers.map(
     ({ index, firstName, _id, lastName, profilePic, bioData, isFollow }) => (
       <FollowingComponent
@@ -44,6 +49,7 @@ function Follower() {
         bioData={bioData}
         isFollow={isFollow}
         id={_id}
+        handleUnfollow={handleUnfollow}
       />
     )
   );
