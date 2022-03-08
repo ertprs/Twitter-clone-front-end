@@ -13,9 +13,10 @@ import { AiOutlineSend } from "react-icons/ai";
 import { MdInsertEmoticon } from "react-icons/md";
 import { AuthContext } from "../../context/Auth.context";
 import { BASE_URL } from "../../constants/contants";
-import io from 'socket.io-client';
-import {Picker} from 'emoji-mart';
-import "emoji-mart/css/emoji-mart.css"
+import io from "socket.io-client";
+import { Picker } from "emoji-mart";
+import "emoji-mart/css/emoji-mart.css";
+import { v4 as uuidv4 } from "uuid";
 
 import {
   memberObj,
@@ -39,7 +40,7 @@ const Chat2 = () => {
   let params = useParams();
   const [isFetchingConversation, setIsFetchingConversation] = useState(false);
   const [isFetchingMessage, setIsFetchingMessage] = useState(false);
-  const [currentMessage, setCurrentMessage] = useState<Message[] | null>(null);
+  const [currentMessage, setCurrentMessage] = useState<IMessage[] | null>(null);
   const [currentConversationId, setCurrentConversationId] = useState("");
   const [currentUser, setCurrentUser] = useState<IcurrentUser | null>(null);
   const [currentName, setCurrentName] = useState("");
@@ -50,45 +51,87 @@ const Chat2 = () => {
   const [getConversationError, setGetConversationError] = useState(null);
   const [style, setStyle] = useState("classes.friend");
   const messageEndRef = useRef<null | HTMLDivElement>(null);
-  const [showEmojis, setShowEmojis]= useState(false);
- const [socket, setSocket] = useState<any |null>(null);
+  const [showEmojis, setShowEmojis] = useState(false);
+  const [socket, setSocket] = useState<any | null>(null);
 
+  useEffect(() => {
+    sockets.emit("addUser", user.user._id);
+    console.log("I am in");
+  }, [user.user._id]);
 
- useEffect(() => {
-   sockets.emit('addUser', user.user._id)
-   console.log("I am in")
- }, [user.user._id])
+  useEffect(() => {
+    sockets.on("getMessage", ({ message }) => {
+      // console.log(message, "New message");
+      const val = {} as IMessage;
+      val.senderId = message.senderId;
+      val.text = message.text;
+      val.conversationId = message.conversationId;
+      val.createdAt = message.createdAt;
+      val.id = message.id;
 
- useEffect(() => {
+      console.log({ val });
 
-  const data = {
-    senderId: currentUser?.userId,
-    text: message
-  }
-  //  sockets.emit('getMessage', data )
- })
+      console.log(currentMessage);
 
- const handleSendMessage = async() => {
+      if (currentMessage) {
+        setCurrentMessage([...currentMessage, val]);
+      }
+
+      // setCurrentMessage([...(currentMessage as IMessage[]), val]);
+      messageEndRef.current?.scrollTo({
+        top: messageEndRef.current?.scrollHeight,
+        // behavior: "smooth",
+      });
+    });
+  }, [currentMessage]);
+
+  const handleSendMessage = async () => {
     const data = {
       senderId: user.user._id,
       receiverId: currentUser?.userId,
-      text: message
-    }
-    console.log(data)
+      text: message,
+      conversationId: currentConversationId,
+    };
+
+    /* 
+              senderId: {
+                _id
+              }
+              text
+              createdAt
+              conversationId
+              id
+            */
+    const val = {
+      senderId: {
+        _id: user.user._id,
+      },
+      text: message,
+      createdAt: new Date(),
+      conversationId: currentConversationId,
+      id: uuidv4(),
+    };
+    console.log({ val });
     //return data;
-    sockets.emit('sendMessage', data)
+    sockets.emit("sendMessage", data);
 
-   
-    
- }
+    console.log({ currentMessage });
 
-//  useEffect(() => {
-//    sockets.emit('sendMessage', { 
-//      senderId: user.user._id, 
-//      receiverId: `${currentConversationId}`, 
-//      text: newMessage
-//     })
-//  }, [currentConversationId, newMessage, user.user._id])
+    setCurrentMessage([...(currentMessage as IMessage[]), val]);
+    messageEndRef.current?.scrollTo({
+      top: messageEndRef.current?.scrollHeight,
+      // behavior: "smooth",
+    });
+    setMessage("");
+  };
+
+  //  useEffect(() => {
+  //    sockets.emit('sendMessage', {
+  //      senderId: user.user._id,
+  //      receiverId: `${currentConversationId}`,
+  //      text: newMessage
+  //     })
+  //  }, [currentConversationId, newMessage, user.user._id])
 
   useEffect(() => {
     const fetchConversation = async () => {
@@ -108,14 +151,12 @@ const Chat2 = () => {
 
         const conversations = info.map((item: any) => {
           const conversation: Conversation = {} as Conversation;
-          
 
           conversation.conversationId = item._id;
           const personB = item.members.filter(
             (el: any) => el._id !== user.user._id
           );
-          
-          
+
           conversation.firstName = personB[0].firstName;
           conversation.lastName = personB[0].lastName;
           conversation.email = personB[0].email;
@@ -130,20 +171,20 @@ const Chat2 = () => {
         // conversations = ;
         // console.log(conversations)
 
-        setCurrentConversationId(conversations[1].conversationId);
+        setCurrentConversationId(conversations[0].conversationId);
 
         setCurrentUser({
-          userId: conversations[1].userId,
-          firstName: conversations[1].firstName,
-          lastName: conversations[1].lastName,
-          profilePic: conversations[1].profilePic,
+          userId: conversations[0].userId,
+          firstName: conversations[0].firstName,
+          lastName: conversations[0].lastName,
+          profilePic: conversations[0].profilePic,
         });
 
         console.log(
-          conversations[1].firstName,
-          conversations[1].lastName,
-          conversations[1].profilePic,
-          conversations[1].userId,
+          conversations[0].firstName,
+          conversations[0].lastName,
+          conversations[0].profilePic,
+          conversations[0].userId,
           "current"
         );
         // setCurrentUser(conversations[1].firstName );
@@ -198,15 +239,13 @@ const Chat2 = () => {
   //   } )
   // }, [])
 
-  
-
-  const addEmoji = (e: any) => {  
-    let sym = e.unified.split("-");  
-    let codesArray:any = [];  
-    sym.forEach((el:any) => codesArray.push("0x" + el));  
-    let emoji = String.fromCodePoint(...codesArray);  
-    setMessage(message + emoji);  
-  };  
+  const addEmoji = (e: any) => {
+    let sym = e.unified.split("-");
+    let codesArray: any = [];
+    sym.forEach((el: any) => codesArray.push("0x" + el));
+    let emoji = String.fromCodePoint(...codesArray);
+    setMessage(message + emoji);
+  };
 
   // const scrollToBottom = () => {
   //   messageEndRef.current?.scrollIntoView({ behavior: "smooth", block: 'end',
@@ -399,7 +438,7 @@ const Chat2 = () => {
 
             {currentMessage &&
               currentMessage.map((msg) => {
-                console.log(currentMessage)
+                console.log(currentMessage);
                 return msg.senderId._id !== user.user._id ? (
                   <div className={classes.chat_boxA} key={msg.id}>
                     <div
@@ -437,14 +476,16 @@ const Chat2 = () => {
                 );
               })}
 
-              {!isFetchingMessage && currentMessage && currentMessage.length === 0 &&
-          <span className={classes.chat_background}>
-            <p className={classes.chat_shadow}>Start a conversation</p>
-            <FaTwitter className={classes.chat_shadowicon} />
-          </span> }
+            {!isFetchingMessage &&
+              currentMessage &&
+              currentMessage.length === 0 && (
+                <span className={classes.chat_background}>
+                  <p className={classes.chat_shadow}>Start a conversation</p>
+                  <FaTwitter className={classes.chat_shadowicon} />
+                </span>
+              )}
           </div>
-          
-     
+
           <div className={classes.chat_form}>
             <div className={classes.form_body}>
               <form className={classes.form_case}>
@@ -457,11 +498,15 @@ const Chat2 = () => {
                   value={message}
                 ></textarea>
               </form>
-              <MdInsertEmoticon className={classes.form_emoji} onClick={() => setShowEmojis(!showEmojis)}/>
-              <AiOutlineSend className={classes.form_send} onClick={handleSendMessage}/>
-              
+              <MdInsertEmoticon
+                className={classes.form_emoji}
+                onClick={() => setShowEmojis(!showEmojis)}
+              />
+              <AiOutlineSend
+                className={classes.form_send}
+                onClick={handleSendMessage}
+              />
             </div>
-           
           </div>
 
           {/* <span className={classes.chat_background}>
