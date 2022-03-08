@@ -20,6 +20,7 @@ const Profile = () => {
   const [getProfileError, setGetProfileError] = useState(null);
   const [isFetchingProfile, setIsFetchingProfile] = useState(false);
   const [profile, setProfile] = useState<Record<string, any> | null>(null);
+  const [tweets, setTweets] = useState([]);
   
 
   useEffect(() => {
@@ -45,6 +46,22 @@ const Profile = () => {
     
     fetchData();
   }, [params.id, user.token]);
+  
+  useEffect(() => { 
+        const displayTweets = async () => {
+          const res = await fetch(`${BASE_URL}tweeting/allTweet`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${user.token}`
+            }
+          });
+          const result = await res.json();
+          console.log(result.data)
+          setTweets(result.data);
+        }
+        displayTweets();
+      }, [])
 
   return (
     <div>
@@ -57,6 +74,7 @@ const Profile = () => {
         followingCount={profile?.following.Totalfollowing}
         isFetching={isFetchingProfile}
       />
+      
       {/* <br /> */}
       <div className="container">
         <div className="row">
@@ -65,9 +83,13 @@ const Profile = () => {
             
           </div>
           <div className="col-sm-9">
-            <Tweet />
-            <Tweet />
-            <Tweet />
+          {tweets && tweets.map((tweet: any, index: any) => (
+            <div key={index}>
+              <Routes>
+                <Route path="tweet" element={<Tweet />} />
+              </Routes>
+            </div>
+          ))}
           </div>
         </div>
       </div>
@@ -76,3 +98,13 @@ const Profile = () => {
 };
 
 export default Profile;
+
+{/* <div className="col-sm-9">
+          {tweets && tweets.map((tweet: any, index: any) => (
+            <div key={index}>
+              <Routes>
+                <Route path="tweet" element={<Tweet updatedAt={tweet.updatedAt} messageBody={tweet.messageBody}/>} />
+              </Routes>
+            </div>
+          ))}
+          </div> */}

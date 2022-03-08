@@ -229,12 +229,18 @@ const Tweet: React.FC<iTweet> = ({
           <div className={classes.top}>
             <div className={classes.profile}>
               <Link to="/profile">
+
+                {userId.profilePic == "null" ? 
+              <div className="image-replacer"><h6>{userId.firstName[0].toUpperCase()+"."+userId.lastName[0].toUpperCase()}</h6></div> :
+                
+        
                 <img
                   src={userId.profilePic}
                  onError ={imageErrorHandler}
                   className={classes.profile__img}
                   // alt="pro-img"
                   />
+                  }
                 </Link>
               </div>
               <div className={classes.person}>
@@ -245,13 +251,15 @@ const Tweet: React.FC<iTweet> = ({
                   {Moment(createdAt).format("DD-MM-YYYY hh:ss")}
                 </p>
               </div>
+
+
             </div>
             <div className={classes.tweet}>
-              <p>{messageBody}</p>
+              <p style= {{margin:0}}>{messageBody}</p>
             </div>
             <div className={classes.main}>
               <img
-                src={tweetImage}
+                src={!tweetImage ? "":tweetImage }
                 onError ={imageErrorHandler}
                 className={classes.main_img}
                 alt="img"
