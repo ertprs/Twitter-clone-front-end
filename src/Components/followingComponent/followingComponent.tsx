@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../Following/following";
+import "../Follower/follower";
 import { PersonPlusFill } from "react-bootstrap-icons";
 import axios from "axios";
 import { AuthContext } from "../../context/Auth.context";
