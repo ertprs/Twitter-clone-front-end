@@ -12,6 +12,8 @@ import { BASE_URL, HTTPCODE } from "../../../constants/contants";
 import { storeUser } from "../../../hooks/useLogin";
 import { notify } from "../../../hooks/useNotification";
 import { BeatLoader } from "react-spinners";
+import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router-dom"
 
 import Swal from "sweetalert2";
 
@@ -70,7 +72,7 @@ const Login = (): JSX.Element => {
           timer: 1500,
         });
         setTimeout(() => {
-          window.location.reload();
+          window.location.href='/';
         }, 2000);
       }
       if (HTTPCODE.bad.includes(response.status)) {
@@ -149,17 +151,24 @@ const Login = (): JSX.Element => {
             {loadingMsg === "loading" && <BeatLoader color="#2F80ED" />}
             {loadingMsg !== "loading" && "Login"}
           </button>
-        </div>
-        <p>or continue with these social profile</p>
-        <div className={styles["social-logins"]}>
-          <div className={styles["social-circle"]}>
-            <div>
-              <FaGoogle />
-            </div>
-          </div>
+          <button style={{
+            background: "transparent",
+            border: "1px solid #444",
+            color: "#444",
+            marginTop: "5px",
+            fontSize: "0.8rem",
+            textTransform: "capitalize"
+          }}>
+            <FcGoogle style={{
+              marginRight: "13px",
+              fontSize: "1rem",
+              letterSpacing: "2px"
+              }}  />
+            LOGIN WITH GOOGLE
+          </button>
         </div>
         <p>
-          Don't have an account yet? <a href="/signup">Register </a>
+          Don't have an account yet? <Link to="/signup">Register </Link>
         </p>
         <p className={styles["forget-password"]}>
           <a href="/forgot-password">Forget password?</a>
