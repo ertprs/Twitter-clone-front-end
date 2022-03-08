@@ -1,6 +1,7 @@
 import classes from "./Tweet.module.css";
-import { FiMessageSquare, FiHeart, FiBookmark } from "react-icons/fi";
-import { IoIosRepeat } from "react-icons/io";
+import { FiMessageSquare, FiBookmark } from "react-icons/fi";
+import { BsFillSuitHeartFill } from "react-icons/bs";
+import { FaRetweet } from "react-icons/fa";
 import { AiOutlineSend } from "react-icons/ai";
 import { ChangeEvent, useContext, useState } from "react";
 // import { followingContext, iFollowing } from "../FollowingProvider";
@@ -163,12 +164,6 @@ const Tweet: React.FC<iTweet> = ({
       bookMarkDelete(tweetId);
     }
   };
-
-  
-
-
-
-
   //handle likes
 
   const handleLikes = async () => {
@@ -241,25 +236,33 @@ const Tweet: React.FC<iTweet> = ({
 
 
 
-  const imageErrorHandler = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src =
-      "https://raw.githubusercontent.com/decadevs/live-project-frontend-tweeter-clone-team-a/main/Screen%20Shot%202022-02-25%20at%208.51.24%20PM.png?token=GHSAT0AAAAAABOGDBLLUQNS3I2GZVBZJMU4YRCN5JA";
+  const imageErrorHandler = (e:any) => {
+
+    e.target.style.display = "none"
   };
 
   return (
     <>
       <div className={classes.container}>
+      
+      
         <div className={classes.wrapper}>
           <div className={classes.top}>
             <div className={classes.profile}>
               <Link to="/profile">
+
+                {userId.profilePic == "null" ? 
+              <div className="image-replacer"><h6>{userId.firstName[0].toUpperCase()+"."+userId.lastName[0].toUpperCase()}</h6></div> :
+                
+        
                 <img
-                alt="logo"
+               
                   src={userId.profilePic}
                  onError ={imageErrorHandler}
                   className={classes.profile__img}
             
                   />
+                  }
                 </Link>
               </div>
               <div className={classes.person}>
@@ -270,13 +273,15 @@ const Tweet: React.FC<iTweet> = ({
                   {Moment(createdAt).format("DD-MM-YYYY hh:ss")}
                 </p>
               </div>
+
+
             </div>
             <div className={classes.tweet}>
-              <p>{messageBody}</p>
+              <p style= {{margin:0}}>{messageBody}</p>
             </div>
             <div className={classes.main}>
               <img
-                src={tweetImage}
+                src={!tweetImage ? "":tweetImage }
                 onError ={imageErrorHandler}
                 className={classes.main_img}
                 alt="img"
@@ -286,25 +291,8 @@ const Tweet: React.FC<iTweet> = ({
                 />
               </Link> */}
             </div>
-            <div className={classes.person}>
-              <p className={classes.person_name}>
-                {userId.firstName + " " + userId.lastName}
-              </p>
-              <p className={classes.person_date}>
-                {Moment.utc(createdAt).local().startOf("seconds").fromNow()}
-              </p>
-            </div>
-          </div>
-          <div className={classes.tweet}>
-            <p>{messageBody}</p>
-          </div>
-          <div className={classes.main}>
-            <img
-            alt='logo'
-              src={tweetImage}
-              onError={imageErrorHandler}
-              className={classes.main_img}
-            />
+
+        
           </div>
           <div>
             <ul className={classes.second}>
@@ -322,19 +310,19 @@ const Tweet: React.FC<iTweet> = ({
                 </span>
               </button>
               <button onClick={() => handleReTweet(_id)}>
-                <span style={{ color: isFollowerRetweet ? "red" : "green" }}>
-                  <IoIosRepeat className={classes.icons} />
+                <span style={{ color: isFollowerRetweet ? "red" : "grey" }}>
+                  <FaRetweet className={classes.icons} />
                   <span className={classes.button}>Retweets</span>
                 </span>
               </button>
               <button onClick={() => handleLikes()}>
-                <span style={{ color: isLike ? "red" : "green" }}>
-                  <FiHeart className={classes.icons} />
+                <span style={{ color: isLike ? "deeppink" : "grey" }}>
+                  <BsFillSuitHeartFill className={classes.icons} />
                   <span className={classes.button}>Likes</span>
                 </span>
               </button>
               <button onClick={() => handleBookMarkTweet(_id)}>
-                <span style={{ color: isbookMark ? "red" : "green" }}>
+                <span style={{ color: isbookMark ? "red" : "grey" }}>
                   <FiBookmark className={classes.icons} />
                   <span className={classes.button}>Saved</span>
                 </span>
@@ -343,14 +331,17 @@ const Tweet: React.FC<iTweet> = ({
           </div>
           <div className={classes.last}>
             <div className={classes.profile2}>
-              <Link to="profile">
+              <Link to="/profile">
+
+              {!user.user.profilePic  || user.user.profilePic=="null"?  
+              <div className="image-replacer"><h6>{user.user.firstName[0].toUpperCase()+"."+user.user.lastName[0].toUpperCase()}</h6></div> :
                 <img
-                alt="logo"
                 src={user.user.profilePic}
                   onError={imageErrorHandler}
                   className={classes.profile2_img}
                
                 />
+                }
               </Link>
             </div>
             <form action="" className={classes.form}>
@@ -379,7 +370,8 @@ const Tweet: React.FC<iTweet> = ({
             </form>
           </div>
         </div>
-      {/* </div> */}
+     
+     
     </>
   );
 };
