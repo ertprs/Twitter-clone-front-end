@@ -85,7 +85,7 @@ const Profile = () => {
           {tweets.length>0 && tweets.map((val:any,i:any)=>(
         <div>
           {/* <p>{val['item']['messageBody']}{val['item']['_id']}</p>  */}
-          <Tweet messageBody={val['item']['messageBody']}/>
+          <Tweet messageBody={val['item']['messageBody']} createdAt={val['item']['createdAt']}/>
         </div>
       ))
       }
