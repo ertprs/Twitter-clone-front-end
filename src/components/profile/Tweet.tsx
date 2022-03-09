@@ -1,7 +1,11 @@
 import React from "react";
+import { UserContext } from "../../hooks/useContext";
+import { useContext } from "react"
 // import Tweetnav from "./TweetNav"
 
 const Tweet = (props:any) => {
+  const msg:any = useContext(UserContext)
+
   return (
     <div className="">
       <div className="card">
@@ -15,8 +19,8 @@ const Tweet = (props:any) => {
               />
             </div>
             <div className="col-6">
-              <h6 className="user-name-tweet col-12">Peyton Lyons</h6>
-              <h6 className="user-name-date col-12">24 August at 20:43 </h6>
+              <h6 className="user-name-tweet col-12">{msg.user.firstName} {msg.user.lastName}</h6>
+              <h6 className="user-name-date col-12">{new Date(props.createdAt).toDateString()}</h6>
             </div>
             <div className="col-sm-4"></div>
           </div>
