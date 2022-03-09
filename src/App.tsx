@@ -29,6 +29,7 @@ import {
 } from "./hooks/useLogin";
 import TweetContent from "./Components/TweetContent";
 import Forgotpassword from "./pages/authentication/resetpassword/Forgotpassword";
+import SingleTweet from "./pages/profile/SingleTweet";
 function App() {
   isLoggedIn();
   let USERDATA = getUserData();
@@ -56,6 +57,7 @@ function App() {
             <Route path="/setting" element={<Settings />} />
             <Route path="/following" element={<Following />} />
             <Route path="/changePassword" element={<ChangePassword />} />
+            <Route path="/usertweets/:id" element={<SingleTweet />} />
             <Route
               path="/"
               element={
