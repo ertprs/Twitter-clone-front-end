@@ -4,7 +4,7 @@ import BookMarksPage from "././Components/BookMarksPage";
 import ExplorePage from "./Components/ExplorePage";
 import TrendingDesktopPage from "./Components/TrendingDesktopPage";
 import TrendingMobilePage from "./Components/TrendingMobilePage";
-import Chat from "./pages/chat/Chat";
+// import Chat from "./pages/chat/Chat";
 import Chat2 from "./pages/chat/Chat2"
 import AuthProvider from "./context/Auth.context";
 
