@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import FollowingComponent from "../followingComponent/followingComponent";
-import "./following.scss";
+import "./follower.scss";
 import axios from "axios";
 import { AuthContext } from "../../context/Auth.context";
 import { useContext } from "react";

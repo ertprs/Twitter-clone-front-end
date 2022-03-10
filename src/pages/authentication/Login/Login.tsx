@@ -191,11 +191,11 @@ const Login = (): JSX.Element => {
           >
             <FcGoogle
               style={{
-                marginRight: "13px",
+                marginRight: "5px",
                 fontSize: "1rem",
                 letterSpacing: "2px",
               }}
-            />
+            /> Login With Google
           </button>
         </div>
         <p>
