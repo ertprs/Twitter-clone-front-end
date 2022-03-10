@@ -5,7 +5,7 @@ import ExplorePage from "./Components/ExplorePage";
 import TrendingDesktopPage from "./Components/TrendingDesktopPage";
 import TrendingMobilePage from "./Components/TrendingMobilePage";
 import Chat from "./pages/chat/Chat";
-import Chat2 from "./pages/chat/Chat2"
+import Chat2 from "./pages/chat/Chat2";
 import AuthProvider from "./context/Auth.context";
 
 import TrendsController from "./Components/TrendsController";
@@ -20,6 +20,7 @@ import Tweet from "./Components/Tweet/Tweet";
 import FollowingProvider from "./Components/FollowingProvider";
 import Profile from "./pages/profile/Profile";
 import Settings from "./pages/settings";
+import Social from "./pages/authentication/Login/Social";
 
 import { UserContext } from "./hooks/useContext";
 import {
@@ -41,6 +42,7 @@ function App() {
             {/* <Route path="/" element={<Profile />} /> */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/social/:user" element={<Social />} />
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/forgot-password" element={<Forgotpassword />} />
 

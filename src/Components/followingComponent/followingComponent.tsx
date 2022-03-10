@@ -11,7 +11,10 @@ function FollowingComponent(props: any, _id: any) {
   let followT = props.isFollow ? 'Unfollow' : 'Follow'
   const { user } = useContext(AuthContext);
   const [followText, setFollowText] = useState(followT);
+  const [isFollowing, setIsFollowing] = useState(props.isFollow)
   console.log(user);
+
+  // 
 
   const instance = axios.create({
     baseURL: "https://tweetaclone.herokuapp.com",
@@ -28,6 +31,7 @@ function FollowingComponent(props: any, _id: any) {
       });
       console.log(res.status);
       res.status === 200 && setFollowText("Unfollow");
+      setIsFollowing(true);
       return res;
     } catch (error) {
       console.log(error);
@@ -42,6 +46,7 @@ function FollowingComponent(props: any, _id: any) {
         },
       });
       res.status === 200 && setFollowText("Follow");
+      setIsFollowing(false)
       return res;
     } catch (error) {
       console.log(error);
@@ -49,7 +54,7 @@ function FollowingComponent(props: any, _id: any) {
   };
 
   const handleClick = () => {
-    return props.isFollow ? unfollow(props.id) : follow(props.id);
+    return isFollowing ? unfollow(props.id) : follow(props.id);
   };
 
   return (
@@ -64,8 +69,7 @@ function FollowingComponent(props: any, _id: any) {
             </div>
           </div>
           <Button className="my-button" onClick={handleClick}>
-            {/* {props.isFollow ? "Unfollow" : "Follow"} */}
-            {followText}
+            {isFollowing ? 'Unfollow' : 'Follow'}
           </Button>
         </div>
         <div>

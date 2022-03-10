@@ -10,25 +10,21 @@ import { IoLogoTwitter, IoLogoGithub, IoMdPartlySunny } from "react-icons/io";
 import { BsMoonStarsFill } from "react-icons/bs";
 import { BASE_URL, HTTPCODE } from "../../../constants/contants";
 import { storeUser } from "../../../hooks/useLogin";
-import { notify } from "../../../hooks/useNotification";
 import { BeatLoader } from "react-spinners";
 import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom"
+import { Link, Route, Routes } from "react-router-dom";
 
-import { AuthContext } from "./../../../context/Auth.context";
-import { useContext } from "react";
 import Swal from "sweetalert2";
 
 const url: string = `${BASE_URL}users/login`;
 const url2: string = `${BASE_URL}auth/google`;
+const local = "http://localhost:3000/auth/google";
 
 const Login = (): JSX.Element => {
-  const { user: any } = useContext(AuthContext);
-
   const google = () => {
-    window.open("http://localhost:3000/auth/google", "_self");
-    console.log(user)
+    window.open(local, "_self");
+    console.log(user);
   };
 
   const [user, setUser] = useState(null);
@@ -182,25 +178,24 @@ const Login = (): JSX.Element => {
         </div>
         <p>or continue with these social profile</p>
         <div className={styles["social-logins"]}>
-          <div className={styles["social-circle"]}>
-            <div>
-              <FaGoogle onClick={google} />
-            </div>
-          </div>
-          <button style={{
-            background: "transparent",
-            border: "1px solid #444",
-            color: "#444",
-            marginTop: "5px",
-            fontSize: "0.8rem",
-            textTransform: "capitalize"
-          }}>
-            <FcGoogle style={{
-              marginRight: "13px",
-              fontSize: "1rem",
-              letterSpacing: "2px"
-              }}  />
-            LOGIN WITH GOOGLE
+          <button
+            onClick={google}
+            style={{
+              background: "transparent",
+              border: "1px solid #444",
+              color: "#444",
+              marginTop: "5px",
+              fontSize: "0.8rem",
+              textTransform: "capitalize",
+            }}
+          >
+            <FcGoogle
+              style={{
+                marginRight: "13px",
+                fontSize: "1rem",
+                letterSpacing: "2px",
+              }}
+            />
           </button>
         </div>
         <p>
