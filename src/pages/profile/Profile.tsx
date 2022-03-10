@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, useParams } from "react-router-dom";
+import { Routes, Route, useParams, Link } from "react-router-dom";
 
 import ProfileHeader from "../../Components/profile/ProfileHeader";
 import "./Profile.css";
@@ -74,22 +74,36 @@ const Profile = () => {
         followingCount={profile?.following.Totalfollowing}
         isFetching={isFetchingProfile}
       />
-      
       {/* <br /> */}
       <div className="container">
         <div className="row">
           <div className="col-sm-3">
-            <Tweet />
+            <TweetNav />
             
           </div>
           <div className="col-sm-9">
-          {tweets && tweets.map((tweet: any, index: any) => (
+          {tweets.length>0 && tweets.map((val:any,i:any)=>(
+          <div>
+            <Link 
+              to="/profile/*"
+              style={{
+                textDecoration: "none",
+                color: "#000"
+              }}>
+              <Tweet messageBody={val['item']['messageBody']} createdAt={val['item']['createdAt']}/>
+            </Link>
+          </div>
+      ))
+      }
+
+          
+          {/* {tweets && tweets.map((tweet: any, index: any) => (
             <div key={index}>
               <Routes>
-                <Route path="tweet" element={<Tweet />} />
+                <Route path="/profile/*" element={<Tweet messageBody={tweet["item"]["messageBody"]}/>} />
               </Routes>
             </div>
-          ))}
+          ))} */}
           </div>
         </div>
       </div>

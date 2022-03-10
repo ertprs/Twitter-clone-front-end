@@ -4,8 +4,8 @@ import BookMarksPage from "././Components/BookMarksPage";
 import ExplorePage from "./Components/ExplorePage";
 import TrendingDesktopPage from "./Components/TrendingDesktopPage";
 import TrendingMobilePage from "./Components/TrendingMobilePage";
-import Chat from "./pages/chat/Chat";
-import Chat2 from "./pages/chat/Chat2";
+// import Chat from "./pages/chat/Chat";
+import Chat2 from "./pages/chat/Chat2"
 import AuthProvider from "./context/Auth.context";
 
 import TrendsController from "./Components/TrendsController";
@@ -31,6 +31,7 @@ import {
 } from "./hooks/useLogin";
 import TweetContent from "./Components/TweetContent";
 import Forgotpassword from "./pages/authentication/resetpassword/Forgotpassword";
+import SingleTweet from "./pages/profile/SingleTweet";
 function App() {
   isLoggedIn();
   let USERDATA = getUserData();
@@ -60,8 +61,18 @@ function App() {
             <Route path="/follower" element={<Follower />} />
             <Route path="/following" element={<Following />} />
             <Route path="/changePassword" element={<ChangePassword />} />
+            <Route path="/usertweets/:id" element={<SingleTweet />} />
             <Route
               path="/"
+              element={
+                <FollowingProvider>
+                  {" "}
+                  <TweetContent />{" "}
+                </FollowingProvider>
+              }
+            />
+            <Route
+              path="/home"
               element={
                 <FollowingProvider>
                   {" "}

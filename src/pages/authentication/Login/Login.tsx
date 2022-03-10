@@ -96,7 +96,7 @@ const Login = (): JSX.Element => {
           timer: 1500,
         });
         setTimeout(() => {
-          window.location.reload();
+          window.location.href='/';
         }, 2000);
       }
       if (HTTPCODE.bad.includes(response.status)) {
