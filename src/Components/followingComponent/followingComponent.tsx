@@ -1,35 +1,79 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../Following/following";
+import "../Follower/follower";
 import { PersonPlusFill } from "react-bootstrap-icons";
+import axios from "axios";
+import { AuthContext } from "../../context/Auth.context";
+import { useContext } from "react";
 
-function FollowingComponent(props:any) {
+function FollowingComponent(props: any, _id: any) {
+  let followT = props.isFollow ? 'Unfollow' : 'Follow'
+  const { user } = useContext(AuthContext);
+  const [followText, setFollowText] = useState(followT);
+  const [isFollowing, setIsFollowing] = useState(props.isFollow)
+  console.log(user);
 
+  // 
+
+  const instance = axios.create({
+    baseURL: "https://tweetaclone.herokuapp.com",
+    timeout: 1000,
+    headers: {
+      Authorization: "Bearer " + user.token,
+    },
+  });
+
+  const follow = async (id: string) => {
+    try {
+      const res = await instance.post("/api/follow", {
+        userId: props.id,
+      });
+      console.log(res.status);
+      res.status === 200 && setFollowText("Unfollow");
+      setIsFollowing(true);
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const unfollow = async (id: string) => {
+    try {
+      const res = await instance.delete("/api/follow", {
+        data: {
+          userId: props.id,
+        },
+      });
+      res.status === 200 && setFollowText("Follow");
+      setIsFollowing(false)
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleClick = () => {
+    return isFollowing ? unfollow(props.id) : follow(props.id);
+  };
 
   return (
     <Modal.Body>
       <article>
         <div className="header">
           <div className="img-component">
-            <img
-              src="https://images.unsplash.com/photo-1607758164193-19539498ddf4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=758&q=80"
-              alt=""
-              className="follow-img"
-            />
+            <img src={props.profilePic} alt="" className="follow-img" />
             <div className="center">
               <h4 className="follow-name"> {props.name}</h4>
               <p className="description"> 120k followers</p>
             </div>
           </div>
-          <Button className="my-button">
-            <PersonPlusFill className="ml-4" /> Follow
+          <Button className="my-button" onClick={handleClick}>
+            {isFollowing ? 'Unfollow' : 'Follow'}
           </Button>
         </div>
         <div>
-          <p className="description">
-             lorem ipsium lorem ipsium lorem ipsium lorem ipsium lorem
-          </p>
+          <p className="biodata">{props.bioData}</p>
         </div>
       </article>
       <hr></hr>

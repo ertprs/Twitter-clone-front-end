@@ -1,56 +1,87 @@
-import React, { useState, useMemo,useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import BookMarksPage from "././Components/BookMarksPage";
 import ExplorePage from "./Components/ExplorePage";
 import TrendingDesktopPage from "./Components/TrendingDesktopPage";
 import TrendingMobilePage from "./Components/TrendingMobilePage";
-import TweetingContainer from "./Components/TweetingContainer";
-import Chat from "./pages/chat/Chat";
-import Home from "./pages/home/Home";
+// import Chat from "./pages/chat/Chat";
+import Chat2 from "./pages/chat/Chat2"
+import AuthProvider from "./context/Auth.context";
 
+import TrendsController from "./Components/TrendsController";
 import Login from "./pages/authentication/Login/Login";
 import Signup from "./pages/authentication/Signup/Signup";
+import Follower from "./Components/Follower/follower";
 import Following from "./Components/Following/following";
 import ChangePassword from "./Components/changePassword/changePassword";
 
 import Navbar from "./Components/NavBar/Nav";
 import Tweet from "./Components/Tweet/Tweet";
+import FollowingProvider from "./Components/FollowingProvider";
 import Profile from "./pages/profile/Profile";
 import Settings from "./pages/settings";
+import Social from "./pages/authentication/Login/Social";
 
 import { UserContext } from "./hooks/useContext";
 import {
   getUserData,
   useLogin,
   getUserToken,
-  isLoggedIn
+  isLoggedIn,
 } from "./hooks/useLogin";
+import TweetContent from "./Components/TweetContent";
+import Forgotpassword from "./pages/authentication/resetpassword/Forgotpassword";
+import SingleTweet from "./pages/profile/SingleTweet";
 function App() {
   isLoggedIn();
-   let USERDATA = getUserData()
+  let USERDATA = getUserData();
   return (
     <UserContext.Provider value={USERDATA}>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Profile />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+        <AuthProvider>
+          <Routes>
+            {/* <Route path="/" element={<Profile />} /> */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/social/:user" element={<Social />} />
+            <Route path="/profile/:id" element={<Profile />} />
+            <Route path="/forgot-password" element={<Forgotpassword />} />
 
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/tweet" element={<TweetingContainer />} />
-          <Route path="/trending" element={<TrendingMobilePage />} />
-          <Route path="/explore" element={<ExplorePage />} />
-          <Route path="/bookmark" element={<BookMarksPage />} />
-          <Route path="/chat" element={<Chat />} />
-          <Route
-            path="/tweet/desktoptrending"
-            element={<TrendingDesktopPage />}
-          />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/following" element={<Following />} />
-          <Route path="/changePassword" element={<ChangePassword />} />
-        </Routes>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/trends/:id" element={<TrendsController />} />
+            <Route path="/trending" element={<TrendingMobilePage />} />
+            <Route path="/explore" element={<ExplorePage />} />
+            <Route path="/bookmark" element={<BookMarksPage />} />
+            <Route path="/chat" element={<Chat2 />} />
+            <Route
+              path="/tweet/desktoptrending"
+              element={<TrendingDesktopPage />}
+            />
+            <Route path="/setting" element={<Settings />} />
+            <Route path="/follower" element={<Follower />} />
+            <Route path="/following" element={<Following />} />
+            <Route path="/changePassword" element={<ChangePassword />} />
+            <Route path="/usertweets/:id" element={<SingleTweet />} />
+            <Route
+              path="/"
+              element={
+                <FollowingProvider>
+                  {" "}
+                  <TweetContent />{" "}
+                </FollowingProvider>
+              }
+            />
+            <Route
+              path="/home"
+              element={
+                <FollowingProvider>
+                  {" "}
+                  <TweetContent />{" "}
+                </FollowingProvider>
+              }
+            />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </UserContext.Provider>
   );

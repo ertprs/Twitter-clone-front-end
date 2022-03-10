@@ -8,17 +8,48 @@ import { IoIosLock } from "react-icons/io";
 import { User } from "./login.interface";
 import { IoLogoTwitter, IoLogoGithub, IoMdPartlySunny } from "react-icons/io";
 import { BsMoonStarsFill } from "react-icons/bs";
-import { BASE_URL } from "../../../constants/contants";
+import { BASE_URL, HTTPCODE } from "../../../constants/contants";
 import { storeUser } from "../../../hooks/useLogin";
-import { notify } from "../../../hooks/useNotification";
+import { BeatLoader } from "react-spinners";
+import axios from "axios";
+import { FcGoogle } from "react-icons/fc";
+import { Link, Route, Routes } from "react-router-dom";
+
+import Swal from "sweetalert2";
 
 const url: string = `${BASE_URL}users/login`;
+const url2: string = `${BASE_URL}auth/google`;
+const local = "http://localhost:3000/auth/google";
 
 const Login = (): JSX.Element => {
+  const google = () => {
+    window.open(local, "_self");
+    console.log(user);
+  };
+
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const res = await axios.get(`http://localhost:3000/auth/login/success`);
+        console.log(res);
+        const response = res.data;
+        setUser(response);
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getUser();
+  }, []);
+
+  console.log(user);
   const [isLight, setIsLight] = useState(true);
   const [form, setForm] = useState<User>({ email: "", password: "" });
   const [showError, setShowError] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string>("");
+  const [loadMsg, setLoadMsg] = useState<string>("");
+  const [loadingMsg, setloadingMsg] = useState<string>("");
 
   const focusPoint = useRef<HTMLInputElement>(null);
   const focusPoint2 = useRef<HTMLInputElement>(null);
@@ -30,6 +61,8 @@ const Login = (): JSX.Element => {
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    setloadingMsg("loading");
+
     if (!form.email) {
       focusPoint.current!.style.border = "1.5px solid red";
       setTimeout(
@@ -51,33 +84,33 @@ const Login = (): JSX.Element => {
         body: JSON.stringify(form),
       });
 
-      if (response.status === 201) {
-        const data = await response.json();
+      const data = await response.json();
+
+      if (HTTPCODE.success.includes(response.status)) {
         console.log(data);
-        storeUser(data)
-        notify("success", "Login successful",true);
-        // Swal.fire({
-        //   icon: "success",
-        //   title: "Login successful",
-        //   showConfirmButton: false,
-        //   timer: 1500,
-        // });
-        window.location.reload()
+        storeUser(data);
+        Swal.fire({
+          icon: "success",
+          title: "Login successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setTimeout(() => {
+          window.location.href='/';
+        }, 2000);
       }
-      if (response.status === 400) {
-        const data = await response.text();
-        setErrorMsg(data);
-        setShowError(true);
-        setTimeout(() => setShowError(false), 3000);
-      }
-      if (response.status === 403) {
-        const data = await response.json();
-        setErrorMsg(data.message);
-        setShowError(true);
-        setTimeout(() => setShowError(false), 3000);
+      if (HTTPCODE.bad.includes(response.status)) {
+        setloadingMsg("");
+
+        Swal.fire({
+          icon: "error",
+          title: "Incorrect Credentials",
+          showConfirmButton: false,
+          timer: 2500,
+        });
       }
       console.log(response);
-    } catch (err: any) {
+    } catch (err) {
       console.error(err);
     }
   };
@@ -138,36 +171,38 @@ const Login = (): JSX.Element => {
               required
             />
           </div>
-          <button onClick={handleSubmit}> Login </button>
+          <button onClick={handleSubmit}>
+            {loadingMsg === "loading" && <BeatLoader color="#2F80ED" />}
+            {loadingMsg !== "loading" && "Login"}
+          </button>
         </div>
         <p>or continue with these social profile</p>
         <div className={styles["social-logins"]}>
-          <div className={styles["social-circle"]}>
-            <div>
-              <FaGoogle />
-            </div>
-          </div>
-          <div className={styles["social-circle"]}>
-            <div>
-              <GrFacebook />
-            </div>
-          </div>
-          <div className={styles["social-circle"]}>
-            <div>
-              <IoLogoTwitter />
-            </div>
-          </div>
-          <div className={styles["social-circle"]}>
-            <div>
-              <IoLogoGithub />
-            </div>
-          </div>
+          <button
+            onClick={google}
+            style={{
+              background: "transparent",
+              border: "1px solid #444",
+              color: "#444",
+              marginTop: "5px",
+              fontSize: "0.8rem",
+              textTransform: "capitalize",
+            }}
+          >
+            <FcGoogle
+              style={{
+                marginRight: "5px",
+                fontSize: "1rem",
+                letterSpacing: "2px",
+              }}
+            /> Login With Google
+          </button>
         </div>
         <p>
-          Dont't have an account yet? <a href="/signup">Register </a>
+          Don't have an account yet? <Link to="/signup">Register </Link>
         </p>
         <p className={styles["forget-password"]}>
-          <a href="/forgetPassword">Forget password?</a>
+          <a href="/forgot-password">Forget password?</a>
         </p>
       </div>
     </div>

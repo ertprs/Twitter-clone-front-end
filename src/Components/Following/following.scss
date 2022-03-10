@@ -23,6 +23,11 @@
 
 }
 
+.follow-button{
+    margin-left: 0.2rem;
+    margin-right: 0.8rem;
+}
+
 .center{
     display: inline-block;
     text-align: center;
@@ -49,10 +54,13 @@
 .modal-body{
     margin-left: 1rem;
     margin-right: 1rem;
-
-
     padding: 0
 }
+
+// .modal-header{
+//     display: flex;
+//     justify-content: space-between;
+// }
 
 .border{
     border-top: 0.5px solid #ccc;

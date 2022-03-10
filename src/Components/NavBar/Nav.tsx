@@ -3,10 +3,16 @@ import { MdGroup, MdSettings, MdLogout, MdArrowDropDown } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import classes from "./Nav.module.css";
 import { Link, NavLink } from "react-router-dom";
-import {logOut} from '../../hooks/useLogin'
+import {logOut} from '../../hooks/useLogin';
+import {AuthContext} from '../../context/Auth.context'
+import { useContext } from "react";
 
 
 const Navbar = () => {
+
+  const {user} = useContext(AuthContext);
+
+
   return (
     <div className={classes.wrapper}>
       <nav>
@@ -28,17 +34,35 @@ const Navbar = () => {
                   borderBottom: isActive
                     ? "2px solid #2f80ed"
                     : "2px solid transparent",
-                  paddingBottom: "25px",
+                  paddingBottom: "25px"
                 };
               }}
               to="/"
             >
               Home
             </NavLink>
-            <NavLink className={classes.linkedNav} to="/explore">
+            <NavLink className={classes.linkedNav}
+              style={({ isActive }) => {
+                return {
+                  borderBottom: isActive
+                    ? "2px solid #2f80ed"
+                    : "2px solid transparent",
+                  paddingBottom: "25px"
+                };
+              }} to="/explore">
               Explore
             </NavLink>
-            <NavLink className={classes.linkedNav} to="/bookmark">
+            <NavLink className={classes.linkedNav}
+              style={({ isActive }) => {
+                return {
+              
+                  borderBottom: isActive
+                    ? "2px solid #2f80ed"
+                    : "2px solid transparent",
+                  paddingBottom: "25px",
+                  
+                };
+              }} to="/bookmark">
               Bookmark
             </NavLink>
           </div>
@@ -47,24 +71,32 @@ const Navbar = () => {
         <div className={classes.navright}>
           <div className={classes.profile}>
             <figure className={classes.avatarContainer}>
-              <img
-                src="https://th.bing.com/th/id/OIP.PYAaF5TzN61zDH-_r7TdRAHaE8?w=196&h=131&c=7&r=0&o=5&pid=1.7"
-                className={classes.profileImg}
+
+             
+            
+              {!user.user.profilePic ?
+                <div className={classes.profileImg}>{user.user.firstName[0] + " " + user.user.lastName[0]}</div>
+                  :
+                <img
+                src={user.user.profilePic}
+                className={classes.profileImgI}
                 alt="profile"
               />
+              }
+              
             </figure>
-            <p className={classes.nameTxt}>Funmi Lifted</p>
+            <p className={classes.nameTxt}>{user.user.firstName + " " + user.user.lastName}</p>
             <MdArrowDropDown className={classes.arrow} />
           </div>
 
           <div className={classes.dropdown}>
-            <Link to="/profile" className={classes.navItem}>
+            <Link to={`/profile/${user.user._id}`} className={classes.navItem}>
               <CgProfile className={classes.icon} />
               <span className={classes.navText}>My Profile</span>
             </Link>
             <Link to="/chat" className={classes.navItem}>
               <MdGroup className={classes.icon} />
-              <span className={classes.navText}>Group Chat</span>
+              <span className={classes.navText}>Chat</span>
             </Link>
             <Link to="/setting" className={classes.navItem}>
               <MdSettings className={classes.icon} />
