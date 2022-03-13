@@ -1,15 +1,22 @@
 import styles from "../styles/Tweeting_style/TrendingPage.module.css";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { UserContext } from "../hooks/useContext"
+import { BASE_URL } from "../constants/contants";
 
 function TrendingMobilePage() {
+
+  const userToken:any = useContext(UserContext)
+  const token = userToken.token
+
   const [trends, setTrends] = useState<any>([]);
-  let token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImlhdCI6MTY0NTcyODY4MywiZXhwIjoxNjQ1NzQ2NjgzfQ.5rCiKPvdCDojk2VIwlbfua9ZiDQa88dz83HuekXb-oM";
+
+  const url = `${BASE_URL}api/trends`
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/trends", {
+      .get(url, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -31,43 +38,13 @@ function TrendingMobilePage() {
           <div className={styles.underline}></div>
           {Object.keys(trends).map((trend: string) => (
             <div key={trend} className={styles["trending-content"]}>
-              <a href="/">{trend}</a>
-              <p>{trends[trend].length} Tweets</p>
+              <Link to={`/trends/${trend.replace(/#/g, '')}`}>{trend}
+              <span>{trends[trend].length} Tweets</span>
+              </Link>
             </div>
           ))}
         </div>
       </div>
-    {/* <div className={styles.trending}>
-              <h3>trends for you</h3>
-              <div className={styles.underline}></div>
-              <div className = {styles["trending-content"]}>
-                  <a href = "/tweet/desktoptrending">#Programming
-                  <span>213k Tweets</span>
-                  </a>
-             </div>
-             <div className = {styles["trending-content"]}>
-                  <a href = "/tweet/desktoptrending">#Programming
-                  <span>213k Tweets</span>
-                  </a>
-             </div>
-             <div className = {styles["trending-content"]}>
-                  <a href = "/tweet/desktoptrending">#Programming
-                  <span>213k Tweets</span>
-                  </a>
-             </div>
-             <div className = {styles["trending-content"]}>
-                  <a href = "/tweet/desktoptrending">#Programming
-                  <span>213k Tweets</span>
-                  </a>
-             </div>
-             <div className = {styles["trending-content"]}>
-                  <a href = "/tweet/desktoptrending">#Programming
-                  <span>213k Tweets</span>
-                  </a>
-             </div>
-              
-              </div>
-    </div> */}
     </>
   );
 }

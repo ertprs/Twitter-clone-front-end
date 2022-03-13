@@ -1,5 +1,8 @@
 import axios from "axios";
-import {notify} from  "../hooks/useNotification"
+import { notify } from "../hooks/useNotification";
+import Swal from "sweetalert2";
+import { useLocation } from "react-router-dom";
+
 export const useLogin = async () => {
   let response = await axios.post("/login", {
     firstName: "Finn",
@@ -16,7 +19,6 @@ export const useLogin = async () => {
 
 export const storeUser = (userData: any) => {
   let data = localStorage.setItem("tweeter", JSON.stringify(userData));
-  console.log("dtaa");
 };
 export const getUserData = () => {
   let data: any = localStorage.getItem("tweeter");
@@ -24,26 +26,37 @@ export const getUserData = () => {
 };
 export const getUserToken = () => {
   let data: any = localStorage.getItem("tweeter");
+  console.log(data);
+
   if (data) {
     data = JSON.parse(data);
-    console.log(data.token);
+    if (!data.user.profilePic) localStorage.removeItem("tweeter");
+
+    localStorage.setItem("userlogingImage", data.user.profilePic);
     return data.token;
   }
   return null;
 };
 export const isLoggedIn = () => {
   let data: any = getUserToken();
+
   let loginUrl = window.location.href.split("/");
   console.log(loginUrl[loginUrl.length - 1]);
+  const pages = ["login", "signup", "forgot-password"];
+  const currentUrl = loginUrl[loginUrl.length - 1];
+  // redirect
 
-  if (
-    !data &&
-    loginUrl[loginUrl.length - 1] !== "login" &&
-    loginUrl[loginUrl.length - 1] !== "signup"
-  ) {
+  console.log({ loginUrl });
+
+  if (loginUrl[3] === "social") {
+    // window.location.href = `/${currentUrl}`;
+    return true;
+  }
+
+  if (!data && !pages.includes(currentUrl)) {
     window.location.href = "/login";
     return false;
-  } else if (data && loginUrl[loginUrl.length - 1] === "login") {
+  } else if (data && currentUrl === "login") {
     window.location.href = "/";
     return true;
   }
@@ -51,6 +64,12 @@ export const isLoggedIn = () => {
 
 export const logOut = () => {
   localStorage.removeItem("tweeter");
-  notify('success', 'Signing Out Account',true)
+  Swal.fire({
+    icon: "success",
+    title: "Signing Out Account",
+    showConfirmButton: false,
+    timer: 1500,
+  });
+  // notify("success", "Signing Out Account", true);
   window.location.reload();
 };

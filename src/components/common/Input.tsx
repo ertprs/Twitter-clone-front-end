@@ -20,7 +20,7 @@ export const Input: React.FC<InputPropInterface> = ({
         value={value}
         placeholder={placeholder}
         className={`form-control ${className ? className : ""}`}
-        onChange={({ target: { value } }) => onChange(value)}
+        onChange={onChange}
       />
     </div>
   );
@@ -54,7 +54,7 @@ export const TextArea: React.FC<TextAreaPropInterface> = ({
         cols={cols || 3}
         placeholder={placeholder}
         className={`form-control ${className ? className : ""}`}
-        onChange={({ target: { value } }) => onChange(value)}
+        onChange={onChange}
       ></textarea>
     </div>
   );

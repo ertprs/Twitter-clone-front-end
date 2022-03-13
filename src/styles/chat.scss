@@ -1,6 +1,18 @@
 .themebg-left {
   background-color: #f2f2f2 !important;
+  position: fixed;
   //   min-height: 700px !important;
+}
+
+.nav {
+  position: fixed;
+}
+
+.chat-box {
+  background-color: blue;
+  width: 75%;
+  margin-left: 25%;
+  padding-top: 2px;
 }
 
 .chat-plus-bg {
@@ -49,6 +61,11 @@
 }
 .chat-li-side {
   margin: 10px;
+}
+
+.chat-head-right {
+  display: flex;
+  background-color: red;
 }
 
 .chat-right-h1 {
